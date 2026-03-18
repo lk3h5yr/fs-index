@@ -1,0 +1,1155 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* MITUS 風格動畫 */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+  }
+  50% {
+    opacity: 0.8;
+    box-shadow: 0 0 40px rgba(59, 130, 246, 0.8);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* 漸變文字效果 */
+.gradient-text {
+  background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 50%, #6366f1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-purple {
+  background: linear-gradient(135deg, #a855f7 0%, #6366f1 50%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* 玻璃態效果 */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.glass-effect-dark {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+/* 懸停發光效果 */
+.hover-glow {
+  transition: all 0.3s ease;
+}
+
+.hover-glow:hover {
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.6);
+  transform: translateY(-5px);
+}
+
+/* 數字編號樣式 - MITUS 風格 */
+.number-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+  color: white;
+  font-weight: bold;
+  font-size: 24px;
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.4);
+  transition: all 0.3s ease;
+}
+
+.number-badge:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 30px rgba(59, 130, 246, 0.6);
+}
+
+/* 平滑滾動 */
+.smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+/* 視差效果 */
+.parallax {
+  will-change: transform;
+}
+
+/* 動畫類 */
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-fade-in-down {
+  animation: fadeInDown 0.8s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.6s ease-out forwards;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.8s ease-out forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.8s ease-out forwards;
+}
+
+/* 漸變背景動畫 */
+.shimmer-bg {
+  background: linear-gradient(
+    90deg,
+    rgba(59, 130, 246, 0.1) 0%,
+    rgba(6, 182, 212, 0.2) 50%,
+    rgba(59, 130, 246, 0.1) 100%
+  );
+  background-size: 2000px 100%;
+  animation: shimmer 3s linear infinite;
+}
+
+/* 模組化卡片樣式 */
+.module-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.module-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(59, 130, 246, 0.5);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 40px rgba(59, 130, 246, 0.2);
+}
+
+/* 橫向跑馬燈 - お取引企業様 */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee 16s linear infinite;
+}
+
+/* ========== about 頁專用 ========== */
+/* 頁首：淡灰白 + 超淡藍紫 radial gradient，無底線 */
+.about-hero {
+  background-color: #fff;
+}
+
+/* 01 我々にできること：底色同首頁選ばれる理由（bg-gray-50）、無網格 */
+.about-capability-section {
+  background-color: #f8fafc; /* Tailwind gray-50，與選ばれる理由一致 */
+}
+
+/* 01 技術能力模組：架構圖卡片，無網格／無裝飾底 */
+.about-capability-card {
+  border-radius: 24px;
+  border: 1px solid rgba(226,232,240,0.9);
+  box-shadow: 0 8px 32px -12px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.02);
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 能力模組：三顆 icon 節點浮動漂移動畫 */
+@keyframes capability-node-float {
+  0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+  50% { transform: translate(-50%, -50%) translateY(-6px); }
+}
+.about-capability-node-float {
+  animation: capability-node-float 3.2s ease-in-out infinite;
+}
+.about-capability-node-float:hover {
+  animation-play-state: paused;
+}
+
+/* 03 ご挨拶：左品牌色線、極淡灰藍底、左右分欄時左側有邊線 */
+.about-greeting-card {
+  border-radius: 20px;
+  border: 1px solid rgba(226,232,240,0.8);
+  box-shadow: 0 4px 24px -8px rgba(0,0,0,0.05), 0 0 0 1px rgba(0,0,0,0.02);
+  background: #fff;
+}
+/* 代表メッセージ區卡片不加左線，由內文 blockquote 取代強調 */
+.about-section-03 .about-greeting-card { border-left: none; }
+.about-greeting-left {
+  background: #fff;
+}
+/* About 區塊區分：用標題樣式區分（白底時） */
+.about-section-01 .about-section-label { color: #1e3a5f; letter-spacing: 0.12em; }
+.about-section-01 .about-section-title { border-bottom-color: #1e3a5f; padding-bottom: 0.5rem; border-bottom-width: 2px; }
+.about-section-02 .about-section-label { color: #475569; font-weight: 600; }
+.about-section-02 .about-section-title { color: #1e293b; border-bottom-color: #94a3b8; }
+.about-section-03 .about-section-label { color: #64748b; }
+/* 代表メッセージ：無左線、標題下橫線（與ご挨拶之間） */
+.about-section-03 .about-section-title { color: #0f172a; border-left: none; padding-left: 0; border-bottom: 2px solid #94a3b8; padding-bottom: 0.5rem; }
+.about-section-04 .about-section-label { color: #64748b; font-size: 0.7rem; }
+.about-section-04 .about-section-title { font-size: 1.5rem; color: #1e3a5f; border-bottom: 1px solid #cbd5e1; }
+
+/* 04 CTA band：深一點淡色背景、收尾感 */
+.about-cta-band {
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.about-cta-band::before,
+.about-cta-band::after {
+  display: none;
+}
+
+/* CTA 主按鈕（深藍）與次按鈕（outline） */
+.about-cta-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 1.75rem;
+  font-weight: 600;
+  font-size: 1.0625rem;
+  color: white;
+  background: #1e3a5f;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: filter 0.2s, transform 0.2s;
+  box-shadow: 0 4px 14px -4px rgba(30,58,95,0.35);
+}
+.about-cta-primary:hover {
+  filter: brightness(1.08);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px -4px rgba(30,58,95,0.4);
+}
+.about-cta-primary .btn-flag-arrow { transition: transform 0.25s ease; }
+.about-cta-primary:hover .btn-flag-arrow { transform: translateX(4px); }
+
+.about-cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1.75rem;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #1e3a5f;
+  background: transparent;
+  border: 2px solid #1e3a5f;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+.about-cta-secondary:hover { background: rgba(30,58,95,0.06); transform: translateY(-2px); }
+
+/* 彈窗用閉じる按鈕：較小尺寸 */
+.popup-close-btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+/* ========== 会社情報頁：集中式資訊面板 ========== */
+.company-panel {
+  border-radius: 20px;
+  border: 1px solid rgba(226,232,240,0.8);
+  box-shadow: 0 4px 24px -8px rgba(0,0,0,0.05), 0 0 0 1px rgba(0,0,0,0.02);
+  background: #fff;
+}
+.company-panel-section {
+  border-bottom: 1px solid rgba(226,232,240,0.7);
+}
+.company-panel-section:last-child {
+  border-bottom: none;
+}
+.company-contact-item {
+  transition: color 0.2s ease;
+}
+.company-contact-item:hover {
+  color: #1e3a5f;
+}
+
+/* ========== パートナー頁：跑馬燈 ========== */
+@keyframes partners-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.partners-marquee-wrap {
+  mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+}
+.partners-marquee-track {
+  animation: partners-marquee 28s linear infinite;
+  width: max-content;
+}
+.partners-marquee-item {
+  flex-shrink: 0;
+}
+.partners-marquee-logo {
+  transition: transform 0.25s ease;
+}
+.partners-marquee-wrap:hover .partners-marquee-track {
+  animation-play-state: paused;
+}
+.partners-cta-email {
+  text-decoration: none;
+}
+.partners-benefit-card {
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.partners-benefit-card:hover {
+  box-shadow: 0 12px 28px -8px rgba(15,23,42,0.1), 0 0 0 1px rgba(99,102,241,0.08);
+  border-color: rgba(129,140,248,0.25);
+}
+
+/* 会社情報：連絡先・経営革新計画 テーブル（DTS アクセス頁風） */
+.company-access-th {
+  width: 1%;
+  white-space: nowrap;
+  padding: 1rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #475569;
+  background: #f8fafc;
+  text-align: left;
+  vertical-align: top;
+  border-right: 1px solid rgba(226,232,240,0.9);
+}
+.company-access-td {
+  padding: 1rem 1.25rem;
+  font-size: 0.9375rem;
+  color: #1e293b;
+  vertical-align: top;
+}
+
+/* 採用情報：三大區塊點擊展開（募集要項・応募方法・個人情報） */
+.careers-section-block {
+  margin-bottom: 0.5rem;
+}
+.careers-section-trigger {
+  cursor: pointer;
+  outline: none;
+}
+.careers-section-trigger:focus-visible {
+  outline: 2px solid rgba(30, 58, 95, 0.4);
+  outline-offset: 2px;
+}
+.careers-section-icon {
+  transition: transform 0.25s ease;
+}
+
+/* 会社情報：GREETING 橫幅（藍色漸層） */
+.company-greeting-banner {
+  background: linear-gradient(90deg, #e0e7ef 0%, #c8d4e3 50%, #b8c8dc 100%);
+}
+.company-greeting-cta {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.company-greeting-cta:hover {
+  opacity: 0.9;
+  transform: translateX(4px);
+}
+
+/* 事業概要區塊：背景圖曲線遮罩（右側斜切） */
+.company-profile-bg-mask {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 85%, 55% 88%, 100% 78%, 100% 100%);
+}
+@media (min-width: 768px) {
+  .company-profile-bg-mask {
+    clip-path: polygon(0 0, 75% 0, 100% 12%, 100% 100%, 0 100%);
+  }
+}
+.company-profile-bg-overlay {
+  background: linear-gradient(135deg, rgba(255,255,255,0.92) 0%, rgba(248,250,252,0.88) 50%, rgba(241,245,249,0.85) 100%);
+}
+
+/* 事業概要：新卡片樣式（左線條、圖標圓、標題＋內文） */
+.company-profile-card {
+  border-radius: 16px;
+  border: 1px solid rgba(226,232,240,0.9);
+  box-shadow: 0 4px 24px -6px rgba(15,23,42,0.08), 0 0 0 1px rgba(0,0,0,0.03);
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(8px);
+  transition: box-shadow 0.3s ease, transform 0.25s ease, border-color 0.25s ease;
+}
+.company-profile-card:hover {
+  box-shadow: 0 12px 32px -8px rgba(15,23,42,0.12), 0 0 0 1px rgba(30,58,95,0.08);
+  transform: translateY(-2px);
+  border-color: rgba(30,58,95,0.15);
+}
+.company-profile-card-accent {
+  width: 4px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.company-profile-card-accent--system {
+  background: linear-gradient(180deg, #0ea5e9 0%, #0369a1 100%);
+}
+.company-profile-card-accent--people {
+  background: linear-gradient(180deg, #14b8a6 0%, #0d9488 100%);
+}
+.company-profile-card-icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.company-profile-card-icon-wrap--system {
+  background: linear-gradient(145deg, #e0f2fe 0%, #7dd3fc 100%);
+  color: #0369a1;
+}
+.company-profile-card-icon-wrap--people {
+  background: linear-gradient(145deg, #ccfbf1 0%, #5eead4 100%);
+  color: #0f766e;
+}
+.company-profile-card:hover .company-profile-card-icon-wrap--system {
+  background: linear-gradient(145deg, #bae6fd 0%, #38bdf8 100%);
+}
+.company-profile-card:hover .company-profile-card-icon-wrap--people {
+  background: linear-gradient(145deg, #99f6e4 0%, #2dd4bf 100%);
+}
+
+/* ========== 開発事例：時間軸點線・節點・左右交叉 ========== */
+.cases-timeline {
+  padding-left: 0;
+}
+/* 點線置中，穿過節點正中央 */
+.cases-timeline-zigzag .cases-timeline-track {
+  left: 50%;
+  transform: translateX(-1px);
+  top: 12px;
+  bottom: 12px;
+  width: 2px;
+  border-radius: 2px;
+  background: repeating-linear-gradient(
+    180deg,
+    #94a3b8 0px,
+    #94a3b8 4px,
+    transparent 4px,
+    transparent 14px
+  );
+  background-size: 2px 18px;
+  opacity: 0.85;
+}
+.cases-timeline-track {
+  position: absolute;
+  top: 12px;
+  bottom: 12px;
+  width: 2px;
+  border-radius: 2px;
+  background: repeating-linear-gradient(
+    180deg,
+    #94a3b8 0px,
+    #94a3b8 4px,
+    transparent 4px,
+    transparent 14px
+  );
+  background-size: 2px 18px;
+  opacity: 0.85;
+}
+.cases-timeline-node {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 3px solid #f1f5f9;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+  flex-shrink: 0;
+}
+@media (min-width: 640px) {
+  .cases-timeline-node {
+    width: 18px;
+    height: 18px;
+    border-width: 4px;
+  }
+}
+/* 節點顏色：三種更冷色調（灰藍 → 冷青 → 冷靛） */
+.cases-timeline-node--0 {
+  background: linear-gradient(145deg, #cbd5e1 0%, #64748b 100%);
+  box-shadow: 0 1px 4px rgba(100,116,139,0.3), 0 0 0 1px rgba(100,116,139,0.15);
+}
+.cases-timeline-node--1 {
+  background: linear-gradient(145deg, #a5f3fc 0%, #0e7490 100%);
+  box-shadow: 0 1px 4px rgba(14,116,144,0.3), 0 0 0 1px rgba(14,116,144,0.15);
+}
+.cases-timeline-node--2 {
+  background: linear-gradient(145deg, #c7d2fe 0%, #6366f1 100%);
+  box-shadow: 0 1px 4px rgba(99,102,241,0.3), 0 0 0 1px rgba(99,102,241,0.15);
+}
+/* hover 時僅稍微變深（維持色相） */
+.cases-timeline .group:hover .cases-timeline-node--0 {
+  background: linear-gradient(145deg, #b8c5d4 0%, #475569 100%);
+  box-shadow: 0 1px 5px rgba(71,85,105,0.35), 0 0 0 1px rgba(71,85,105,0.2);
+  transform: scale(1.06);
+  border-color: rgba(71,85,105,0.2);
+}
+.cases-timeline .group:hover .cases-timeline-node--1 {
+  background: linear-gradient(145deg, #8ceef7 0%, #0d9488 100%);
+  box-shadow: 0 1px 5px rgba(13,148,136,0.35), 0 0 0 1px rgba(13,148,136,0.2);
+  transform: scale(1.06);
+  border-color: rgba(13,148,136,0.2);
+}
+.cases-timeline .group:hover .cases-timeline-node--2 {
+  background: linear-gradient(145deg, #b4bcf9 0%, #4f46e5 100%);
+  box-shadow: 0 1px 5px rgba(79,70,229,0.35), 0 0 0 1px rgba(79,70,229,0.2);
+  transform: scale(1.06);
+  border-color: rgba(79,70,229,0.2);
+}
+
+/* 滑過開発事例區塊時背景變深 */
+.cases-timeline-btn {
+  background-color: rgba(241, 245, 249, 0.4);
+}
+.cases-timeline-btn:hover {
+  background-color: rgba(203, 213, 225, 0.7);
+}
+
+/* ========== 採用情報：採用前導區塊（主題・層次・視覺核心） ========== */
+.careers-lead {
+  padding-top: 6rem;
+  padding-bottom: 2.5rem;
+}
+@media (min-width: 768px) {
+  .careers-lead {
+    padding-bottom: 3rem;
+  }
+}
+
+/* 背景層一：底層漸層（白 → 淡藍灰），整區主題色 */
+.careers-lead-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.careers-lead-bg-base {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #fafbfd 25%,
+    #f4f6f9 60%,
+    #f1f5f9 100%
+  );
+}
+
+/* 背景層二：裝飾形狀，增加景深 */
+.careers-lead-bg-shape {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120%;
+  max-width: 900px;
+  height: 70%;
+  min-height: 280px;
+  background: radial-gradient(
+    ellipse 80% 60% at 50% 100%,
+    rgba(184, 204, 228, 0.18) 0%,
+    rgba(203, 213, 225, 0.08) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+/* 內文區：與標題、核心區統一間距 */
+.careers-lead-inner {
+  padding-top: 0;
+}
+.careers-lead-inner .max-w-4xl {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+@media (min-width: 768px) {
+  .careers-lead-inner .max-w-4xl {
+    gap: 2.5rem;
+  }
+}
+
+/* 視覺核心：公司理念文區塊 — 前導區的收束點 */
+.careers-lead-core {
+  position: relative;
+  padding: 1.75rem 1.5rem 1.75rem 2rem;
+  border-radius: 16px;
+  border: 1px solid rgba(226, 232, 240, 0.6);
+  background: linear-gradient(
+    165deg,
+    rgba(255, 255, 255, 0.92) 0%,
+    rgba(248, 250, 252, 0.95) 50%,
+    rgba(241, 245, 249, 0.9) 100%
+  );
+  box-shadow:
+    0 4px 24px -8px rgba(0, 0, 0, 0.06),
+    0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+@media (min-width: 768px) {
+  .careers-lead-core {
+    padding: 2rem 2.25rem 2rem 2.5rem;
+    border-radius: 20px;
+  }
+}
+.careers-lead-core::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 44%;
+  min-height: 56px;
+  border-radius: 0 4px 4px 0;
+  background: linear-gradient(
+    180deg,
+    rgba(100, 116, 139, 0.35) 0%,
+    rgba(148, 163, 184, 0.25) 50%,
+    rgba(203, 213, 225, 0.2) 100%
+  );
+  pointer-events: none;
+}
+.careers-lead-core:hover {
+  border-color: rgba(226, 232, 240, 0.85);
+  box-shadow:
+    0 8px 32px -12px rgba(0, 0, 0, 0.08),
+    0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+}
+.careers-lead-core-text {
+  color: #475569;
+  font-size: 0.9375rem;
+  line-height: 1.78;
+  margin: 0;
+}
+@media (min-width: 768px) {
+  .careers-lead-core-text {
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+}
+
+/* ========== 開発事例：卡牌效果＋Popup（冷色調） ========== */
+.case-card-cta {
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+.case-card-cta:hover {
+  transform: translateX(4px);
+}
+.case-popup-wrap {
+  overflow-y: auto;
+}
+.case-popup {
+  border-left: 4px solid #64748b;
+  box-shadow: 0 0 0 1px rgba(100,116,139,0.08);
+}
+.case-popup-body {
+  color: #334155;
+  line-height: 1.85;
+}
+
+/* ========== ニュース頁：リスト＋CTA（homepage 色調・赤なし） ========== */
+.news-release-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #0f172a;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid #1e3a5f;
+  display: inline-block;
+}
+.news-tag {
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #fff;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+.news-tag-fixed {
+  min-width: 7.5rem;
+  text-align: center;
+}
+.news-tag-keiei {
+  background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
+  box-shadow: 0 2px 8px -2px rgba(20,184,166,0.4);
+}
+.news-tag-service {
+  background: linear-gradient(135deg, #0369a1 0%, #0ea5e9 100%);
+  box-shadow: 0 2px 8px -2px rgba(14,165,233,0.4);
+}
+.news-tag-ir {
+  background: linear-gradient(135deg, #0e7490 0%, #06b6d4 100%);
+  box-shadow: 0 2px 8px -2px rgba(6,182,212,0.4);
+}
+.news-tag-info {
+  background: linear-gradient(135deg, #475569 0%, #64748b 100%);
+  box-shadow: 0 2px 8px -2px rgba(100,116,139,0.35);
+}
+.news-list-row {
+  border-bottom: 1px solid rgba(226,232,240,0.8);
+}
+.news-list-row:last-child {
+  border-bottom: none;
+}
+.news-arrow {
+  color: #0ea5e9;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1;
+}
+/* ニュース Popup：企業官網風格、層級清楚、留白區塊 */
+.news-popup {
+  border-left: 3px solid #1e3a5f;
+}
+.news-popup-glow {
+  box-shadow: inset 0 0 0 1px rgba(30,58,95,0.06);
+  border-radius: inherit;
+}
+.news-popup-header {
+  background: #fff;
+}
+.news-popup-tag {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #64748b;
+  background: #f1f5f9;
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+}
+.news-popup-title {
+  font-size: 1.125rem;
+  max-width: 28em;
+  line-height: 1.5;
+}
+.news-popup-date {
+  font-size: 0.8125rem;
+  color: #94a3b8;
+}
+.news-popup-body {
+  font-size: 0.9375rem;
+  line-height: 1.8;
+}
+.news-popup-wrap {
+  overflow-y: auto;
+}
+.news-popup-content {
+  max-width: 100%;
+  text-align: left;
+  padding: 0;
+}
+.news-popup-p {
+  color: #334155;
+  line-height: 1.85;
+  margin-bottom: 1.125rem;
+}
+.news-popup-p-sm {
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+}
+.news-popup-p:last-child,
+.news-popup-content > div:last-child .news-popup-p:last-child {
+  margin-bottom: 0;
+}
+.news-popup-note {
+  color: #64748b;
+  font-size: 0.875rem;
+  line-height: 1.75;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-left: 0.5rem;
+  border-left: 2px solid #e2e8f0;
+}
+.news-popup-kv {
+  margin-bottom: 1.25rem;
+  padding: 0.75rem 0;
+}
+.news-popup-kv-row {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 0.35rem;
+  font-size: 0.875rem;
+}
+.news-popup-kv-key {
+  color: #64748b;
+  flex-shrink: 0;
+  min-width: 6.5em;
+}
+.news-popup-kv-val {
+  color: #334155;
+}
+.news-popup-close-btn:focus-visible {
+  outline: 2px solid #1e3a5f;
+  outline-offset: 2px;
+}
+.news-cta-btn {
+  background: linear-gradient(90deg, #1e3a5f 0%, #334155 50%, #475569 100%);
+  box-shadow: 0 4px 14px -4px rgba(30,58,95,0.35);
+  transition: opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+.news-cta-btn:hover {
+  opacity: 0.95;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px -4px rgba(30,58,95,0.45);
+}
+
+/* 選ばれる理由：背景層次 + 互動 */
+/* 02 使命・文化・ビジョン：白底、標題用 .about-section-02 區分 */
+.reason-section-bg {
+  background-color: #fff;
+}
+
+.reason-card {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.reason-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px -12px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.04);
+}
+
+.reason-card-bottom-line {
+  width: 0;
+  transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reason-card:hover .reason-card-bottom-line {
+  width: 100%;
+}
+
+/* 使命・文化・ビジョン：清爽色底線（與選ばれる理由同效果、配色改 slate） */
+.about-value-card-bottom-line {
+  background: linear-gradient(90deg, #94a3b8, #64748b);
+}
+.reason-card.about-value-card--main {
+  background: rgba(255,255,255,0.95);
+  border-color: rgba(226,232,240,0.9);
+}
+
+@keyframes reason-badge-glow {
+  0%, 100% { background-position: 0% 50%; filter: drop-shadow(0 0 6px rgba(255,255,255,0.4)); }
+  50% { background-position: 100% 50%; filter: drop-shadow(0 0 12px rgba(255,255,255,0.5)); }
+}
+.reason-badge {
+  background-size: 200% 200%;
+  animation: reason-badge-glow 4s ease-in-out infinite;
+}
+
+.reason-number-ring {
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.6), 0 0 0 6px rgba(148,163,184,0.2);
+  transition: box-shadow 0.35s ease;
+}
+.reason-card:hover .reason-number-ring {
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.8), 0 0 0 8px rgba(99,102,241,0.15);
+}
+
+/* 四方形右上角缺一角按鈕（五角形）、深藍底、白字、右箭頭 */
+.btn-flag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  padding-right: 1.75rem;
+  background: #1e3a5f;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.5;
+  border: none;
+  cursor: pointer;
+  /* 四方形，僅右上角斜切缺一角 */
+  clip-path: polygon(0 0, calc(100% - 1rem) 0, 100% 1rem, 100% 100%, 0 100%);
+  transition: background-color 0.2s, filter 0.2s;
+}
+.btn-flag:hover {
+  background: #162d47;
+  filter: brightness(1.05);
+}
+.btn-flag:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.btn-flag .btn-flag-arrow {
+  margin-left: 0.25rem;
+  transition: transform 0.25s ease;
+}
+.btn-flag:hover:not(:disabled) .btn-flag-arrow {
+  transform: translateX(4px);
+}
+
+/* 開発プロセス：step bar + 流程卡片 */
+.process-step-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.process-step-bar .step-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  transition: transform 0.3s, opacity 0.3s;
+}
+.process-step-bar .step-dot.active {
+  transform: scale(1.2);
+  opacity: 1;
+}
+.process-step-bar .step-connector {
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, #94a3b8, #cbd5e1);
+}
+@media (min-width: 768px) {
+  .process-step-bar .step-connector {
+    width: 60px;
+  }
+}
+
+.process-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.process-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px -8px rgba(0,0,0,0.1), 0 0 0 1px rgba(59,130,246,0.08);
+}
+.process-card:hover .process-card-line {
+  opacity: 1;
+}
+.process-card-line {
+  transition: opacity 0.3s ease;
+}
+
+/* お知らせ：列表 hover + CTA 底線延展・箭頭滑動 */
+.news-list-row {
+  transition: background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+.news-list-row:hover {
+  background-color: rgba(241, 245, 249, 0.9);
+  transform: translateX(4px);
+  box-shadow: 0 2px 12px -4px rgba(0,0,0,0.06);
+}
+.news-list-row:hover .news-row-tag {
+  background-color: rgba(59, 130, 246, 0.18);
+  color: #1d4ed8;
+}
+.news-list-row:hover .news-row-arrow {
+  transform: translateX(4px);
+}
+.news-list-row:hover .news-row-title {
+  color: #0f172a;
+  font-weight: 600;
+}
+.news-cta-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+.news-cta-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 1px;
+  width: 0;
+  background: currentColor;
+  transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.news-cta-link:hover::after {
+  width: 100%;
+}
+.news-cta-link .news-cta-arrow {
+  transition: transform 0.3s ease;
+}
+.news-cta-link:hover .news-cta-arrow {
+  transform: translateX(4px);
+}
+.news-title-line {
+  transform-origin: left;
+}
+
+/* お問い合わせ：必填/任意 badge、focus、按鈕 */
+.contact-badge-required {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: white;
+  background: #dc2626;
+  border-radius: 4px;
+  margin-left: 0.35rem;
+}
+.contact-badge-optional {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #475569;
+  background: #e2e8f0;
+  border-radius: 4px;
+  margin-left: 0.35rem;
+}
+.contact-input {
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.contact-input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+.contact-field:focus-within .contact-label {
+  color: #1e40af;
+}
+.contact-submit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 1rem 1.5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: white;
+  background: #1e3a5f;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: filter 0.2s, transform 0.2s;
+}
+.contact-submit-btn:hover:not(:disabled) {
+  filter: brightness(1.08);
+}
+.contact-submit-btn:active:not(:disabled) {
+  transform: scale(0.99);
+}
+.contact-submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+.contact-submit-arrow {
+  transition: transform 0.25s ease;
+}
+.contact-submit-btn:hover:not(:disabled) .contact-submit-arrow {
+  transform: translateX(4px);
+}

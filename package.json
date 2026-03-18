@@ -1,0 +1,20 @@
+{
+  "name": "fs-index-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev --filter=@fs-index/public-web",
+    "build": "turbo run build --filter=@fs-index/public-web",
+    "lint": "turbo run lint --filter=@fs-index/public-web",
+    "clean": "turbo run clean --filter=@fs-index/public-web"
+  },
+  "devDependencies": {
+    "turbo": "^1.11.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
