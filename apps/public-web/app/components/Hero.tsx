@@ -41,7 +41,7 @@ export default function Hero() {
         {/* AI 神經網絡 - 右上角，佔2/3面積 */}
         <div
             ref={containerRef}
-            className="absolute top-0 right-0 w-[72vw] aspect-[7/10] md:w-2/3 md:h-full md:aspect-auto opacity-45"
+            className="absolute bottom-0 right-0 w-[84vw] aspect-[11/10] md:top-0 md:bottom-auto md:w-2/3 md:h-full md:aspect-auto opacity-45"
           >          <svg className="absolute inset-0 w-full h-full">
             {/* 不規則節點分佈 - 不規則大小 */}
             {[
@@ -428,7 +428,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-block px-5 py-2.5 bg-blue-100 text-blue-700 text-sm font-semibold rounded-full mb-8"
+            className="hidden md:inline-block px-5 py-2.5 bg-blue-100 text-blue-700 text-sm font-semibold rounded-full mb-8"
           >
             デジタルトランスフォーメーション
           </motion.div>
