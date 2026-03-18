@@ -10,7 +10,17 @@ export default function Hero() {
   const [hoveredNode, setHoveredNode] = useState<{ label: string; x: number; y: number } | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
+    const [isMobile, setIsMobile] = useState(false);
 
+    useEffect(() => {
+      const checkMobile = () => {
+        setIsMobile(window.innerWidth < 768);
+      };
+    
+      checkMobile();
+      window.addEventListener('resize', checkMobile);
+      return () => window.removeEventListener('resize', checkMobile);
+    }, []);
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
@@ -22,15 +32,17 @@ export default function Hero() {
   return (
     <section
       ref={ref}
-      className="relative min-h-screen flex items-center overflow-hidden pt-20"
+      className="relative min-h-[58vh] sm:min-h-[68vh] md:min-h-screen flex items-center overflow-hidden pt-16 md:pt-20"
     >
       {/* Web3 + AI 設計 - 方案2 風格 */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         {/* 上半部白、下半部透出首頁曲線底 */}
         <div className="absolute inset-0 bg-gradient-to-b from-white from-40% to-transparent"></div>
         {/* AI 神經網絡 - 右上角，佔2/3面積 */}
-        <div ref={containerRef} className="absolute top-0 right-0 w-2/3 h-full opacity-45">
-          <svg className="absolute inset-0 w-full h-full">
+        <div
+            ref={containerRef}
+            className="absolute top-0 right-0 w-[72vw] aspect-[7/10] md:w-2/3 md:h-full md:aspect-auto opacity-45"
+          >          <svg className="absolute inset-0 w-full h-full">
             {/* 不規則節點分佈 - 不規則大小 */}
             {[
               // 第一區域 - 左上（大小差異更大）
@@ -77,7 +89,7 @@ export default function Hero() {
               { x: 68, y: 82, r: 12, color: '#6366f1', delay: 4.8, label: 'RDS' },
             ].map((node, i) => {
               const isHovered = hoveredNode?.label === node.label;
-              const baseR = node.r;
+              const baseR = isMobile ? node.r * 0.5 : node.r;
               
               // 為每個節點生成穩定的漂浮參數（基於索引）
               const floatOffset = (i % 5) * 0.8 + 2;  // 漂浮幅度：2-5.2
@@ -422,7 +434,7 @@ export default function Hero() {
           </motion.div>
 
           <motion.h1
-            className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 text-slate-800 leading-tight tracking-tight"
+            className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-5 md:mb-8 text-slate-800 leading-tight tracking-tight"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.3 }}
@@ -437,7 +449,7 @@ export default function Hero() {
           </motion.h1>
 
           <motion.p
-            className="text-xl md:text-2xl text-slate-700 mb-10 leading-relaxed"
+            className="text-xl md:text-2xl text-slate-00 mb-6 md:mb-10 leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.5 }}

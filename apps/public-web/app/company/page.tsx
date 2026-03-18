@@ -82,10 +82,10 @@ export default function CompanyPage() {
                 className="max-w-xl"
               >
                 <p className="text-xs font-medium tracking-widest text-slate-400 mb-2">COMPANY</p>
-                <h1 className="text-4xl md:text-5xl lg:text-[2.75rem] font-bold text-gray-900 tracking-tight pb-4 border-b border-slate-200/80">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[2.75rem] font-bold text-gray-900 tracking-tight pb-4 border-b border-slate-200/80">
                   会社情報
                 </h1>
-                <p className="text-slate-600 mt-4 text-base leading-relaxed">
+                <p className="text-slate-600 mt-4 text-sm sm:text-base leading-relaxed">
                   会社概要・所在地・お問い合わせ先
                 </p>
               </motion.div>
@@ -114,7 +114,7 @@ export default function CompanyPage() {
               className="text-center mb-10 md:mb-12"
             >
               <p className="text-xs font-medium tracking-widest text-slate-500 uppercase mb-2">COMPANY PROFILE</p>
-              <h2 className="text-2xl md:text-3xl font-bold text-[#1e3a5f] tracking-tight">事業概要</h2>
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#1e3a5f] tracking-tight">事業概要</h2>
             </motion.div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
               {profileCards.map((card, index) => (
@@ -153,8 +153,8 @@ export default function CompanyPage() {
             >
               {/* 会社概要 */}
               <div>
-                <h2 className="text-xl font-bold text-slate-900 mb-6 pb-2 border-b border-slate-200">会社概要</h2>
-                <ul className="text-slate-700 leading-relaxed space-y-2">
+                <h2 className="text-lg sm:text-xl font-bold text-slate-900 mb-5 sm:mb-6 pb-2 border-b border-slate-200">会社概要</h2>
+                <ul className="text-slate-700 text-sm sm:text-base leading-relaxed space-y-2">
                   <li>会社名：フォレストソフト株式会社</li>
                   <li>設立日： 2012年10月1日</li>
                   <li>資本金： 5000万円</li>
@@ -166,7 +166,7 @@ export default function CompanyPage() {
 
               {/* 主な取引先 */}
               <div>
-                <h2 className="text-xl font-bold text-slate-900 mb-6 pb-2 border-b border-slate-200">主な取引先</h2>
+                <h2 className="text-lg sm:text-xl font-bold text-slate-900 mb-5 sm:mb-6 pb-2 border-b border-slate-200">主な取引先</h2>
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2 text-slate-700 text-sm sm:text-base">
                   <li>京葉鐵鋼埠頭㈱</li>
                   <li>㈱DTS</li>
@@ -187,8 +187,8 @@ export default function CompanyPage() {
 
               {/* 売上高 */}
               <div>
-                <h2 className="text-xl font-bold text-slate-900 mb-6 pb-2 border-b border-slate-200">売上高</h2>
-                <ul className="text-slate-700 leading-relaxed space-y-2">
+                <h2 className="text-lg sm:text-xl font-bold text-slate-900 mb-5 sm:mb-6 pb-2 border-b border-slate-200">売上高</h2>
+                <ul className="text-slate-700 text-sm sm:text-base leading-relaxed space-y-2">
                   <li>2022年9月期：9.6億円</li>
                   <li>2023年9月期：11.8億円</li>
                   <li>2024年9月期：10.5億円</li>
@@ -198,8 +198,8 @@ export default function CompanyPage() {
 
               {/* 取引銀行 */}
               <div>
-                <h2 className="text-xl font-bold text-slate-900 mb-6 pb-2 border-b border-slate-200">取引銀行</h2>
-                <ul className="text-slate-700 leading-relaxed space-y-2">
+                <h2 className="text-lg sm:text-xl font-bold text-slate-900 mb-5 sm:mb-6 pb-2 border-b border-slate-200">取引銀行</h2>
+                <ul className="text-slate-700 text-sm sm:text-base leading-relaxed space-y-2">
                   <li>りそな銀行　神田支店</li>
                   <li>みずほ銀行　小舟町支店</li>
                   <li>楽天銀行　第一営業支店</li>
@@ -208,7 +208,7 @@ export default function CompanyPage() {
 
               {/* 連絡先 */}
               <div>
-                <h2 className="text-xl font-bold text-slate-900 mb-6 pb-2 border-b border-slate-200">連絡先</h2>
+                <h2 className="text-lg sm:text-xl font-bold text-slate-900 mb-5 sm:mb-6 pb-2 border-b border-slate-200">連絡先</h2>
                 <div className="overflow-hidden rounded-xl border border-slate-200/90">
                   <table className="w-full border-collapse bg-white">
                     <tbody className="company-access-table">
@@ -237,7 +237,7 @@ export default function CompanyPage() {
 
               {/* 登録・番号 */}
               <div>
-                <h2 className="text-xl font-bold text-slate-900 mb-6 pb-2 border-b border-slate-200">登録・番号</h2>
+                <h2 className="text-lg sm:text-xl font-bold text-slate-900 mb-5 sm:mb-6 pb-2 border-b border-slate-200">登録・番号</h2>
                 <div className="overflow-hidden rounded-xl border border-slate-200/90">
                   <table className="w-full border-collapse bg-white">
                     <tbody className="company-access-table">
@@ -256,7 +256,7 @@ export default function CompanyPage() {
 
               {/* 経営革新計画 */}
               <div>
-                <h2 className="text-xl font-bold text-slate-900 mb-6 pb-2 border-b border-slate-200">経営革新計画</h2>
+                <h2 className="text-lg sm:text-xl font-bold text-slate-900 mb-5 sm:mb-6 pb-2 border-b border-slate-200">経営革新計画</h2>
                 <div className="overflow-hidden rounded-xl border border-slate-200/90 mb-4">
                   <table className="w-full border-collapse bg-white">
                     <tbody className="company-access-table">
@@ -271,7 +271,7 @@ export default function CompanyPage() {
                     </tbody>
                   </table>
                 </div>
-                <p className="text-slate-600 text-sm">
+                <p className="text-slate-600 text-xs sm:text-sm">
                   当社が申請した経営革新計画について、中小企業等経営強化法に基づき、2022年6月に東京都に承認されました。
                 </p>
               </div>
@@ -288,8 +288,8 @@ export default function CompanyPage() {
               transition={{ duration: 0.5, ease }}
             >
               <p className="text-xs font-medium tracking-widest text-gray-400 mb-2">ACCESS</p>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight pb-4 border-b border-gray-200 mb-6">アクセス</h2>
-              <p className="text-slate-600 mb-4">〒103-0023 東京都中央区日本橋本町４丁目５−１３ 日本橋本町ＴＨビル７階</p>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 tracking-tight pb-4 border-b border-gray-200 mb-6">アクセス</h2>
+              <p className="text-slate-600 text-sm sm:text-base mb-4">〒103-0023 東京都中央区日本橋本町４丁目５−１３ 日本橋本町ＴＨビル７階</p>
               <div className="rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm bg-slate-100">
                 <iframe
                   src={MAP_EMBED_URL}
@@ -300,7 +300,7 @@ export default function CompanyPage() {
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   title="フォレストソフト株式会社 所在地"
-                  className="block w-full"
+                  className="block w-full h-[280px] sm:h-[400px]"
                 />
               </div>
               <a

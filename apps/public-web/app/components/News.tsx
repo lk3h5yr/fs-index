@@ -16,7 +16,7 @@ export default function News() {
   const isInView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
-    <section ref={ref} className="py-24 md:py-28 bg-white relative">
+    <section ref={ref} className="pt-14 pb-24 sm:pt-20 md:py-28 bg-white relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* 標題區：標題淡入上移 + 副標與一覧を見る延遲淡入 */}
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-12">
@@ -31,7 +31,7 @@ export default function News() {
             </motion.div>
             <div className="relative pb-4">
               <motion.h2
-                className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight news-title-line"
+                className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 tracking-tight news-title-line"
                 initial={{ opacity: 0, y: 24 }}
                 animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
                 transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
@@ -85,12 +85,12 @@ export default function News() {
                 ease: [0.22, 1, 0.36, 1],
               }}
             >
-              <Link href={`/news?id=${item.id}`} className="news-list-row flex flex-wrap items-center gap-x-4 gap-y-2 py-4 px-5 rounded-xl">
-                <span className="text-slate-500 text-sm tabular-nums">{item.date}</span>
-                <span className="news-row-tag inline-block px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-medium transition-colors duration-250">
+              <Link href={`/news?id=${item.id}`} className="news-list-row flex flex-wrap items-center gap-x-3 sm:gap-x-4 gap-y-2 py-3.5 sm:py-4 px-4 sm:px-5 rounded-xl">
+                <span className="text-slate-500 text-xs sm:text-sm tabular-nums">{item.date}</span>
+                <span className="news-row-tag inline-block px-2.5 sm:px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-[11px] sm:text-xs font-medium transition-colors duration-250">
                   {item.tag}
                 </span>
-                <span className="news-row-title flex-1 min-w-0 text-slate-800 font-medium text-base md:text-lg transition-all duration-250">
+                <span className="news-row-title flex-1 min-w-0 text-slate-800 font-medium text-sm sm:text-base md:text-lg transition-all duration-250">
                   {item.title}
                 </span>
                 <span className="news-row-arrow text-slate-400 transition-transform duration-250">

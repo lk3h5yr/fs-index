@@ -39,7 +39,7 @@ export default function Trust() {
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         >
           <p className="text-xs font-medium tracking-widest text-gray-400 mb-2">TRACK RECORD</p>
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 tracking-tight pb-4 border-b border-gray-200">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 tracking-tight pb-4 border-b border-gray-200">
             実績と信頼
           </h2>
           <p className="text-gray-600 mt-4 max-w-2xl">多くの企業様に選ばれている実績</p>

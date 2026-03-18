@@ -313,7 +313,7 @@ export default function CasesPage() {
                 className="max-w-xl"
               >
                 <p className="text-xs font-medium tracking-widest text-slate-400 mb-2">CASES</p>
-                <h1 className="text-4xl md:text-5xl lg:text-[2.75rem] font-bold text-gray-900 tracking-tight pb-4 border-b border-slate-200/80">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[2.75rem] font-bold text-gray-900 tracking-tight pb-4 border-b border-slate-200/80">
                   開発事例
                 </h1>
                 <p className="text-slate-600 mt-4 text-base leading-relaxed">
@@ -343,7 +343,7 @@ export default function CasesPage() {
               transition={{ duration: 0.5, ease }}
               className="mb-12"
             >
-              <h2 className="text-2xl font-bold text-slate-900 tracking-tight pb-2 border-b border-slate-200 mb-2">
+              <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight pb-2 border-b border-slate-200 mb-2">
                 実績・事例紹介
               </h2>
               <p className="text-slate-600 text-sm">お客様のビジネスを支えた実績例です。</p>
@@ -424,18 +424,18 @@ export default function CasesPage() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.96 }}
                 transition={{ duration: 0.25, ease }}
-                className="case-popup w-[min(92vw,42rem)] max-h-[90vh] rounded-2xl border border-slate-200 bg-white shadow-2xl overflow-hidden flex flex-col pointer-events-auto"
+                className="case-popup w-[min(96vw,42rem)] max-h-[92vh] rounded-2xl border border-slate-200 bg-white shadow-2xl overflow-hidden flex flex-col pointer-events-auto"
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="relative flex flex-col flex-1 min-h-0">
-                  <div className="shrink-0 px-6 pt-8 pb-4 border-b border-slate-200/80">
+                  <div className="shrink-0 px-4 sm:px-6 pt-6 sm:pt-8 pb-4 border-b border-slate-200/80">
                     <span className="inline-block px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 text-xs font-semibold mb-3">
                       {selectedCase.category}
                     </span>
-                    <h2 id="case-popup-title" className="text-xl font-bold text-slate-900 leading-snug mb-4">
+                    <h2 id="case-popup-title" className="text-lg sm:text-xl font-bold text-slate-900 leading-snug mb-4">
                       {selectedCase.title}
                     </h2>
-                    <div className="grid gap-2 text-sm">
+                    <div className="grid gap-2 text-xs sm:text-sm">
                       <p className="text-slate-700">
                         <span className="font-semibold text-slate-600">クライアント：</span>
                         {selectedCase.client}
@@ -450,12 +450,12 @@ export default function CasesPage() {
                       </p>
                     </div>
                   </div>
-                  <div className="overflow-y-auto flex-1 min-h-0 px-6 py-5 text-slate-700 text-[15px] leading-relaxed">
+                  <div className="overflow-y-auto flex-1 min-h-0 px-4 sm:px-6 py-4 sm:py-5 text-slate-700 text-sm sm:text-[15px] leading-relaxed">
                     <div className="case-popup-body whitespace-pre-line">
                       {selectedCase.detail}
                     </div>
                   </div>
-                  <div className="shrink-0 px-6 pt-6 pb-8 flex justify-center border-t border-slate-100">
+                  <div className="shrink-0 px-4 sm:px-6 pt-4 sm:pt-6 pb-5 sm:pb-8 flex justify-center border-t border-slate-100">
                     <button
                       type="button"
                       onClick={() => setSelectedCase(null)}

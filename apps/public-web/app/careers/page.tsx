@@ -28,16 +28,16 @@ function SectionHeader({
       className="careers-section-trigger w-full flex items-center justify-between gap-3 text-left py-2 border-b border-slate-200 group"
       aria-expanded={isOpen}
     >
-      <h2 className="text-2xl font-bold text-slate-900 tracking-tight">
+      <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
         {title}
       </h2>
-      <span className="careers-section-icon shrink-0 flex items-center justify-center w-9 h-9 rounded-full border border-slate-200 text-slate-500 group-hover:border-slate-300 group-hover:text-slate-700 transition-colors" aria-hidden>
+      <span className="careers-section-icon shrink-0 flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-slate-200 text-slate-500 group-hover:border-slate-300 group-hover:text-slate-700 transition-colors" aria-hidden>
         {isOpen ? (
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
         ) : (
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
           </svg>
         )}
@@ -148,7 +148,7 @@ export default function CareersPage() {
                 className="max-w-xl"
               >
                 <p className="text-xs font-medium tracking-widest text-slate-400 mb-2">CAREERS</p>
-                <h1 className="text-4xl md:text-5xl lg:text-[2.75rem] font-bold text-gray-900 tracking-tight pb-4 border-b border-slate-200/80">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[2.75rem] font-bold text-gray-900 tracking-tight pb-4 border-b border-slate-200/80">
                   採用情報
                 </h1>
                 <p className="text-slate-600 mt-4 text-base leading-relaxed">

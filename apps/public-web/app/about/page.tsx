@@ -120,7 +120,7 @@ export default function AboutPage() {
                 className="max-w-xl"
               >
                 <p className="text-xs font-medium tracking-widest text-slate-400 mb-2">ABOUT</p>
-                <h1 className="text-4xl md:text-5xl lg:text-[2.75rem] font-bold text-gray-900 tracking-tight pb-4 border-b border-slate-200/80">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[2.75rem] font-bold text-gray-900 tracking-tight pb-4 border-b border-slate-200/80">
                   企業紹介
                 </h1>
                 <p className="text-slate-600 mt-4 text-base leading-relaxed">
@@ -151,7 +151,7 @@ export default function AboutPage() {
               animate={isInViewGreeting ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
               transition={{ duration: 0.5, ease }}
             >
-              <h2 className="about-section-title text-2xl font-bold tracking-tight mb-2">
+              <h2 className="about-section-title text-xl sm:text-2xl font-bold tracking-tight mb-2">
                 代表メッセージ
               </h2>
               <p className="text-slate-600 text-sm">ご挨拶</p>
@@ -163,13 +163,13 @@ export default function AboutPage() {
               animate={isInViewGreeting ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
               transition={{ duration: 0.5, ease, delay: 0.1 }}
             >
-              <div className="p-8 md:p-10 lg:p-12 max-w-4xl">
+              <div className="p-5 sm:p-8 md:p-10 lg:p-12 max-w-4xl">
                 {/* 開頭一句 ＋ 右側預留照片空間（排版不變形） */}
-                <div className="flex flex-wrap gap-6 items-start mb-8">
-                  <p className="text-slate-600 text-lg md:text-xl leading-relaxed flex-1 min-w-0">
+                <div className="flex flex-wrap gap-4 sm:gap-6 items-start mb-6 sm:mb-8">
+                  <p className="text-slate-600 text-base sm:text-lg md:text-xl leading-relaxed flex-1 min-w-0">
                     お客様とともに価値をつくる企業でありたいと考えています。
                   </p>
-                  <div className="about-greeting-photo-placeholder shrink-0 w-[200px] h-[150px] md:w-[240px] md:h-[180px] rounded-xl bg-slate-100 border border-slate-200/80 flex items-center justify-center overflow-hidden relative">
+                  <div className="about-greeting-photo-placeholder shrink-0 w-[160px] h-[120px] sm:w-[200px] sm:h-[150px] md:w-[240px] md:h-[180px] rounded-xl bg-slate-100 border border-slate-200/80 flex items-center justify-center overflow-hidden relative">
                     <Image
                       src="/img/ceo.png"
                       alt="代表"
@@ -181,11 +181,11 @@ export default function AboutPage() {
                   </div>
                 </div>
                 {/* 主引句：視覺焦點 */}
-                <blockquote className="border-l-4 border-[#1e3a5f] pl-6 py-2 mb-10 text-xl md:text-2xl font-semibold text-slate-800 leading-relaxed italic">
+                <blockquote className="border-l-4 border-[#1e3a5f] pl-4 sm:pl-6 py-1.5 sm:py-2 mb-8 sm:mb-10 text-lg sm:text-xl md:text-2xl font-semibold text-slate-800 leading-relaxed italic">
                   お客様とともに、価値を前へ進める存在でありたい。
                 </blockquote>
                 {/* 正文：段落層次 */}
-                <div className="space-y-6 text-slate-700 leading-[1.85] text-base md:text-lg">
+                <div className="space-y-5 sm:space-y-6 text-slate-700 leading-[1.85] text-sm sm:text-base md:text-lg">
                   <p>
                     当社は、ソフトウェア開発を通じてお客様の課題解決と事業成長を支援してきました。
                   </p>
@@ -199,7 +199,7 @@ export default function AboutPage() {
                 {/* 役員 */}
                 <div className="mt-10 pt-8 border-t border-slate-200/80">
                   <p className="text-sm font-bold text-slate-500 mb-3">役員</p>
-                  <ul className="text-slate-700 text-base space-y-1">
+                  <ul className="text-slate-700 text-sm sm:text-base space-y-1">
                     <li>代表取締役：朱　杰</li>
                     <li>取締役：魏　書興</li>
                   </ul>
@@ -218,7 +218,7 @@ export default function AboutPage() {
               animate={isInViewCapability ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
               transition={{ duration: 0.5, ease }}
             >
-              <h2 className="about-section-title text-2xl font-bold tracking-tight pb-2 border-b mb-2">
+              <h2 className="about-section-title text-xl sm:text-2xl font-bold tracking-tight pb-2 border-b mb-2">
                 我々にできること
               </h2>
               <p className="text-slate-600 text-sm">お客様の業務課題に応じて、最適な技術と体制をご提案します。</p>
@@ -242,7 +242,7 @@ export default function AboutPage() {
                         {point.stats}
                       </div>
                     </div>
-                    <h3 className="text-lg font-bold mb-3 text-slate-900 group-hover:text-indigo-500/80 transition-colors duration-300 mt-8">
+                    <h3 className="text-base sm:text-lg font-bold mb-3 text-slate-900 group-hover:text-indigo-500/80 transition-colors duration-300 mt-8">
                       {point.title}
                     </h3>
                     <p className="text-slate-600 leading-relaxed text-sm flex-grow">
@@ -269,7 +269,7 @@ export default function AboutPage() {
               animate={isInViewValues ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
               transition={{ duration: 0.5, ease }}
             >
-              <h2 className="about-section-title text-2xl font-bold tracking-tight pb-2 border-b mb-2">
+              <h2 className="about-section-title text-xl sm:text-2xl font-bold tracking-tight pb-2 border-b mb-2">
                 使命・文化・ビジョン
               </h2>
               <p className="text-slate-600 text-sm">私たちが大切にしている価値観をご紹介します。</p>
@@ -285,10 +285,10 @@ export default function AboutPage() {
                   transition={{ duration: 0.8, delay: index * 0.2, ease }}
                 >
                   <div className={`reason-card relative rounded-2xl bg-white/75 backdrop-blur-sm border border-slate-200/70 h-full flex flex-col p-5 shadow-sm hover:shadow-md transition-shadow ${block.isCenter ? 'about-value-card--main' : ''}`}>
-                    <div className={`about-value-icon-wrap mb-3 flex items-center justify-center w-12 h-12 rounded-full ${block.iconWrapClass} transition-transform duration-300 group-hover:scale-105`}>
+                    <div className={`about-value-icon-wrap mb-3 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full ${block.iconWrapClass} transition-transform duration-300 group-hover:scale-105`}>
                       {block.icon}
                     </div>
-                    <h3 className="text-xl font-bold mb-3 text-slate-900 group-hover:text-slate-600 transition-colors duration-300">
+                    <h3 className="text-lg sm:text-xl font-bold mb-3 text-slate-900 group-hover:text-slate-600 transition-colors duration-300">
                       {block.title}
                     </h3>
                     <p className="text-slate-600 text-[14px] leading-[1.65] mb-2 flex-grow">
@@ -318,10 +318,10 @@ export default function AboutPage() {
               transition={{ duration: 0.5, ease }}
             >
               <p className="about-section-label text-xs font-medium tracking-widest mb-6"/>
-              <p className="about-section-title text-xl md:text-2xl font-semibold mb-4 leading-relaxed">
+              <p className="about-section-title text-lg sm:text-xl md:text-2xl font-semibold mb-4 leading-relaxed">
                 課題整理の段階からでも、お気軽にご相談ください。
               </p>
-              <p className="text-gray-600 mb-10 text-base md:text-lg">
+              <p className="text-gray-600 mb-8 sm:mb-10 text-sm sm:text-base md:text-lg">
                 フォレストソフトは、技術と実行力で次の一歩を支えます。
               </p>
               <div className="flex flex-wrap justify-center gap-4">

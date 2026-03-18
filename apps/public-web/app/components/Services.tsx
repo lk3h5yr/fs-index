@@ -73,7 +73,7 @@ export default function Services() {
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         >
           <p className="text-xs font-medium tracking-widest text-gray-400 mb-2">SERVICES</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight pb-4 border-b border-gray-200">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 tracking-tight pb-4 border-b border-gray-200">
             サービス・ソリューション
           </h2>
           <p className="text-gray-600 mt-4 max-w-2xl">最先端技術でお客様のビジネスを革新</p>

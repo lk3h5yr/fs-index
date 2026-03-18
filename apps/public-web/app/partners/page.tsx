@@ -34,7 +34,7 @@ function PartnersMarquee() {
           <a
             key={i}
             href="#"
-            className="flex-shrink-0 w-[280px] h-[158px] rounded-xl overflow-hidden border border-slate-200 bg-slate-100 hover:border-slate-300 hover:shadow-lg transition-all"
+            className="flex-shrink-0 w-[220px] h-[124px] sm:w-[280px] sm:h-[158px] rounded-xl overflow-hidden border border-slate-200 bg-slate-100 hover:border-slate-300 hover:shadow-lg transition-all"
             aria-label={item.alt}
           >
             <img
@@ -141,7 +141,7 @@ export default function PartnersPage() {
                 className="max-w-xl"
               >
                 <p className="text-xs font-medium tracking-widest text-slate-400 mb-2">PARTNERS</p>
-                <h1 className="text-4xl md:text-5xl lg:text-[2.75rem] font-bold text-gray-900 tracking-tight pb-4 border-b border-slate-200/80">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[2.75rem] font-bold text-gray-900 tracking-tight pb-4 border-b border-slate-200/80">
                   ビジネスパートナー
                 </h1>
                 <p className="text-slate-600 mt-4 text-base leading-relaxed">
@@ -166,7 +166,7 @@ export default function PartnersPage() {
         {/* 現在のビジネスパートナー：跑馬燈（首頁 Trust 同款） */}
         <section className="bg-white py-12 md:py-16">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <p className="text-center text-xl font-semibold text-slate-700 mb-10">現在のビジネスパートナー</p>
+            <p className="text-center text-lg sm:text-xl font-semibold text-slate-700 mb-8 sm:mb-10">現在のビジネスパートナー</p>
             <PartnersMarquee />
           </div>
         </section>
@@ -180,20 +180,20 @@ export default function PartnersPage() {
               transition={{ duration: 0.5, ease }}
               className="company-panel overflow-hidden"
             >
-              <div className="px-6 py-8 sm:px-10 sm:py-10">
-                <h2 className="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight pb-3 border-b border-slate-200 mb-6">
+              <div className="px-5 py-6 sm:px-10 sm:py-10">
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 tracking-tight pb-3 border-b border-slate-200 mb-6">
                   ビジネスパートナー募集
                 </h2>
-                <p className="text-slate-700 leading-relaxed mb-4">
+                <p className="text-slate-700 text-sm sm:text-base leading-relaxed mb-4">
                   弊社では、ビジネスパートナーとして業務にご協力いただける法人、個人を募集しています。
                 </p>
-                <p className="text-slate-700 leading-relaxed mb-6">
+                <p className="text-slate-700 text-sm sm:text-base leading-relaxed mb-6">
                   システム開発全般において、人材や案件の情報交換を行える企業様、案件にご参画いただける個人事業主様、相互に尊敬、共に発展し合える企業様と密な関係を築き、長期に渡り協業していきたいと思っております。
                 </p>
                 <p className="text-slate-600 text-sm mb-6">お気軽に、お問い合わせください。</p>
                 <a
                   href="mailto:info@forestsoft.jp"
-                  className="partners-cta-email inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[#1e3a5f] text-white font-semibold text-sm hover:opacity-90 transition-opacity"
+                  className="partners-cta-email inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl bg-[#1e3a5f] text-white font-semibold text-xs sm:text-sm hover:opacity-90 transition-opacity"
                 >
                   <span aria-hidden>✉</span>
                   info@forestsoft.jp
@@ -206,7 +206,7 @@ export default function PartnersPage() {
         {/* 協業のメリット（特效 + 下方文字重排） */}
         <section className="py-14 md:py-18 bg-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h3 className="text-lg font-bold text-slate-900 mb-8">協業のメリット</h3>
+            <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-6 sm:mb-8">協業のメリット</h3>
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={isInViewRecruit ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
@@ -216,19 +216,19 @@ export default function PartnersPage() {
               {benefits.map((b, i) => (
                 <motion.div
                   key={b.label}
-                  className="partners-benefit-card group rounded-2xl border border-slate-200/80 bg-white/90 backdrop-blur-sm px-5 py-6 text-left overflow-hidden"
+                  className="partners-benefit-card group rounded-2xl border border-slate-200/80 bg-white/90 backdrop-blur-sm px-4 sm:px-5 py-5 sm:py-6 text-left overflow-hidden"
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInViewRecruit ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                   transition={{ duration: 0.45, delay: 0.1 + i * 0.08, ease }}
                   whileHover={{ y: -4, transition: { duration: 0.25 } }}
                 >
-                  <div className="partners-benefit-icon-wrap mb-4 flex items-center justify-center w-14 h-14 rounded-2xl bg-slate-100 text-3xl transition-all duration-300 group-hover:scale-110 group-hover:bg-indigo-50">
+                  <div className="partners-benefit-icon-wrap mb-4 flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-slate-100 text-2xl sm:text-3xl transition-all duration-300 group-hover:scale-110 group-hover:bg-indigo-50">
                     <span aria-hidden>{b.icon}</span>
                   </div>
-                  <h4 className="text-base font-bold text-slate-900 mb-2 group-hover:text-indigo-600 transition-colors">
+                  <h4 className="text-sm sm:text-base font-bold text-slate-900 mb-2 group-hover:text-indigo-600 transition-colors">
                     {b.label}
                   </h4>
-                  <p className="text-slate-600 text-sm leading-relaxed">
+                  <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
                     {b.desc}
                   </p>
                   <div className="mt-4 pt-4 border-t border-slate-100">
@@ -244,12 +244,12 @@ export default function PartnersPage() {
               animate={isInViewRecruit ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
               transition={{ duration: 0.4, delay: 0.2, ease }}
             >
-              <h3 className="text-lg font-bold text-slate-900 mb-4">ご協力いただける形態</h3>
+              <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-4">ご協力いただける形態</h3>
               <div className="space-y-3">
                 {partnerCategories.map((c) => (
                   <div key={c.title} className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3 py-2 border-b border-slate-100">
-                    <span className="font-semibold text-slate-800 shrink-0">{c.title}</span>
-                    <span className="text-slate-600 text-sm">{c.desc}</span>
+                    <span className="font-semibold text-sm sm:text-base text-slate-800 shrink-0">{c.title}</span>
+                    <span className="text-slate-600 text-xs sm:text-sm">{c.desc}</span>
                   </div>
                 ))}
               </div>
@@ -266,7 +266,7 @@ export default function PartnersPage() {
               animate={isInViewList ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
               transition={{ duration: 0.5, ease }}
             >
-              <h2 className="about-section-title text-2xl font-bold tracking-tight pb-2 border-b mb-2">
+              <h2 className="about-section-title text-xl sm:text-2xl font-bold tracking-tight pb-2 border-b mb-2">
                 パートナー協業例
               </h2>
               <p className="text-slate-600 text-sm">当社と協業いただいているパートナー形態の例です。</p>
@@ -282,17 +282,17 @@ export default function PartnersPage() {
                 >
                   <div className="reason-card reason-card--compact relative p-6 rounded-2xl bg-white/75 backdrop-blur-sm border border-slate-200/70 h-full flex flex-col mt-5">
                     <div className="absolute -top-4 left-6 flex items-center gap-2">
-                      <div className={`reason-number-ring inline-flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br ${point.gradient} text-white text-xs font-bold transition-shadow duration-300`}>
+                      <div className={`reason-number-ring inline-flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br ${point.gradient} text-white text-[11px] sm:text-xs font-bold transition-shadow duration-300`}>
                         {point.number}
                       </div>
                       <div className={`reason-badge inline-block px-3 py-1.5 bg-gradient-to-r ${point.gradient} text-white text-xs font-bold rounded-lg shadow-md`}>
                         {point.stats}
                       </div>
                     </div>
-                    <h3 className="text-lg font-bold mb-3 text-slate-900 group-hover:text-indigo-500/80 transition-colors duration-300 mt-8">
+                    <h3 className="text-base sm:text-lg font-bold mb-3 text-slate-900 group-hover:text-indigo-500/80 transition-colors duration-300 mt-8">
                       {point.title}
                     </h3>
-                    <p className="text-slate-600 leading-relaxed text-sm flex-grow">
+                    <p className="text-slate-600 leading-relaxed text-xs sm:text-sm flex-grow">
                       {point.description}
                     </p>
                     <div className="mt-4 pt-4 border-t border-slate-200">

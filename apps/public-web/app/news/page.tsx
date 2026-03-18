@@ -252,7 +252,7 @@ function NewsPageContent() {
                 className="max-w-xl"
               >
                 <p className="text-xs font-medium tracking-widest text-slate-400 mb-2">NEWS</p>
-                <h1 className="text-4xl md:text-5xl lg:text-[2.75rem] font-bold text-gray-900 tracking-tight pb-4 border-b border-slate-200/80">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[2.75rem] font-bold text-gray-900 tracking-tight pb-4 border-b border-slate-200/80">
                   ニュース
                 </h1>
                 <p className="text-slate-600 mt-4 text-base leading-relaxed">
@@ -298,23 +298,27 @@ function NewsPageContent() {
                   key={news.id}
                   type="button"
                   onClick={() => setSelectedNews(news)}
-                  className="news-list-row group flex flex-wrap items-start gap-3 sm:gap-4 py-5 px-6 sm:px-8 hover:bg-slate-50/80 transition-colors w-full text-left cursor-pointer"
+                  className="news-list-row group flex flex-col sm:flex-row items-start gap-3 sm:gap-4 py-4 sm:py-5 px-4 sm:px-8 hover:bg-slate-50/80 transition-colors w-full text-left cursor-pointer"
                 >
-                  <span className="text-slate-600 text-sm font-medium tabular-nums shrink-0 w-[7rem]">
-                    {getDateMonthOnly(news.date)}
-                  </span>
-                  <span className={`${getCategoryStyle(news.category)} news-tag-fixed`}>
-                    {news.category}
-                  </span>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-slate-900 font-bold text-base mb-1 group-hover:text-[#0ea5e9] transition-colors">
-                      {news.title}
-                    </h3>
-                    <p className="text-slate-600 text-sm leading-relaxed line-clamp-2">
-                      {news.description}
-                    </p>
+                  <div className="flex items-center flex-wrap gap-2 sm:gap-3 shrink-0">
+                    <span className="text-slate-600 text-xs sm:text-sm font-medium tabular-nums">
+                      {getDateMonthOnly(news.date)}
+                    </span>
+                    <span className={`${getCategoryStyle(news.category)} news-tag-fixed`}>
+                      {news.category}
+                    </span>
                   </div>
-                  <span className="news-arrow shrink-0" aria-hidden>›</span>
+                  <div className="flex items-start gap-3 w-full sm:flex-1 sm:min-w-0">
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-slate-900 font-bold text-sm sm:text-base mb-1 group-hover:text-[#0ea5e9] transition-colors leading-snug">
+                        {news.title}
+                      </h3>
+                      <p className="text-slate-600 text-xs sm:text-sm leading-relaxed line-clamp-2">
+                        {news.description}
+                      </p>
+                    </div>
+                    <span className="news-arrow shrink-0 self-center sm:self-start" aria-hidden>›</span>
+                  </div>
                 </button>
               ))}
             </motion.div>
@@ -344,12 +348,12 @@ function NewsPageContent() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.96 }}
                 transition={{ duration: 0.25, ease }}
-                className="news-popup w-[min(92vw,42rem)] max-h-[90vh] rounded-2xl border border-slate-200/90 bg-white shadow-2xl overflow-hidden flex flex-col pointer-events-auto"
+                className="news-popup w-[min(96vw,42rem)] max-h-[92vh] rounded-2xl border border-slate-200/90 bg-white shadow-2xl overflow-hidden flex flex-col pointer-events-auto"
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="news-popup-glow absolute inset-0 pointer-events-none rounded-2xl" aria-hidden />
                 <div className="relative flex flex-col flex-1 min-h-0">
-                  <div className="news-popup-header shrink-0 px-6 pt-8 pb-6">
+                  <div className="news-popup-header shrink-0 px-4 sm:px-6 pt-6 sm:pt-8 pb-4 sm:pb-6">
                     <span className="news-popup-tag inline-block mb-4">
                       {selectedNews.category}
                     </span>
@@ -360,12 +364,12 @@ function NewsPageContent() {
                       {formatDateJa(selectedNews.date)}
                     </p>
                   </div>
-                  <div className="news-popup-body overflow-y-auto flex-1 min-h-0 px-6 py-2">
+                  <div className="news-popup-body overflow-y-auto flex-1 min-h-0 px-4 sm:px-6 py-2">
                     <div className="news-popup-content">
                       {renderPopupBody(selectedNews.body)}
                     </div>
                   </div>
-                  <div className="news-popup-footer shrink-0 px-6 pt-6 pb-8 flex justify-center">
+                  <div className="news-popup-footer shrink-0 px-4 sm:px-6 pt-4 sm:pt-6 pb-5 sm:pb-8 flex justify-center">
                     <button
                       type="button"
                       onClick={() => setSelectedNews(null)}
