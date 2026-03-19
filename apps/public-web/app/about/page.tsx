@@ -133,10 +133,17 @@ export default function AboutPage() {
                 transition={{ duration: 0.5, delay: 0.12, ease }}
                 className="careers-lead-core"
               >
-                <p className="careers-lead-core-text">
-                  フォレストソフトは、お客様の課題に向き合い、技術を価値に変えて届けることを使命としています。
-                  業務系Web開発から一貫支援体制、ERP・CRM・OSSの活用まで、現場で本当に機能する仕組みづくりを大切にしています。
-                </p>
+                <div className="careers-lead-core-text space-y-3">
+                  <p>
+                    フォレストソフトは、お客様の課題に向き合い、技術を価値として届けることを使命としています。
+                  </p>
+                  <p>
+                    業務系Webシステムの開発から運用まで一貫して支援し、ERP・CRM・OSSの活用を通じて、現場で本当に機能する仕組みづくりを大切にしています。
+                  </p>
+                  <p>
+                    また、AI活用、ERP mcframe の導入支援、独自サービスFMS(Forest Soft Modernization Service) によるシステムモダナイゼーションなど、幅広いITソリューションを提供しています。
+                  </p>
+                </div>
               </motion.div>
             </div>
           </div>
@@ -171,7 +178,7 @@ export default function AboutPage() {
                   </p>
                   <div className="about-greeting-photo-placeholder shrink-0 w-[160px] h-[120px] sm:w-[200px] sm:h-[150px] md:w-[240px] md:h-[180px] rounded-xl bg-slate-100 border border-slate-200/80 flex items-center justify-center overflow-hidden relative">
                     <Image
-                      src="/img/ceo.png"
+                      src="/img/ceo_1.jpg"
                       alt="代表"
                       width={240}
                       height={180}

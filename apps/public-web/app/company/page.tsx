@@ -167,21 +167,21 @@ export default function CompanyPage() {
               {/* 主な取引先 */}
               <div>
                 <h2 className="text-lg sm:text-xl font-bold text-slate-900 mb-5 sm:mb-6 pb-2 border-b border-slate-200">主な取引先</h2>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2 text-slate-700 text-sm sm:text-base">
-                  <li>京葉鐵鋼埠頭㈱</li>
-                  <li>㈱DTS</li>
-                  <li>㈱SHIFT</li>
-                  <li>㈱フォーカスシステムズ</li>
-                  <li>㈱アイ・エス・ビー</li>
-                  <li>㈱NTTデータビジネスブレインズ</li>
-                  <li>㈱アイフロント</li>
-                  <li>㈱YSLソリューション</li>
-                  <li>㈱エスディーシィー</li>
-                  <li>㈱BASE</li>
-                  <li>㈱東和コンピュータマネジメント</li>
-                  <li>㈱オリゾンシステムズ</li>
-                  <li>㈱CAICAテクノロジーズ</li>
-                  <li>日本事務器シェアードサービス㈱</li>
+                <ul className="grid grid-cols-1 gap-y-2 text-slate-700 text-sm sm:text-base">
+                  <li>京葉鐵鋼埠頭株式会社</li>
+                  <li>株式会社DTS</li>
+                  <li>株式会社SHIFT</li>
+                  <li>株式会社フォーカスシステムズ</li>
+                  <li>株式会社アイ・エス・ビー</li>
+                  <li>株式会社NTTデータビジネスブレインズ</li>
+                  <li>株式会社アイフロント</li>
+                  <li>株式会社YSLソリューション</li>
+                  <li>株式会社エスディーシィー</li>
+                  <li>株式会社BASE</li>
+                  <li>株式会社東和コンピュータマネジメント</li>
+                  <li>株式会社オリゾンシステムズ</li>
+                  <li>株式会社CAICAテクノロジーズ</li>
+                  <li>日本事務器シェアードサービス株式会社</li>
                 </ul>
               </div>
 
@@ -290,17 +290,15 @@ export default function CompanyPage() {
               <p className="text-xs font-medium tracking-widest text-gray-400 mb-2">ACCESS</p>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 tracking-tight pb-4 border-b border-gray-200 mb-6">アクセス</h2>
               <p className="text-slate-600 text-sm sm:text-base mb-4">〒103-0023 東京都中央区日本橋本町４丁目５−１３ 日本橋本町ＴＨビル７階</p>
-              <div className="rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm bg-slate-100">
+              <div className="relative aspect-[4/3] sm:aspect-[16/10] rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm bg-slate-100">
                 <iframe
                   src={MAP_EMBED_URL}
-                  width="100%"
-                  height="400"
                   style={{ border: 0 }}
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   title="フォレストソフト株式会社 所在地"
-                  className="block w-full h-[280px] sm:h-[400px]"
+                  className="absolute inset-0 block w-full h-full"
                 />
               </div>
               <a

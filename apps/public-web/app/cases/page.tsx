@@ -349,19 +349,19 @@ export default function CasesPage() {
               <p className="text-slate-600 text-sm">お客様のビジネスを支えた実績例です。</p>
             </motion.div>
 
-            {/* 時間軸：線置中穿過節點、左右交叉排列 */}
             <ul className="relative cases-timeline cases-timeline-zigzag">
               <span className="cases-timeline-track" aria-hidden />
               {casesByDate.map((caseItem, index) => {
                 const isLeft = index % 2 === 0;
-                const nodeColor = index % 3; /* 0~3 循環顏色 */
+                const nodeColor = index % 3;
+
                 return (
                   <motion.li
                     key={caseItem.id}
                     initial={{ opacity: 0, y: 12 }}
                     animate={isInViewList ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
                     transition={{ duration: 0.4, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
-                    className={`cases-timeline-item relative grid grid-cols-[1fr_auto_1fr] gap-3 sm:gap-4 items-start py-4 first:pt-0 last:pb-0 group ${isLeft ? '' : ''}`}
+                    className="cases-timeline-item relative grid grid-cols-[1fr_auto_1fr] gap-3 sm:gap-4 items-start py-4 first:pt-0 last:pb-0 group"
                   >
                     {isLeft ? (
                       <>
