@@ -141,14 +141,14 @@ function getCategoryStyle(category: NewsCategory): string {
   }
 }
 
-/** 列表用：日期只顯示到月份 YYYY.MM */
+/** リスト表示用: 日付は YYYY.MM まで表示 */
 function getDateMonthOnly(dateStr: string): string {
   const parts = dateStr.split(/[.\-/]/).filter(Boolean);
   if (parts.length >= 2) return `${parts[0]}.${parts[1]}`;
   return dateStr;
 }
 
-/** 西暦 YYYY.MM.DD → 日本語日付（詳細彈窗用） */
+/** 西暦 YYYY.MM.DD → 日本語の日付形式（詳細ポップアップ用） */
 function formatDateJa(dateStr: string): string {
   const parts = dateStr.split(/[.\-/]/).map(Number);
   const [y, m, d] = parts;
@@ -157,7 +157,7 @@ function formatDateJa(dateStr: string): string {
   return `${y}年${m}月`;
 }
 
-/** 彈窗內文：段落／Key-Value／註釋 區分 */
+/** ポップアップ本文: 段落 / Key-Value / 注記 を分けて描画 */
 function renderPopupBody(body: string) {
   const blocks = body.split(/\n\n+/).filter(Boolean);
   return blocks.map((block, i) => {
@@ -226,7 +226,7 @@ function NewsPageContent() {
       <div className="relative z-10 isolate">
         <Navbar />
 
-        {/* 前導區塊：與 careers 同風格 */}
+        {/* 導入セクション: careers と統一したスタイル */}
         <section ref={refHero} className="careers-lead relative overflow-hidden">
           <div className="careers-lead-bg" aria-hidden>
             <div className="careers-lead-bg-base" />
@@ -326,7 +326,7 @@ function NewsPageContent() {
         </section>
       </div>
 
-      {/* Popup 彈窗：固定於視窗中央、內文左對齊、底部閉じる */}
+      {/* Popup: 画面中央に固定し、本文は左揃え、下部に「閉じる」ボタンを配置 */}
       <AnimatePresence>
         {selectedNews && (
           <>

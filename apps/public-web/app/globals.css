@@ -23,7 +23,7 @@ a {
   text-decoration: none;
 }
 
-/* MITUS 風格動畫 */
+/* MITUS スタイルのアニメーション */
 @keyframes float {
   0%, 100% {
     transform: translateY(0px);
@@ -108,7 +108,7 @@ a {
   }
 }
 
-/* 漸變文字效果 */
+/* グラデーション文字エフェクト */
 .gradient-text {
   background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 50%, #6366f1 100%);
   -webkit-background-clip: text;
@@ -123,7 +123,7 @@ a {
   background-clip: text;
 }
 
-/* 玻璃態效果 */
+/* ガラス風エフェクト */
 .glass-effect {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
@@ -138,7 +138,7 @@ a {
   border: 1px solid rgba(59, 130, 246, 0.3);
 }
 
-/* 懸停發光效果 */
+/* hover 時のグロー効果 */
 .hover-glow {
   transition: all 0.3s ease;
 }
@@ -148,7 +148,7 @@ a {
   transform: translateY(-5px);
 }
 
-/* 數字編號樣式 - MITUS 風格 */
+/* 数字バッジのスタイル - MITUS スタイル */
 .number-badge {
   display: inline-flex;
   align-items: center;
@@ -169,17 +169,17 @@ a {
   box-shadow: 0 6px 30px rgba(59, 130, 246, 0.6);
 }
 
-/* 平滑滾動 */
+/* スムーズスクロール */
 .smooth-scroll {
   scroll-behavior: smooth;
 }
 
-/* 視差效果 */
+/* パララックス効果 */
 .parallax {
   will-change: transform;
 }
 
-/* 動畫類 */
+/* アニメーションクラス */
 .animate-float {
   animation: float 3s ease-in-out infinite;
 }
@@ -208,7 +208,7 @@ a {
   animation: slideInRight 0.8s ease-out forwards;
 }
 
-/* 漸變背景動畫 */
+/* グラデーション背景アニメーション */
 .shimmer-bg {
   background: linear-gradient(
     90deg,
@@ -220,7 +220,7 @@ a {
   animation: shimmer 3s linear infinite;
 }
 
-/* 模組化卡片樣式 */
+/* モジュールカードのスタイル */
 .module-card {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
@@ -237,7 +237,7 @@ a {
   box-shadow: 0 10px 40px rgba(59, 130, 246, 0.2);
 }
 
-/* 橫向跑馬燈 - お取引企業様 */
+/* 横方向のマルキー - お取引企業様 */
 @keyframes marquee {
   0% {
     transform: translateX(0);
@@ -250,18 +250,18 @@ a {
   animation: marquee 16s linear infinite;
 }
 
-/* ========== about 頁專用 ========== */
-/* 頁首：淡灰白 + 超淡藍紫 radial gradient，無底線 */
+/* ========== about ページ専用 ========== */
+/* ページ先頭: 淡いグレー白 + ごく淡い青紫の radial gradient、下線なし */
 .about-hero {
   background-color: #fff;
 }
 
-/* 01 我々にできること：底色同首頁選ばれる理由（bg-gray-50）、無網格 */
+/* 01 我々にできること: トップページの「選ばれる理由」と同じ背景色（bg-gray-50）、グリッドなし */
 .about-capability-section {
-  background-color: #f8fafc; /* Tailwind gray-50，與選ばれる理由一致 */
+  background-color: #f8fafc; /* Tailwind gray-50、「選ばれる理由」と同じ色 */
 }
 
-/* 01 技術能力模組：架構圖卡片，無網格／無裝飾底 */
+/* 01 技術能力モジュール: 構成図カード、グリッド・装飾背景なし */
 .about-capability-card {
   border-radius: 24px;
   border: 1px solid rgba(226,232,240,0.9);
@@ -271,7 +271,7 @@ a {
   overflow: hidden;
 }
 
-/* 能力模組：三顆 icon 節點浮動漂移動畫 */
+/* 能力モジュール: 3つのアイコンノードが浮遊するアニメーション */
 @keyframes capability-node-float {
   0%, 100% { transform: translate(-50%, -50%) translateY(0); }
   50% { transform: translate(-50%, -50%) translateY(-6px); }
@@ -283,30 +283,30 @@ a {
   animation-play-state: paused;
 }
 
-/* 03 ご挨拶：左品牌色線、極淡灰藍底、左右分欄時左側有邊線 */
+/* 03 ご挨拶: 左側にブランドカラーのライン、淡い灰青の背景、左右2カラム時は左側に境界線 */
 .about-greeting-card {
   border-radius: 20px;
   border: 1px solid rgba(226,232,240,0.8);
   box-shadow: 0 4px 24px -8px rgba(0,0,0,0.05), 0 0 0 1px rgba(0,0,0,0.02);
   background: #fff;
 }
-/* 代表メッセージ區卡片不加左線，由內文 blockquote 取代強調 */
+/* 代表メッセージのカードは左線を付けず、本文内の blockquote で強調する */
 .about-section-03 .about-greeting-card { border-left: none; }
 .about-greeting-left {
   background: #fff;
 }
-/* About 區塊區分：用標題樣式區分（白底時） */
+/* About セクションの区分: 白背景時は見出しスタイルで差を付ける */
 .about-section-01 .about-section-label { color: #1e3a5f; letter-spacing: 0.12em; }
 .about-section-01 .about-section-title { border-bottom-color: #1e3a5f; padding-bottom: 0.5rem; border-bottom-width: 2px; }
 .about-section-02 .about-section-label { color: #475569; font-weight: 600; }
 .about-section-02 .about-section-title { color: #1e293b; border-bottom-color: #94a3b8; }
 .about-section-03 .about-section-label { color: #64748b; }
-/* 代表メッセージ：無左線、標題下橫線（與ご挨拶之間） */
+/* 代表メッセージ: 左線なし、見出し下に横線を追加（ご挨拶との区切り） */
 .about-section-03 .about-section-title { color: #0f172a; border-left: none; padding-left: 0; border-bottom: 2px solid #94a3b8; padding-bottom: 0.5rem; }
 .about-section-04 .about-section-label { color: #64748b; font-size: 0.7rem; }
 .about-section-04 .about-section-title { font-size: 1.5rem; color: #1e3a5f; border-bottom: 1px solid #cbd5e1; }
 
-/* 04 CTA band：深一點淡色背景、收尾感 */
+/* 04 CTA band: 少し深めの淡色背景で締めくくり感を出す */
 .about-cta-band {
   background: #fff;
   position: relative;
@@ -317,7 +317,7 @@ a {
   display: none;
 }
 
-/* CTA 主按鈕（深藍）與次按鈕（outline） */
+/* CTA の主ボタン（濃紺）と副ボタン（outline） */
 .about-cta-primary {
   display: inline-flex;
   align-items: center;
@@ -358,14 +358,14 @@ a {
 }
 .about-cta-secondary:hover { background: rgba(30,58,95,0.06); transform: translateY(-2px); }
 
-/* 彈窗用閉じる按鈕：較小尺寸 */
+/* ポップアップ用の閉じるボタン: やや小さめのサイズ */
 .popup-close-btn {
   padding: 0.5rem 1rem;
   font-size: 0.8125rem;
   font-weight: 600;
 }
 
-/* ========== 会社情報頁：集中式資訊面板 ========== */
+/* ========== 会社情報ページ: 集約型の情報パネル ========== */
 .company-panel {
   border-radius: 20px;
   border: 1px solid rgba(226,232,240,0.8);
@@ -385,7 +385,7 @@ a {
   color: #1e3a5f;
 }
 
-/* ========== パートナー頁：跑馬燈 ========== */
+/* ========== パートナーページ: マルキー ========== */
 @keyframes partners-marquee {
   0% {
     transform: translateX(0);
@@ -422,7 +422,7 @@ a {
   border-color: rgba(129,140,248,0.25);
 }
 
-/* 会社情報：連絡先・経営革新計画 テーブル（DTS アクセス頁風） */
+/* 会社情報: 連絡先・経営革新計画のテーブル（DTS アクセスページ風） */
 .company-access-th {
   width: 1%;
   white-space: nowrap;
@@ -442,7 +442,7 @@ a {
   vertical-align: top;
 }
 
-/* 採用情報：三大區塊點擊展開（募集要項・応募方法・個人情報） */
+/* 採用情報: 3つのブロックをクリックで展開（募集要項・応募方法・個人情報） */
 .careers-section-block {
   margin-bottom: 0.5rem;
 }
@@ -458,7 +458,7 @@ a {
   transition: transform 0.25s ease;
 }
 
-/* 会社情報：GREETING 橫幅（藍色漸層） */
+/* 会社情報: GREETING バナー（青系グラデーション） */
 .company-greeting-banner {
   background: linear-gradient(90deg, #e0e7ef 0%, #c8d4e3 50%, #b8c8dc 100%);
 }
@@ -470,7 +470,7 @@ a {
   transform: translateX(4px);
 }
 
-/* 事業概要區塊：背景圖曲線遮罩（右側斜切） */
+/* 事業概要セクション: 背景の曲線マスク（右側を斜めにカット） */
 .company-profile-bg-mask {
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 85%, 55% 88%, 100% 78%, 100% 100%);
 }
@@ -483,7 +483,7 @@ a {
   background: linear-gradient(135deg, rgba(255,255,255,0.92) 0%, rgba(248,250,252,0.88) 50%, rgba(241,245,249,0.85) 100%);
 }
 
-/* 事業概要：新卡片樣式（左線條、圖標圓、標題＋內文） */
+/* 事業概要: 新しいカードスタイル（左ライン、アイコン円、見出し + 本文） */
 .company-profile-card {
   border-radius: 16px;
   border: 1px solid rgba(226,232,240,0.9);
@@ -572,11 +572,11 @@ a {
   }
 }
 
-/* ========== 開発事例：時間軸點線・節點・左右交叉 ========== */
+/* ========== 開発事例: タイムラインの点線・ノード・左右交互レイアウト ========== */
 .cases-timeline {
   padding-left: 0;
 }
-/* 點線置中，穿過節點正中央 */
+/* 点線を中央に配置し、ノードの中心を通す */
 .cases-timeline-zigzag .cases-timeline-track {
   left: 50%;
   transform: translateX(-1px);
@@ -626,7 +626,7 @@ a {
     border-width: 4px;
   }
 }
-/* 節點顏色：三種更冷色調（灰藍 → 冷青 → 冷靛） */
+/* ノードカラー: 3種類の寒色系（灰青 → 冷青 → 冷藍） */
 .cases-timeline-node--0 {
   background: linear-gradient(145deg, #cbd5e1 0%, #64748b 100%);
   box-shadow: 0 1px 4px rgba(100,116,139,0.3), 0 0 0 1px rgba(100,116,139,0.15);
@@ -639,7 +639,7 @@ a {
   background: linear-gradient(145deg, #c7d2fe 0%, #6366f1 100%);
   box-shadow: 0 1px 4px rgba(99,102,241,0.3), 0 0 0 1px rgba(99,102,241,0.15);
 }
-/* hover 時僅稍微變深（維持色相） */
+/* hover 時は色相を保ちながら少しだけ濃くする */
 .cases-timeline .group:hover .cases-timeline-node--0 {
   background: linear-gradient(145deg, #b8c5d4 0%, #475569 100%);
   box-shadow: 0 1px 5px rgba(71,85,105,0.35), 0 0 0 1px rgba(71,85,105,0.2);
@@ -659,7 +659,7 @@ a {
   border-color: rgba(79,70,229,0.2);
 }
 
-/* 滑過開発事例區塊時背景變深 */
+/* 開発事例エリアで hover した際に背景を濃くする */
 .cases-timeline-btn {
   background-color: rgba(241, 245, 249, 0.4);
 }
@@ -667,7 +667,7 @@ a {
   background-color: rgba(203, 213, 225, 0.7);
 }
 
-/* ========== 採用情報：採用前導區塊（主題・層次・視覺核心） ========== */
+/* ========== 採用情報: 導入セクション（テーマ・階層・視覚的な核） ========== */
 .careers-lead {
   padding-top: 6rem;
   padding-bottom: 2.5rem;
@@ -678,7 +678,7 @@ a {
   }
 }
 
-/* 背景層一：底層漸層（白 → 淡藍灰），整區主題色 */
+/* 背景レイヤー1: ベースのグラデーション（白 → 淡い青灰）、セクション全体のテーマカラー */
 .careers-lead-bg {
   position: absolute;
   inset: 0;
@@ -696,7 +696,7 @@ a {
   );
 }
 
-/* 背景層二：裝飾形狀，增加景深 */
+/* 背景レイヤー2: 装飾用の形状で奥行きを追加 */
 .careers-lead-bg-shape {
   position: absolute;
   bottom: 0;
@@ -715,7 +715,7 @@ a {
   pointer-events: none;
 }
 
-/* 內文區：與標題、核心區統一間距 */
+/* 本文エリア: 見出しやコアセクションと余白を統一 */
 .careers-lead-inner {
   padding-top: 0;
 }
@@ -730,7 +730,7 @@ a {
   }
 }
 
-/* 視覺核心：公司理念文區塊 — 前導區的收束點 */
+/* 視覚の核: 企業理念テキストブロック - 導入セクションの着地点 */
 .careers-lead-core {
   position: relative;
   padding: 1.75rem 1.5rem 1.75rem 2rem;
@@ -859,7 +859,7 @@ a {
   font-weight: 700;
   line-height: 1;
 }
-/* ニュース Popup：企業官網風格、層級清楚、留白區塊 */
+/* ニュース Popup: 企業サイト風のトーンで、階層感と余白を明確化 */
 .news-popup {
   border-left: 3px solid #1e3a5f;
 }
@@ -1013,8 +1013,8 @@ a {
   box-shadow: 0 6px 20px -4px rgba(30,58,95,0.45);
 }
 
-/* 選ばれる理由：背景層次 + 互動 */
-/* 02 使命・文化・ビジョン：白底、標題用 .about-section-02 區分 */
+/* 選ばれる理由: 背景のレイヤー感 + インタラクション */
+/* 02 使命・文化・ビジョン: 白背景、見出しは .about-section-02 で区別 */
 .reason-section-bg {
   background-color: #fff;
 }
@@ -1035,7 +1035,7 @@ a {
   width: 100%;
 }
 
-/* 使命・文化・ビジョン：清爽色底線（與選ばれる理由同效果、配色改 slate） */
+/* 使命・文化・ビジョン: すっきりした色味の下線（「選ばれる理由」と同じ効果、配色は slate 系に変更） */
 .about-value-card-bottom-line {
   background: linear-gradient(90deg, #94a3b8, #64748b);
 }
@@ -1061,7 +1061,7 @@ a {
   box-shadow: 0 0 0 3px rgba(255,255,255,0.8), 0 0 0 8px rgba(99,102,241,0.15);
 }
 
-/* 四方形右上角缺一角按鈕（五角形）、深藍底、白字、右箭頭 */
+/* 右上を斜めに切り欠いたボタン、濃紺背景・白文字・右向き矢印 */
 .btn-flag {
   display: inline-flex;
   align-items: center;
@@ -1076,7 +1076,7 @@ a {
   line-height: 1.5;
   border: none;
   cursor: pointer;
-  /* 四方形，僅右上角斜切缺一角 */
+  /* 四角形をベースに、右上だけ斜めに切り欠く */
   clip-path: polygon(0 0, calc(100% - 1rem) 0, 100% 1rem, 100% 100%, 0 100%);
   transition: background-color 0.2s, filter 0.2s;
 }
@@ -1096,7 +1096,7 @@ a {
   transform: translateX(4px);
 }
 
-/* 開発プロセス：step bar + 流程卡片 */
+/* 開発プロセス: step bar + プロセスカード */
 .process-step-bar {
   display: flex;
   align-items: center;
@@ -1139,7 +1139,7 @@ a {
   transition: opacity 0.3s ease;
 }
 
-/* お知らせ：列表 hover + CTA 底線延展・箭頭滑動 */
+/* お知らせ: リスト hover + CTA の下線展開・矢印のスライド */
 .news-list-row {
   transition: background-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
@@ -1188,7 +1188,7 @@ a {
   transform-origin: left;
 }
 
-/* お問い合わせ：必填/任意 badge、focus、按鈕 */
+/* お問い合わせ: 必須 / 任意バッジ、focus、ボタン */
 .contact-badge-required {
   display: inline-block;
   padding: 0.15rem 0.5rem;

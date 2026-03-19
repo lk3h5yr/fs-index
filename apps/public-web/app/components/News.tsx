@@ -18,7 +18,7 @@ export default function News() {
   return (
     <section ref={ref} className="pt-14 pb-24 sm:pt-20 md:py-28 bg-white relative">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* 標題區：標題淡入上移 + 副標與一覧を見る延遲淡入 */}
+        {/* 見出しエリア: タイトルはフェードインしながら上昇、副題と「一覧を見る」は少し遅れて表示 */}
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-12">
           <div className="flex-1">
             <motion.div
@@ -72,7 +72,7 @@ export default function News() {
           </motion.div>
         </div>
 
-        {/* 三筆列表：stagger 進場 */}
+        {/* 3件のリスト: stagger で順番に表示 */}
         <ul className="space-y-1">
           {newsItems.map((item, index) => (
             <motion.li

@@ -11,7 +11,7 @@ const stats = [
   { number: '99%', label: '顧客満足度', description: '継続的な改善とサポート' },
 ];
 
-/* 免費圖庫：Unsplash（可商用）、Picsum 作為跑馬燈內容 */
+/* 無料の画像ソース: Unsplash（商用利用可）と Picsum をマルキー用に使用 */
 const marqueeItems = [
   { src: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=320&h=180&fit=crop', alt: 'Office' },
   { src: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=320&h=180&fit=crop', alt: 'Team' },
@@ -71,7 +71,7 @@ export default function Trust() {
           ))}
         </div>
 
-        {/* お取引企業様 - 橫向跑馬燈 */}
+        {/* お取引企業様 - 横方向のマルキー */}
         <motion.div
           className="mt-20"
           initial={{ opacity: 0, y: 24 }}

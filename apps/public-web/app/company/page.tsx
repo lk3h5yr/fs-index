@@ -12,7 +12,7 @@ const ease = [0.22, 1, 0.36, 1] as const;
 
 const MAP_EMBED_URL = 'https://www.google.com/maps?q=35.6862,139.7742&z=17&hl=ja&output=embed';
 
-/** 事業概要のカード（標題・本文・アイコン） */
+/** 事業概要のカード（見出し・本文・アイコン） */
 const profileCards = [
   {
     label: 'システム・ソフトウェア',
@@ -56,7 +56,7 @@ export default function CompanyPage() {
       <div className="relative z-10">
         <Navbar />
 
-        {/* 前導區塊：與 careers 同風格 */}
+        {/* 導入セクション: careers と統一したスタイル */}
         <section ref={refHero} className="careers-lead relative overflow-hidden">
           <div className="careers-lead-bg" aria-hidden>
             <div className="careers-lead-bg-base" />
@@ -104,7 +104,7 @@ export default function CompanyPage() {
           </div>
         </section>
 
-        {/* COMPANY PROFILE：事業概要（我々にできること同様の底圖） */}
+        {/* COMPANY PROFILE: 事業概要（「我々にできること」と同系統の背景） */}
         <section ref={refProfile} className="about-capability-section py-20 md:py-24 relative overflow-hidden">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <motion.div

@@ -7,9 +7,9 @@ export default function Footer() {
   return (
     <footer className="relative z-10 bg-slate-800 text-white py-14">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* 上段：公司區塊 + 三欄連結，比例 6 : 2 : 2 : 2 */}
+        {/* 上段: 会社情報ブロック + 3カラムのリンク、比率は 6 : 2 : 2 : 2 */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8 mb-10">
-          {/* ForestSoft + 公司理念：佔約一半寬度，文字限制最大寬度易讀 */}
+          {/* ForestSoft + 企業理念: 約半分の幅を使い、文章は最大幅を制限して読みやすくする */}
           <div className="md:col-span-6 lg:col-span-6">
             <Link href="/" className="inline-block mb-5">
               <Image

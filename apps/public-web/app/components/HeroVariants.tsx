@@ -3,12 +3,12 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 
-// 設計方案 1: Web3 區塊鏈網絡 + AI 脈衝波
+// デザイン案 1: Web3 ブロックチェーンネットワーク + AI パルス波
 export const Variant1 = () => (
   <div className="absolute inset-0 z-0 overflow-hidden">
     <div className="absolute inset-0 bg-gradient-to-br from-cyan-50 via-blue-50 to-indigo-50"></div>
     
-    {/* 區塊鏈節點網絡 */}
+    {/* ブロックチェーンのノードネットワーク */}
     <svg className="absolute inset-0 w-full h-full opacity-30">
       {Array.from({ length: 15 }).map((_, i) => {
         const angle = (i / 15) * Math.PI * 2;
@@ -34,7 +34,7 @@ export const Variant1 = () => (
                 delay: i * 0.15,
               }}
             />
-            {/* 連接線 */}
+            {/* 接続線 */}
             {i < 14 && (
               <motion.line
                 x1={`${cx}%`}
@@ -61,7 +61,7 @@ export const Variant1 = () => (
       })}
     </svg>
     
-    {/* AI 脈衝波 */}
+    {/* AI パルス波 */}
     {[0, 1, 2].map((i) => (
       <motion.div
         key={i}
@@ -80,7 +80,7 @@ export const Variant1 = () => (
       />
     ))}
     
-    {/* 柔和光暈 */}
+    {/* やわらかなグロー */}
     <motion.div
       className="absolute top-1/2 left-1/2 w-96 h-96 bg-cyan-300/20 rounded-full blur-3xl"
       style={{ transform: 'translate(-50%, -50%)' }}
@@ -97,14 +97,14 @@ export const Variant1 = () => (
   </div>
 );
 
-// 設計方案 2: AI 神經網絡 + 數據流動畫
+// デザイン案 2: AI ニューラルネットワーク + データフローアニメーション
 export const Variant2 = () => (
   <div className="absolute inset-0 z-0 overflow-hidden">
     <div className="absolute inset-0 bg-gradient-to-br from-purple-50 via-pink-50 to-rose-50"></div>
     
-    {/* 神經網絡層 */}
+    {/* ニューラルネットワーク層 */}
     <svg className="absolute inset-0 w-full h-full opacity-25">
-      {/* 第一層節點 */}
+      {/* 第1層のノード */}
       {[0, 1, 2, 3, 4].map((i) => (
         <g key={`layer1-${i}`}>
           <motion.circle
@@ -126,7 +126,7 @@ export const Variant2 = () => (
         </g>
       ))}
       
-      {/* 第二層節點 */}
+      {/* 第2層のノード */}
       {[0, 1, 2, 3].map((i) => (
         <g key={`layer2-${i}`}>
           <motion.circle
@@ -148,7 +148,7 @@ export const Variant2 = () => (
         </g>
       ))}
       
-      {/* 第三層節點 */}
+      {/* 第3層のノード */}
       {[0, 1, 2].map((i) => (
         <g key={`layer3-${i}`}>
           <motion.circle
@@ -170,7 +170,7 @@ export const Variant2 = () => (
         </g>
       ))}
       
-      {/* 連接線 */}
+      {/* 接続線 */}
       {[0, 1, 2, 3, 4].map((i) => (
         [0, 1, 2, 3].map((j) => (
           <motion.line
@@ -196,7 +196,7 @@ export const Variant2 = () => (
       ))}
     </svg>
     
-    {/* 數據流動畫 */}
+    {/* データフローアニメーション */}
     {[0, 1, 2, 3].map((i) => (
       <motion.div
         key={i}
@@ -220,16 +220,16 @@ export const Variant2 = () => (
   </div>
 );
 
-// 設計方案 3: Web3 區塊鏈 + AI 智能節點
+// デザイン案 3: Web3 ブロックチェーン + AI インテリジェントノード
 export const Variant3 = () => (
   <div className="absolute inset-0 z-0 overflow-hidden">
     <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 via-teal-50 to-cyan-50"></div>
     
-    {/* 區塊鏈結構 */}
+    {/* ブロックチェーン構造 */}
     <svg className="absolute inset-0 w-full h-full opacity-20">
       {[0, 1, 2, 3, 4].map((i) => (
         <g key={i}>
-          {/* 區塊 */}
+          {/* ブロック */}
           <motion.rect
             x={`${15 + i * 18}%`}
             y="40%"
@@ -251,7 +251,7 @@ export const Variant3 = () => (
               delay: i * 0.4,
             }}
           />
-          {/* 連接鏈 */}
+          {/* 接続チェーン */}
           {i < 4 && (
             <motion.line
               x1={`${27 + i * 18}%`}
@@ -278,7 +278,7 @@ export const Variant3 = () => (
       ))}
     </svg>
     
-    {/* AI 智能節點脈衝 */}
+    {/* AI インテリジェントノードのパルス */}
     {[0, 1, 2, 3, 4].map((i) => (
       <motion.div
         key={i}
@@ -304,7 +304,7 @@ export const Variant3 = () => (
       </motion.div>
     ))}
     
-    {/* 柔和背景光暈 */}
+    {/* やわらかな背景グロー */}
     <motion.div
       className="absolute top-1/3 left-1/2 w-96 h-96 bg-emerald-300/15 rounded-full blur-3xl"
       style={{ transform: 'translateX(-50%)' }}
@@ -321,14 +321,14 @@ export const Variant3 = () => (
   </div>
 );
 
-// 設計方案 4: AI 大數據可視化 + Web3 粒子效果
+// デザイン案 4: AI ビッグデータ可視化 + Web3 パーティクル効果
 export const Variant4 = () => (
   <div className="absolute inset-0 z-0 overflow-hidden">
     <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50"></div>
     
-    {/* 數據可視化圖表 */}
+    {/* データ可視化チャート */}
     <svg className="absolute inset-0 w-full h-full opacity-25">
-      {/* 柱狀圖動畫 */}
+      {/* バーチャートアニメーション */}
       {[0, 1, 2, 3, 4, 5, 6].map((i) => (
         <motion.rect
           key={i}
@@ -358,7 +358,7 @@ export const Variant4 = () => (
       </defs>
     </svg>
     
-    {/* Web3 粒子效果 */}
+    {/* Web3 パーティクル効果 */}
     {Array.from({ length: 20 }).map((_, i) => (
       <motion.div
         key={i}
@@ -382,7 +382,7 @@ export const Variant4 = () => (
       />
     ))}
     
-    {/* 中心脈衝波 */}
+    {/* 中央のパルス波 */}
     <motion.div
       className="absolute top-1/2 left-1/2 w-32 h-32 border-2 border-indigo-400 rounded-full"
       style={{ transform: 'translate(-50%, -50%)' }}
@@ -399,12 +399,12 @@ export const Variant4 = () => (
   </div>
 );
 
-// 設計方案 5: Web3 去中心化網絡 + AI 智能連接
+// デザイン案 5: Web3 分散型ネットワーク + AI インテリジェント接続
 export const Variant5 = () => (
   <div className="absolute inset-0 z-0 overflow-hidden">
     <div className="absolute inset-0 bg-gradient-to-br from-violet-50 via-purple-50 to-fuchsia-50"></div>
     
-    {/* 去中心化節點網絡 */}
+    {/* 分散型ノードネットワーク */}
     <svg className="absolute inset-0 w-full h-full opacity-30">
       {[
         { x: 50, y: 30 },
@@ -431,7 +431,7 @@ export const Variant5 = () => (
               delay: i * 0.2,
             }}
           />
-          {/* 連接所有節點到中心 */}
+          {/* すべてのノードを中央に接続 */}
           {node.x !== 50 || node.y !== 30 ? (
             <motion.line
               x1={`${node.x}%`}
@@ -457,7 +457,7 @@ export const Variant5 = () => (
       ))}
     </svg>
     
-    {/* AI 智能脈衝波 */}
+    {/* AI インテリジェントパルス波 */}
     {[0, 1, 2].map((i) => (
       <motion.div
         key={i}
@@ -476,7 +476,7 @@ export const Variant5 = () => (
       />
     ))}
     
-    {/* 數據傳輸動畫 */}
+    {/* データ転送アニメーション */}
     {[0, 1, 2, 3, 4].map((i) => (
       <motion.div
         key={i}
@@ -500,14 +500,14 @@ export const Variant5 = () => (
   </div>
 );
 
-// 設計方案 6: AI 深度學習網絡 + Web3 區塊鏈脈衝
+// デザイン案 6: AI 深層学習ネットワーク + Web3 ブロックチェーンパルス
 export const Variant6 = () => (
   <div className="absolute inset-0 z-0 overflow-hidden">
     <div className="absolute inset-0 bg-gradient-to-br from-sky-50 via-blue-50 to-indigo-50"></div>
     
-    {/* 多層神經網絡 */}
+    {/* 多層ニューラルネットワーク */}
     <svg className="absolute inset-0 w-full h-full opacity-25">
-      {/* 輸入層 */}
+      {/* 入力層 */}
       {[0, 1, 2, 3, 4].map((i) => (
         <motion.circle
           key={`input-${i}`}
@@ -528,7 +528,7 @@ export const Variant6 = () => (
         />
       ))}
       
-      {/* 隱藏層 */}
+      {/* 隠れ層 */}
       {[0, 1, 2, 3].map((i) => (
         <motion.circle
           key={`hidden-${i}`}
@@ -549,7 +549,7 @@ export const Variant6 = () => (
         />
       ))}
       
-      {/* 輸出層 */}
+      {/* 出力層 */}
       {[0, 1, 2].map((i) => (
         <motion.circle
           key={`output-${i}`}
@@ -570,7 +570,7 @@ export const Variant6 = () => (
         />
       ))}
       
-      {/* 連接線 */}
+      {/* 接続線 */}
       {[0, 1, 2, 3, 4].map((i) => (
         [0, 1, 2, 3].map((j) => (
           <motion.line
@@ -596,7 +596,7 @@ export const Variant6 = () => (
       ))}
     </svg>
     
-    {/* Web3 區塊鏈脈衝 */}
+    {/* Web3 ブロックチェーンパルス */}
     {[0, 1, 2, 3].map((i) => (
       <motion.div
         key={i}
@@ -616,7 +616,7 @@ export const Variant6 = () => (
       />
     ))}
     
-    {/* 柔和光暈背景 */}
+    {/* やわらかなグロー背景 */}
     <motion.div
       className="absolute top-1/2 left-1/2 w-[500px] h-[500px] bg-blue-300/15 rounded-full blur-3xl"
       style={{ transform: 'translate(-50%, -50%)' }}
@@ -633,40 +633,40 @@ export const Variant6 = () => (
   </div>
 );
 
-// 主組件 - 用於預覽所有方案
+// メインコンポーネント - すべての案をプレビューするための表示
 export default function HeroVariantsPreview() {
   const [selectedVariant, setSelectedVariant] = useState<number | null>(null);
   
   const variants = [
     { 
-      name: '方案 1: Web3 區塊鏈網絡 + AI 脈衝波', 
+      name: '案 1: Web3 ブロックチェーンネットワーク + AI パルス波', 
       component: Variant1,
-      description: '區塊鏈節點網絡 + 中心脈衝波，柔和藍綠色系'
+      description: 'ブロックチェーンのノードネットワーク + 中央パルス波、やわらかな青緑系'
     },
     { 
-      name: '方案 2: AI 神經網絡 + 數據流', 
+      name: '案 2: AI ニューラルネットワーク + データフロー', 
       component: Variant2,
-      description: '多層神經網絡 + 垂直數據流，柔和紫粉色系'
+      description: '多層ニューラルネットワーク + 垂直データフロー、やわらかな紫とピンク系'
     },
     { 
-      name: '方案 3: Web3 區塊鏈 + AI 智能節點', 
+      name: '案 3: Web3 ブロックチェーン + AI インテリジェントノード', 
       component: Variant3,
-      description: '區塊鏈結構 + 智能節點脈衝，柔和綠色系'
+      description: 'ブロックチェーン構造 + インテリジェントノードのパルス、やわらかな緑系'
     },
     { 
-      name: '方案 4: AI 大數據可視化 + Web3 粒子', 
+      name: '案 4: AI ビッグデータ可視化 + Web3 パーティクル', 
       component: Variant4,
-      description: '數據柱狀圖 + 浮動粒子 + 脈衝波，柔和藍紫色系'
+      description: 'データバーチャート + 浮遊パーティクル + パルス波、やわらかな青紫系'
     },
     { 
-      name: '方案 5: Web3 去中心化網絡 + AI 智能連接', 
+      name: '案 5: Web3 分散型ネットワーク + AI インテリジェント接続', 
       component: Variant5,
-      description: '去中心化節點 + 智能脈衝 + 數據傳輸，柔和紫粉色系'
+      description: '分散型ノード + インテリジェントパルス + データ転送、やわらかな紫とピンク系'
     },
     { 
-      name: '方案 6: AI 深度學習網絡 + Web3 區塊鏈脈衝', 
+      name: '案 6: AI 深層学習ネットワーク + Web3 ブロックチェーンパルス', 
       component: Variant6,
-      description: '多層神經網絡 + 區塊鏈脈衝，柔和藍色系'
+      description: '多層ニューラルネットワーク + ブロックチェーンパルス、やわらかな青系'
     },
   ];
 
@@ -675,10 +675,10 @@ export default function HeroVariantsPreview() {
   return (
     <div className="min-h-screen bg-slate-100 p-8">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-4xl font-bold mb-4 text-center text-slate-900">Web3 + AI 設計方案預覽</h1>
-        <p className="text-center text-slate-600 mb-8">6 個結合 Web3 風格與 AI 大數據效果的柔和配色方案</p>
+        <h1 className="text-4xl font-bold mb-4 text-center text-slate-900">Web3 + AI デザイン案プレビュー</h1>
+        <p className="text-center text-slate-600 mb-8">Web3の雰囲気とAI・ビッグデータ表現を組み合わせた、やわらかな配色の6案</p>
         
-        {/* 方案選擇按鈕 */}
+        {/* 案の選択ボタン */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
           {variants.map((variant, index) => (
             <button
@@ -696,18 +696,18 @@ export default function HeroVariantsPreview() {
           ))}
         </div>
 
-        {/* 預覽區域 */}
+        {/* プレビューエリア */}
         {SelectedComponent && (
           <div className="relative h-[600px] rounded-2xl overflow-hidden border-4 border-slate-300 shadow-2xl">
             <SelectedComponent />
-            {/* 模擬文字內容 */}
+            {/* テキスト表示のモック */}
             <div className="absolute inset-0 flex items-center justify-center z-10">
               <div className="text-center px-8">
                 <h2 className="text-5xl font-bold text-slate-800 mb-4 drop-shadow-lg">
                   次世代のシステム開発
                 </h2>
                 <p className="text-xl text-slate-600 drop-shadow-md">
-                  AI・Web3・大數據でビジネスの成長を加速させます
+                  AI・Web3・ビッグデータでビジネスの成長を加速させます
                 </p>
               </div>
             </div>
@@ -717,7 +717,7 @@ export default function HeroVariantsPreview() {
         {!SelectedComponent && (
           <div className="text-center py-20 text-slate-500 bg-white rounded-xl border-2 border-dashed border-slate-300">
             <div className="text-2xl mb-2">👆</div>
-            <div className="text-lg">請選擇一個設計方案進行預覽</div>
+            <div className="text-lg">プレビューするデザイン案を選択してください</div>
           </div>
         )}
       </div>

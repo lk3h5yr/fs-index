@@ -11,7 +11,7 @@ import CurveBg from '../components/CurveBg';
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-/** 我々にできること：選ばれる理由同款卡牌（number / badge / title / description / hover 底線） */
+/** 我々にできること: 「選ばれる理由」と同系統のカード（number / badge / title / description / hover 下線） */
 const capabilityCards = [
   {
     number: '01',
@@ -94,7 +94,7 @@ export default function AboutPage() {
       <div className="relative z-10">
         <Navbar />
 
-        {/* 前導區塊：與 careers 同風格 */}
+        {/* 導入セクション: careers と統一したスタイル */}
         <section ref={refHero} className="careers-lead relative overflow-hidden">
           <div className="careers-lead-bg" aria-hidden>
             <div className="careers-lead-bg-base" />
@@ -149,7 +149,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* 代表メッセージ（我々にできることの上に配置） */}
+        {/* 代表メッセージ（我々にできることの上部に配置） */}
         <section id="greeting" ref={refGreeting} className="py-24 md:py-28 bg-slate-100 about-section-03 relative">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
@@ -171,7 +171,7 @@ export default function AboutPage() {
               transition={{ duration: 0.5, ease, delay: 0.1 }}
             >
               <div className="p-5 sm:p-8 md:p-10 lg:p-12 max-w-4xl">
-                {/* 開頭一句 ＋ 右側預留照片空間（排版不變形） */}
+                {/* 導入の一文 + 右側に写真用スペースを確保（レイアウトが崩れないようにする） */}
                 <div className="flex flex-wrap gap-4 sm:gap-6 items-start mb-6 sm:mb-8">
                   <p className="text-slate-600 text-base sm:text-lg md:text-xl leading-relaxed flex-1 min-w-0">
                     お客様とともに価値をつくる企業でありたいと考えています。
@@ -187,11 +187,11 @@ export default function AboutPage() {
                     />
                   </div>
                 </div>
-                {/* 主引句：視覺焦點 */}
+                {/* メインの引用文: 視線を集めるポイント */}
                 <blockquote className="border-l-4 border-[#1e3a5f] pl-4 sm:pl-6 py-1.5 sm:py-2 mb-8 sm:mb-10 text-lg sm:text-xl md:text-2xl font-semibold text-slate-800 leading-relaxed italic">
                   お客様とともに、価値を前へ進める存在でありたい。
                 </blockquote>
-                {/* 正文：段落層次 */}
+                {/* 本文: 段落ごとの階層を明確化 */}
                 <div className="space-y-5 sm:space-y-6 text-slate-700 leading-[1.85] text-sm sm:text-base md:text-lg">
                   <p>
                     当社は、ソフトウェア開発を通じてお客様の課題解決と事業成長を支援してきました。
@@ -203,7 +203,7 @@ export default function AboutPage() {
                     これからも、変化に柔軟に向き合いながら、信頼されるパートナーとして挑戦を続けてまいります。
                   </p>
                 </div>
-                {/* 役員 */}
+                {/* 役員情報 */}
                 <div className="mt-10 pt-8 border-t border-slate-200/80">
                   <p className="text-sm font-bold text-slate-500 mb-3">役員</p>
                   <ul className="text-slate-700 text-sm sm:text-base space-y-1">
@@ -216,7 +216,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* 我々にできること（卡片縮短・半透明底） */}
+        {/* 我々にできること（コンパクトなカード・半透明背景） */}
         <section ref={refCapability} className="about-capability-section py-24 md:py-28 bg-slate-100 relative overflow-hidden">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <motion.div
@@ -267,7 +267,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* 使命・文化・ビジョン（卡片縮短・半透明底） */}
+        {/* 使命・文化・ビジョン（コンパクトなカード・半透明背景） */}
         <section ref={refValues} className="py-24 md:py-28 bg-slate-100 about-section-02 relative overflow-hidden">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <motion.div

@@ -115,7 +115,7 @@ export default function SolutionSteps() {
           ))}
         </motion.div>
 
-        {/* 三張流程卡：標題 + 一句 + 3 重點 + 成果物 */}
+        {/* 3枚のプロセスカード: タイトル + 要約 + 3つのポイント + 成果物 */}
         <div className="grid md:grid-cols-3 gap-8 lg:gap-10">
           {steps.map((step, index) => (
             <motion.div
@@ -158,7 +158,7 @@ export default function SolutionSteps() {
                   <p className="text-xs text-slate-600">{step.deliverable}</p>
                 </div>
 
-                {/* 底線：同色系、hover 時明顯 */}
+                {/* 下線: 同系色で、hover 時により目立たせる */}
                 <div className="mt-5 pt-4 border-t border-slate-200/60">
                   <div className={`process-card-line h-1 rounded-full ${step.lineClass} opacity-60`} style={{ width: '100%' }} />
                 </div>

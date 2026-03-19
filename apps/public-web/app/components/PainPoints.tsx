@@ -20,7 +20,7 @@ const painPoints = [
   {
     number: 'REASON.02',
     title: '最新技術への対応',
-    description: 'AI・機械學習、マイクロサービス、コンテナ技術など、最先端技術を活用したシステム開発を実現。技術トレンドに遅れない、未来志向のソリューションを提供します。',
+    description: 'AI・機械学習、マイクロサービス、コンテナ技術など、最先端技術を活用したシステム開発を実現。技術トレンドに遅れない、未来志向のソリューションを提供します。',
     icon: (
       <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -74,9 +74,9 @@ export default function PainPoints() {
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 }}
               transition={{ duration: 0.8, delay: index * 0.2, ease: [0.22, 1, 0.36, 1] }}
             >
-                  {/* 卡片主體：hover 微浮起 + 底線 hover 展開 */}
+                  {/* カード本体: hover でわずかに浮き、下線が展開 */}
                   <div className="reason-card relative p-10 rounded-3xl bg-white/90 backdrop-blur-sm border border-slate-200/80 h-full flex flex-col mt-8">
-                    {/* 編號（透明外圈）+ 統計 badge（微光/漸層流動） */}
+                    {/* 番号（透過リング）+ 統計バッジ（ほのかな発光とグラデーション） */}
                     <div className="absolute -top-6 left-8 flex items-center gap-3">
                       <div className={`reason-number-ring inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br ${point.gradient} text-white text-sm font-bold transition-shadow duration-300`}>
                         {point.number.split('.')[1]}
@@ -100,7 +100,7 @@ export default function PainPoints() {
                   {point.description}
                 </p>
 
-                {/* 底線：hover 時展開 */}
+                {/* 下線: hover 時に展開 */}
                 <div className="mt-6 pt-6 border-t border-slate-200">
                   <div className="h-1 rounded-full bg-slate-100 overflow-hidden">
                     <div className={`reason-card-bottom-line h-full bg-gradient-to-r ${point.gradient} rounded-full`} />

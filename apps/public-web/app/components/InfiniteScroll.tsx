@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 
-// 成功案例假資料
+// 実績事例のダミーデータ
 const successCases = [
   {
     id: 1,
@@ -54,7 +54,7 @@ const successCases = [
   },
 ];
 
-// 合作客戶假資料
+// パートナー企業のダミーデータ
 const partners = [
   {
     id: 1,
@@ -88,19 +88,19 @@ const partners = [
   },
 ];
 
-// 合併所有項目
+// すべての項目を結合
 const allItems = [
   ...successCases.map(item => ({ ...item, type: 'case' as const })),
   ...partners.map(item => ({ ...item, type: 'partner' as const })),
 ];
 
-// 創建更多項目以實現流暢的無限循環
+// より滑らかな無限ループのために項目を複製
 const duplicatedItems = [...allItems, ...allItems, ...allItems, ...allItems];
 
 export default function InfiniteScroll() {
   return (
     <div className="absolute inset-0 w-full h-full overflow-hidden" style={{ zIndex: 0 }}>
-      {/* 3D 透視容器 */}
+      {/* 3D パース用コンテナ */}
       <div
         className="absolute inset-0 flex items-center justify-center"
         style={{
@@ -108,7 +108,7 @@ export default function InfiniteScroll() {
           perspectiveOrigin: 'center 35%',
         }}
       >
-        {/* 3D 場景容器 - 旋轉 X 軸以創建立體視角 */}
+        {/* 3D シーン用コンテナ - X 軸を回転させて立体的な視点を作る */}
         <motion.div
           className="relative"
           style={{
@@ -124,15 +124,15 @@ export default function InfiniteScroll() {
             ease: 'linear',
           }}
         >
-          {/* 創建多層，從遠處（小、透明）到近處（大、清晰） */}
+          {/* 複数レイヤーを生成し、遠景（小さく透明）から近景（大きく鮮明）まで表現 */}
           {Array.from({ length: 25 }).map((_, layer) => {
-            // 計算 Z 軸位置（負數表示在遠處，正數表示在近處）
+            // Z 軸位置を計算（負数は遠景、正数は近景）
             const zPosition = -3000 + layer * 200;
-            // 根據 Z 位置計算縮放比例（遠處小，近處大）
-            // 使用透視公式：scale = perspective / (perspective - z)
+            // Z 位置に応じて拡大率を計算（遠景は小さく、近景は大きく）
+            // 透視投影の式: scale = perspective / (perspective - z)
             const perspective = 2000;
             const scale = Math.max(0.05, perspective / (perspective - zPosition));
-            // 根據 Z 位置計算透明度（遠處透明，近處清晰）
+            // Z 位置に応じて透明度を計算（遠景は薄く、近景は鮮明）
             const opacity = Math.max(0.05, Math.min(1, (zPosition + 3000) / 1500));
             
             return (
@@ -196,7 +196,7 @@ export default function InfiniteScroll() {
         </motion.div>
       </div>
 
-      {/* 漸變遮罩 - 上下淡出效果 */}
+      {/* グラデーションマスク - 上下をフェードアウトさせる */}
       <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 1 }}>
         <div className="absolute top-0 left-0 right-0 h-64 bg-gradient-to-b from-white via-white/95 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-white via-white/95 to-transparent" />

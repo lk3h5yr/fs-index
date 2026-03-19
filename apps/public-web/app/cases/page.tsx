@@ -287,7 +287,7 @@ export default function CasesPage() {
       <div className="relative z-10">
         <Navbar />
 
-        {/* 前導區塊：與 careers 同風格 */}
+        {/* 導入セクション: careers と統一したスタイル */}
         <section ref={refHero} className="careers-lead relative overflow-hidden">
           <div className="careers-lead-bg" aria-hidden>
             <div className="careers-lead-bg-base" />

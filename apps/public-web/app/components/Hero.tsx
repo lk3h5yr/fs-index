@@ -34,18 +34,18 @@ export default function Hero() {
       ref={ref}
       className="relative min-h-[58vh] sm:min-h-[68vh] md:min-h-screen flex items-center overflow-hidden pt-16 md:pt-20"
     >
-      {/* Web3 + AI 設計 - 方案2 風格 */}
+      {/* Web3 + AI デザイン - バリエーション2のスタイル */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-        {/* 上半部白、下半部透出首頁曲線底 */}
+        {/* 上部は白、下部はトップページの曲線背景を透かして見せる */}
         <div className="absolute inset-0 bg-gradient-to-b from-white from-40% to-transparent"></div>
-        {/* AI 神經網絡 - 右上角，佔2/3面積 */}
+        {/* AIニューラルネットワーク - 右上に配置し、画面の約 2/3 を占有 */}
         <div
             ref={containerRef}
             className="absolute bottom-0 right-0 w-[84vw] aspect-[11/10] md:top-0 md:bottom-auto md:w-2/3 md:h-full md:aspect-auto opacity-45"
           >          <svg className="absolute inset-0 w-full h-full">
-            {/* 不規則節點分佈 - 不規則大小 */}
+            {/* 不規則なノード配置 - サイズにも変化を持たせる */}
             {[
-              // 第一區域 - 左上（大小差異更大）
+              // 第1エリア - 左上（サイズ差を大きめに設定）
               { x: 12, y: 8, r: 8, color: '#a855f7', delay: 0, label: 'AI' },
               { x: 28, y: 15, r: 18, color: '#a855f7', delay: 0.15, label: 'ML' },
               { x: 18, y: 22, r: 6, color: '#a855f7', delay: 0.3, label: 'DL' },
@@ -54,7 +54,7 @@ export default function Hero() {
               { x: 52, y: 5, r: 14, color: '#a855f7', delay: 0.75, label: 'GPU' },
               { x: 25, y: 28, r: 16, color: '#a855f7', delay: 0.9, label: 'Tensor' },
               
-              // 第二區域 - 中上
+              // 第2エリア - 中央上部
               { x: 15, y: 38, r: 20, color: '#06b6d4', delay: 1.05, label: 'Cloud' },
               { x: 32, y: 42, r: 7, color: '#06b6d4', delay: 1.2, label: 'AWS' },
               { x: 48, y: 35, r: 24, color: '#06b6d4', delay: 1.35, label: 'Azure' },
@@ -64,7 +64,7 @@ export default function Hero() {
               { x: 42, y: 58, r: 15, color: '#06b6d4', delay: 1.95, label: 'Micro' },
               { x: 28, y: 62, r: 11, color: '#06b6d4', delay: 2.1, label: 'API' },
               
-              // 第三區域 - 中下
+              // 第3エリア - 中央下部
               { x: 18, y: 68, r: 13, color: '#3b82f6', delay: 2.25, label: 'React' },
               { x: 35, y: 72, r: 21, color: '#3b82f6', delay: 2.4, label: 'Vue' },
               { x: 52, y: 68, r: 8, color: '#3b82f6', delay: 2.55, label: 'Next' },
@@ -73,14 +73,14 @@ export default function Hero() {
               { x: 38, y: 88, r: 23, color: '#3b82f6', delay: 3.0, label: 'GraphQL' },
               { x: 58, y: 75, r: 10, color: '#3b82f6', delay: 3.15, label: 'Mongo' },
               
-              // 第四區域 - 右下
+              // 第4エリア - 右下
               { x: 22, y: 92, r: 16, color: '#6366f1', delay: 3.3, label: 'Redis' },
               { x: 42, y: 95, r: 9, color: '#6366f1', delay: 3.45, label: 'Postgres' },
               { x: 58, y: 88, r: 20, color: '#6366f1', delay: 3.6, label: 'MySQL' },
               { x: 35, y: 98, r: 7, color: '#6366f1', delay: 3.75, label: 'Elastic' },
               { x: 48, y: 92, r: 14, color: '#6366f1', delay: 3.9, label: 'Kafka' },
               
-              // 額外散佈節點
+              // 補助的に散らしたノード
               { x: 8, y: 45, r: 11, color: '#a855f7', delay: 4.05, label: 'PyTorch' },
               { x: 62, y: 25, r: 19, color: '#06b6d4', delay: 4.2, label: 'Lambda' },
               { x: 5, y: 72, r: 6, color: '#3b82f6', delay: 4.35, label: 'S3' },
@@ -91,12 +91,12 @@ export default function Hero() {
               const isHovered = hoveredNode?.label === node.label;
               const baseR = isMobile ? node.r * 0.5 : node.r;
               
-              // 為每個節點生成穩定的漂浮參數（基於索引）
-              const floatOffset = (i % 5) * 0.8 + 2;  // 漂浮幅度：2-5.2
-              const floatDuration = 3 + (i % 4) * 0.5;  // 漂浮速度：3-4.5秒
-              const floatDelay = (i % 3) * 0.3;  // 漂浮延遲：0-0.6秒
+              // 各ノードに対して、インデックスを基準に安定した浮遊パラメータを生成
+              const floatOffset = (i % 5) * 0.8 + 2;  // 浮遊幅: 2-5.2
+              const floatDuration = 3 + (i % 4) * 0.5;  // 浮遊速度: 3-4.5秒
+              const floatDelay = (i % 3) * 0.3;  // 浮遊開始の遅延: 0-0.6秒
               
-              // 技術對應的URL
+              // 技術ごとの参照URL
               const techUrls: { [key: string]: string } = {
                 'AI': 'https://www.ibm.com/topics/artificial-intelligence',
                 'ML': 'https://www.tensorflow.org/learn',
@@ -160,15 +160,15 @@ export default function Hero() {
                   <motion.g
                     animate={{
                       y: isHovered 
-                        ? 0  // hover 時停止漂浮
+                        ? 0  // hover 中は浮遊を停止
                         : [
-                            -floatOffset,  // 向上移動
-                            floatOffset,   // 向下移動
-                            -floatOffset,  // 回到向上
+                            -floatOffset,  // 上方向へ移動
+                            floatOffset,   // 下方向へ移動
+                            -floatOffset,  // 再び上方向へ戻す
                           ],
                     }}
                     transition={{
-                      duration: floatDuration,  // 每個節點不同的漂浮速度
+                      duration: floatDuration,  // ノードごとに異なる浮遊速度
                       repeat: Infinity,
                       ease: "easeInOut",
                       delay: node.delay + floatDelay,
@@ -181,7 +181,7 @@ export default function Hero() {
                       fill={node.color}
                       animate={{
                         r: isHovered 
-                          ? baseR * 1.1  // hover 時稍微放大，但保持固定
+                          ? baseR * 1.1  // hover 時は少し拡大しつつ固定
                           : [baseR * 0.7, baseR * 1.3, baseR * 0.7],
                         opacity: isHovered ? 1 : [0.5, 0.9, 0.5],
                       }}
@@ -193,14 +193,14 @@ export default function Hero() {
                       }}
                     />
                   </motion.g>
-                  {/* 懸停時的波紋擴散效果 */}
+                  {/* hover 時の波紋拡散エフェクト */}
                   {isHovered && (
                     <motion.g
                       animate={{
-                        y: 0,  // hover 時波紋不漂浮
+                        y: 0,  // hover 中は波紋を浮遊させない
                       }}
                     >
-                      {/* 第一層波紋 */}
+                      {/* 第1波紋 */}
                       <motion.circle
                         cx={`${node.x}%`}
                         cy={`${node.y}%`}
@@ -219,7 +219,7 @@ export default function Hero() {
                           ease: "easeOut",
                         }}
                       />
-                      {/* 第二層波紋 */}
+                      {/* 第2波紋 */}
                       <motion.circle
                         cx={`${node.x}%`}
                         cy={`${node.y}%`}
@@ -239,7 +239,7 @@ export default function Hero() {
                           delay: 0.8,
                         }}
                       />
-                      {/* 第三層波紋 */}
+                      {/* 第3波紋 */}
                       <motion.circle
                         cx={`${node.x}%`}
                         cy={`${node.y}%`}
@@ -265,53 +265,53 @@ export default function Hero() {
               );
             })}
             
-            {/* 不規則連接線 - 有機網絡連接 */}
+            {/* 不規則な接続線 - 有機的なネットワーク接続 */}
             {[
-              // 第一區域內部連接
+              // 第1エリア内の接続
               { x1: 12, y1: 8, x2: 28, y2: 15, color: '#a855f7', delay: 0 },
               { x1: 18, y1: 22, x2: 35, y2: 10, color: '#a855f7', delay: 0.2 },
               { x1: 45, y1: 18, x2: 52, y2: 5, color: '#a855f7', delay: 0.4 },
               { x1: 25, y1: 28, x2: 18, y2: 22, color: '#a855f7', delay: 0.6 },
               
-              // 第一到第二區域連接
+              // 第1エリアから第2エリアへの接続
               { x1: 28, y1: 15, x2: 15, y2: 38, color: '#a855f7', delay: 0.8 },
               { x1: 35, y1: 10, x2: 32, y2: 42, color: '#a855f7', delay: 1.0 },
               { x1: 45, y1: 18, x2: 48, y2: 35, color: '#a855f7', delay: 1.2 },
               { x1: 18, y1: 22, x2: 22, y2: 52, color: '#a855f7', delay: 1.4 },
               
-              // 第二區域內部連接
+              // 第2エリア内の接続
               { x1: 15, y1: 38, x2: 32, y2: 42, color: '#06b6d4', delay: 1.6 },
               { x1: 32, y1: 42, x2: 48, y2: 35, color: '#06b6d4', delay: 1.8 },
               { x1: 22, y1: 52, x2: 38, y2: 48, color: '#06b6d4', delay: 2.0 },
               { x1: 38, y1: 48, x2: 55, y2: 45, color: '#06b6d4', delay: 2.2 },
               { x1: 42, y1: 58, x2: 28, y2: 62, color: '#06b6d4', delay: 2.4 },
               
-              // 第二到第三區域連接
+              // 第2エリアから第3エリアへの接続
               { x1: 15, y1: 38, x2: 18, y2: 68, color: '#06b6d4', delay: 2.6 },
               { x1: 32, y1: 42, x2: 35, y2: 72, color: '#06b6d4', delay: 2.8 },
               { x1: 48, y1: 35, x2: 52, y2: 68, color: '#06b6d4', delay: 3.0 },
               { x1: 22, y1: 52, x2: 25, y2: 78, color: '#06b6d4', delay: 3.2 },
               { x1: 42, y1: 58, x2: 45, y2: 82, color: '#06b6d4', delay: 3.4 },
               
-              // 第三區域內部連接
+              // 第3エリア内の接続
               { x1: 18, y1: 68, x2: 35, y2: 72, color: '#3b82f6', delay: 3.6 },
               { x1: 35, y1: 72, x2: 52, y2: 68, color: '#3b82f6', delay: 3.8 },
               { x1: 25, y1: 78, x2: 45, y2: 82, color: '#3b82f6', delay: 4.0 },
               { x1: 38, y1: 88, x2: 45, y2: 82, color: '#3b82f6', delay: 4.2 },
               { x1: 58, y1: 75, x2: 52, y2: 68, color: '#3b82f6', delay: 4.4 },
               
-              // 第三到第四區域連接
+              // 第3エリアから第4エリアへの接続
               { x1: 25, y1: 78, x2: 22, y2: 92, color: '#3b82f6', delay: 4.6 },
               { x1: 45, y1: 82, x2: 42, y2: 95, color: '#3b82f6', delay: 4.8 },
               { x1: 38, y1: 88, x2: 35, y2: 98, color: '#3b82f6', delay: 5.0 },
               { x1: 58, y1: 75, x2: 58, y2: 88, color: '#3b82f6', delay: 5.2 },
               
-              // 第四區域內部連接
+              // 第4エリア内の接続
               { x1: 22, y1: 92, x2: 42, y2: 95, color: '#6366f1', delay: 5.4 },
               { x1: 42, y1: 95, x2: 58, y2: 88, color: '#6366f1', delay: 5.6 },
               { x1: 35, y1: 98, x2: 48, y2: 92, color: '#6366f1', delay: 5.8 },
               
-              // 跨區域不規則連接
+              // エリアをまたぐ不規則な接続
               { x1: 12, y1: 8, x2: 8, y2: 45, color: '#a855f7', delay: 6.0 },
               { x1: 52, y1: 5, x2: 62, y2: 25, color: '#a855f7', delay: 6.2 },
               { x1: 8, y1: 45, x2: 5, y2: 72, color: '#06b6d4', delay: 6.4 },
@@ -320,7 +320,7 @@ export default function Hero() {
               { x1: 65, y1: 55, x2: 68, y2: 82, color: '#3b82f6', delay: 7.0 },
               { x1: 68, y1: 82, x2: 58, y2: 88, color: '#6366f1', delay: 7.2 },
               
-              // 更多隨機連接
+              // 追加のランダム接続
               { x1: 28, y1: 15, x2: 22, y2: 52, color: '#a855f7', delay: 7.4 },
               { x1: 48, y1: 35, x2: 42, y2: 58, color: '#06b6d4', delay: 7.6 },
               { x1: 35, y1: 72, x2: 38, y2: 88, color: '#3b82f6', delay: 7.8 },
@@ -350,7 +350,7 @@ export default function Hero() {
           </svg>
         </div>
         
-        {/* 冷色調背景光暈 */}
+        {/* 寒色系の背景グロー */}
         <motion.div
           className="absolute top-1/4 right-1/4 w-96 h-96 bg-cyan-300/20 rounded-full blur-3xl"
           animate={{
@@ -365,7 +365,7 @@ export default function Hero() {
         />
       </div>
 
-      {/* IT 內容工具提示 */}
+      {/* ITコンテンツのツールチップ */}
       {hoveredNode && (
         <motion.div
           className="fixed z-50 pointer-events-none"
@@ -421,7 +421,7 @@ export default function Hero() {
         </motion.div>
       )}
 
-      {/* 文字內容層 - 在左側區域 */}
+      {/* テキストコンテンツ層 - 左側エリアに配置 */}
       <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="max-w-2xl">
           <motion.div

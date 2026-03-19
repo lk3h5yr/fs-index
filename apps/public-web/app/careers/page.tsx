@@ -11,7 +11,7 @@ const ease = [0.22, 1, 0.36, 1] as const;
 
 type CareersSectionKey = 'recruitment' | 'application' | 'privacy';
 
-/** 標題列：與募集要項同風格 + 點擊展開/收合 icon */
+/** タイトル行: 募集要項と同じスタイル + クリックで開閉するアイコン */
 function SectionHeader({
   title,
   isOpen,
@@ -120,7 +120,7 @@ export default function CareersPage() {
       <div className="relative z-10">
         <Navbar />
 
-        {/* 採用前導區塊：主題一致、背景層次、視覺核心 */}
+        {/* 採用導入セクション: テーマを統一し、背景のレイヤーと視覚的な核を構成 */}
         <section ref={refHero} className="careers-lead relative overflow-hidden">
           <div className="careers-lead-bg" aria-hidden>
             <div className="careers-lead-bg-base" />
@@ -175,7 +175,7 @@ export default function CareersPage() {
 
         <section ref={refContent} className="bg-slate-100 relative">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-2 pb-24 md:pb-28 space-y-6">
-            {/* 募集要項：點擊標題展開／收合 */}
+            {/* 募集要項: タイトルをクリックして開閉 */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={isInViewContent ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
@@ -215,7 +215,7 @@ export default function CareersPage() {
               </AnimatePresence>
             </motion.div>
 
-            {/* 応募方法：同標題風格 + 點擊展開 */}
+            {/* 応募方法: 同じ見出しスタイル + クリックで展開 */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={isInViewContent ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
@@ -253,7 +253,7 @@ export default function CareersPage() {
               </AnimatePresence>
             </motion.div>
 
-            {/* 個人情報の取扱いについて：同標題風格 + 點擊展開 */}
+            {/* 個人情報の取扱いについて: 同じ見出しスタイル + クリックで展開 */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={isInViewContent ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}

@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useInView } from 'framer-motion';
 
-// MITUS 風格的滾動動畫 Hook
+// MITUSスタイルのスクロールアニメーション Hook
 export function useScrollAnimation(options = {}) {
   const ref = useRef(null);
   const isInView = useInView(ref, { 
@@ -15,7 +15,7 @@ export function useScrollAnimation(options = {}) {
   return { ref, isInView };
 }
 
-// 視差滾動效果
+// パララックススクロール効果
 export function ParallaxSection({ children, speed = 0.5, className = '' }: { 
   children: React.ReactNode; 
   speed?: number;
@@ -43,7 +43,7 @@ export function ParallaxSection({ children, speed = 0.5, className = '' }: {
   );
 }
 
-// 淡入淡出動畫包裝器
+// フェードインアニメーションのラッパー
 export function FadeInSection({ 
   children, 
   delay = 0,
@@ -74,7 +74,7 @@ export function FadeInSection({
   );
 }
 
-// 數字計數器動畫
+// 数値カウントアップアニメーション
 export function AnimatedNumber({ 
   value, 
   duration = 2000,

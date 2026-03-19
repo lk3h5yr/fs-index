@@ -10,7 +10,7 @@ import CurveBg from '../components/CurveBg';
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-/** 跑馬燈用：與首頁 Trust 同款（Unsplash / Picsum 可商用圖） */
+/** マルキー用: トップページの Trust と同系統（Unsplash / Picsum の商用利用可画像） */
 const marqueeItems = [
   { src: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=320&h=180&fit=crop', alt: 'Office' },
   { src: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=320&h=180&fit=crop', alt: 'Team' },
@@ -24,7 +24,7 @@ const marqueeItems = [
   { src: 'https://picsum.photos/seed/business2/320/180', alt: 'Business 2' },
 ];
 
-/** 跑馬燈區塊（與首頁 Trust 同結構） */
+/** マルキーセクション（トップページの Trust と同じ構成） */
 function PartnersMarquee() {
   const list = [...marqueeItems, ...marqueeItems];
   return (
@@ -76,7 +76,7 @@ const benefits = [
   },
 ];
 
-/** パートナー協業例：3 張卡片（我々にできること同款） */
+/** パートナー協業例: 3枚のカード（我々にできることと同系統） */
 const partnerExampleCards = [
   {
     number: '01',
@@ -163,7 +163,7 @@ export default function PartnersPage() {
           </div>
         </section>
 
-        {/* 現在のビジネスパートナー：跑馬燈（首頁 Trust 同款） */}
+        {/* 現在のビジネスパートナー: マルキー表示（トップページの Trust と同系統） */}
         <section className="bg-white py-12 md:py-16">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <p className="text-center text-lg sm:text-xl font-semibold text-slate-700 mb-8 sm:mb-10">現在のビジネスパートナー</p>
@@ -171,7 +171,7 @@ export default function PartnersPage() {
           </div>
         </section>
 
-        {/* ビジネスパートナー募集（主文） */}
+        {/* ビジネスパートナー募集（メインメッセージ） */}
         <section ref={refRecruit} className="bg-slate-100 py-16 md:py-20">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
@@ -203,7 +203,7 @@ export default function PartnersPage() {
           </div>
         </section>
 
-        {/* 協業のメリット（特效 + 下方文字重排） */}
+        {/* 協業のメリット（エフェクト追加 + 下部テキストの再配置） */}
         <section className="py-14 md:py-18 bg-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-6 sm:mb-8">協業のメリット</h3>
@@ -257,7 +257,7 @@ export default function PartnersPage() {
           </div>
         </section>
 
-        {/* パートナー協業例（我々にできること同款・3 張卡片） */}
+        {/* パートナー協業例（我々にできることと同系統の3枚カード） */}
         <section ref={refList} className="about-capability-section py-24 md:py-28 bg-slate-100 relative overflow-hidden">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <motion.div
