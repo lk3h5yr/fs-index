@@ -59,13 +59,17 @@ const services = [
   },
 ];
 
-export default function Services() {
+export default function Services({
+  containerClassName = 'max-w-6xl',
+}: {
+  containerClassName?: string;
+}) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
     <section id="services" ref={ref} className="py-24 md:py-28 bg-gray-50 relative">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className={`${containerClassName} mx-auto px-4 sm:px-6 lg:px-8`}>
         <motion.div
           className="mb-16"
           initial={{ opacity: 0, y: 24 }}

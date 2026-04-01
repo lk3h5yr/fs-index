@@ -10,7 +10,10 @@ import CurveBg from '../components/CurveBg';
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-const MAP_EMBED_URL = 'https://www.google.com/maps?q=35.6862,139.7742&z=17&hl=ja&output=embed';
+/** 地図ピンは住所で解決（固定座標はブロックずれしやすい） */
+const OFFICE_MAP_QUERY = '東京都中央区日本橋本町４丁目５−１３ 日本橋本町ＴＨビル';
+const MAP_EMBED_URL = `https://www.google.com/maps?q=${encodeURIComponent(OFFICE_MAP_QUERY)}&z=18&hl=ja&output=embed`;
+const MAP_OPEN_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(OFFICE_MAP_QUERY)}`;
 
 /** 事業概要のカード（見出し・本文・アイコン） */
 const profileCards = [
@@ -85,9 +88,6 @@ export default function CompanyPage() {
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[2.75rem] font-bold text-gray-900 tracking-tight pb-4 border-b border-slate-200/80">
                   会社情報
                 </h1>
-                <p className="text-slate-600 mt-4 text-sm sm:text-base leading-relaxed">
-                  会社概要・所在地・お問い合わせ先
-                </p>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -100,44 +100,6 @@ export default function CompanyPage() {
                   システム・ソフトウェアの企画・開発・販売・保守、および労働者派遣事業を展開しています。
                 </p>
               </motion.div>
-            </div>
-          </div>
-        </section>
-
-        {/* COMPANY PROFILE: 事業概要（「我々にできること」と同系統の背景） */}
-        <section ref={refProfile} className="about-capability-section py-20 md:py-24 relative overflow-hidden">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={isInViewProfile ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
-              transition={{ duration: 0.5, ease }}
-              className="text-center mb-10 md:mb-12"
-            >
-              <p className="text-xs font-medium tracking-widest text-slate-500 uppercase mb-2">COMPANY PROFILE</p>
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#1e3a5f] tracking-tight">事業概要</h2>
-            </motion.div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-              {profileCards.map((card, index) => (
-                <motion.article
-                  key={card.label}
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={isInViewProfile ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-                  transition={{ duration: 0.4, delay: index * 0.08, ease }}
-                  className="company-profile-card flex overflow-hidden"
-                >
-                  <div className={`company-profile-card-accent ${card.accentClass}`} aria-hidden />
-                  <div className="flex-1 min-w-0 p-5 sm:p-6 flex gap-4">
-                    <div className={`company-profile-card-icon-wrap ${card.iconWrapClass}`}>
-                      {card.icon}
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <p className="text-xs font-semibold tracking-wide text-slate-500 uppercase mb-1.5">{card.label}</p>
-                      <h3 className="text-slate-900 font-bold text-base sm:text-lg leading-snug mb-2">{card.title}</h3>
-                      <p className="text-slate-600 text-sm sm:text-base leading-relaxed">{card.description}</p>
-                    </div>
-                  </div>
-                </motion.article>
-              ))}
             </div>
           </div>
         </section>
@@ -302,7 +264,7 @@ export default function CompanyPage() {
                 />
               </div>
               <a
-                href="https://www.google.com/maps?q=35.6862,139.7742"
+                href={MAP_OPEN_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 mt-4 text-sm text-slate-600 hover:text-[#1e3a5f] transition-colors"

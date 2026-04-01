@@ -430,7 +430,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="hidden md:inline-block px-5 py-2.5 bg-blue-100 text-blue-700 text-sm font-semibold rounded-full mb-8"
           >
-            デジタルトランスフォーメーション
+            FMS × AI活用開発
           </motion.div>
 
           <motion.h1
@@ -439,17 +439,16 @@ export default function Hero() {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            次世代の
+            独自サービス
             <br />
-            <span className="gradient-text">
-              システム開発
-            </span>
+            <span className="gradient-text">FMS</span>
+            <span className="text-slate-800">で</span>
             <br />
-            で未来を創る
+            止めずにモダナイズ
           </motion.h1>
 
           <motion.p
-            className="text-xl md:text-2xl text-slate-00 mb-6 md:mb-10 leading-relaxed"
+            className="text-xl md:text-2xl text-slate-700 mb-6 md:mb-10 leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6, delay: 0.5 }}
@@ -458,6 +457,34 @@ export default function Hero() {
             <br />
             最先端技術でビジネスの成長を加速させます。
           </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+            transition={{ duration: 0.5, delay: 0.65, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <a
+              href="#fms"
+              className="about-cta-primary inline-flex"
+              onClick={(e) => {
+                e.preventDefault();
+                const el = document.getElementById('fms');
+                if (!el) return;
+                const rect = el.getBoundingClientRect();
+                const elementTop = rect.top + window.scrollY;
+                const navOffset = window.matchMedia('(min-width: 768px)').matches ? 80 : 64;
+                // ナビ直下に余白を残す（見出しが詰まりすぎない／お知らせはほぼ画面外のまま）
+                const breathingRoom = 48;
+                window.scrollTo({
+                  top: Math.max(0, elementTop - navOffset - breathingRoom),
+                  behavior: 'smooth',
+                });
+              }}
+            >
+              FMSを詳しく見る
+              <span className="btn-flag-arrow" aria-hidden>→</span>
+            </a>
+          </motion.div>
         </div>
       </div>
     </section>

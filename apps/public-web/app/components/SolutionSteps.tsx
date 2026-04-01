@@ -73,13 +73,17 @@ const steps = [
   },
 ];
 
-export default function SolutionSteps() {
+export default function SolutionSteps({
+  containerClassName = 'max-w-6xl',
+}: {
+  containerClassName?: string;
+}) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
     <section ref={ref} className="py-24 md:py-28 bg-white relative">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className={`${containerClassName} mx-auto px-4 sm:px-6 lg:px-8`}>
         <motion.div
           className="mb-12"
           initial={{ opacity: 0, y: 24 }}

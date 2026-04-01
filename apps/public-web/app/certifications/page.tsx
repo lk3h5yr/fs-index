@@ -85,9 +85,6 @@ export default function CertificationsPage() {
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[2.75rem] font-bold text-gray-900 tracking-tight pb-4 border-b border-slate-200/80">
                 資格情報
               </h1>
-              <p className="text-slate-600 mt-4 text-base leading-relaxed">
-                取得資格・認証一覧
-              </p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -104,55 +101,37 @@ export default function CertificationsPage() {
           </div>
         </section>
 
-        <section ref={refList} className="py-24 md:py-28 bg-slate-100 relative">
+        <section ref={refList} className="py-20 md:py-24 bg-slate-100 relative">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               animate={isInViewList ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
               transition={{ duration: 0.5, ease }}
-              className="mb-12"
+              className="mb-8"
             >
               <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight pb-2 border-b border-slate-200 mb-2">
-                取得資格・認証
+                資格・認証
               </h2>
-              <p className="text-slate-600 text-sm">当社が取得している資格・認証をご紹介します。</p>
             </motion.div>
 
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-3 gap-4 sm:gap-5">
               {certifications.map((cert, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 24 }}
                   animate={isInViewList ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
                   transition={{ duration: 0.45, delay: index * 0.08, ease }}
-                  className="company-profile-card p-5 sm:p-6 md:p-8 flex flex-col items-center text-center"
+                  className="company-profile-card p-4 sm:p-5 md:p-6 flex flex-col items-center text-center"
                 >
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-slate-100 flex items-center justify-center text-slate-600 mb-4">
+                  <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-slate-100 flex items-center justify-center text-slate-600 mb-3">
                     {cert.icon}
                   </div>
                   <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-2 leading-snug">{cert.name}</h3>
-                  <p className="text-slate-600 text-xs sm:text-sm mb-4 flex-grow">{cert.description}</p>
+                  <p className="text-slate-600 text-xs sm:text-sm mb-3 flex-grow">{cert.description}</p>
                   <p className="text-xs sm:text-sm font-semibold text-slate-600">{cert.date}</p>
                 </motion.div>
               ))}
             </div>
-          </div>
-        </section>
-
-        <section ref={refBand} className="py-16 md:py-20 bg-slate-100 relative">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInViewBand ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.5, ease }}
-              className="p-8 md:p-10 rounded-2xl border border-slate-200/90 bg-slate-50/80"
-            >
-              <h2 className="text-lg sm:text-xl font-bold text-slate-900 mb-4">品質とセキュリティへの取り組み</h2>
-              <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-                フォレストソフト株式会社は、国際規格に準拠した品質管理と情報セキュリティ管理を実施し、
-                お客様に安心してご利用いただけるサービスを提供しています。
-              </p>
-            </motion.div>
           </div>
         </section>
       </div>

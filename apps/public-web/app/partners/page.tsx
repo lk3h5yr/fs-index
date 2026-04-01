@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useInView } from 'framer-motion';
 import Link from 'next/link';
 import Navbar from '../components/Navbar';
@@ -10,42 +10,118 @@ import CurveBg from '../components/CurveBg';
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-/** マルキー用: トップページの Trust と同系統（Unsplash / Picsum の商用利用可画像） */
-const marqueeItems = [
-  { src: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=320&h=180&fit=crop', alt: 'Office' },
-  { src: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=320&h=180&fit=crop', alt: 'Team' },
-  { src: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=320&h=180&fit=crop', alt: 'Business' },
-  { src: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=320&h=180&fit=crop', alt: 'Meeting' },
-  { src: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=320&h=180&fit=crop', alt: 'Workspace' },
-  { src: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=320&h=180&fit=crop', alt: 'Collaboration' },
-  { src: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=320&h=180&fit=crop', alt: 'Tech' },
-  { src: 'https://images.unsplash.com/photo-1497215842964-222b430dc094?w=320&h=180&fit=crop', alt: 'Corporate' },
-  { src: 'https://picsum.photos/seed/office1/320/180', alt: 'Office 1' },
-  { src: 'https://picsum.photos/seed/business2/320/180', alt: 'Business 2' },
+/** 主な取引先（localLogo があれば /public/img を優先、なければ Google favicon → DuckDuckGo） */
+type PartnerLogo = {
+  name: string;
+  domain: string;
+  href: string;
+  /** public 配下のパス（例: /img/foo.svg） */
+  localLogo?: string;
+};
+
+const partnerLogos: readonly PartnerLogo[] = [
+  { name: '京葉鐵鋼埠頭株式会社', domain: 'k-t-f.co.jp', href: 'https://k-t-f.co.jp/' },
+  { name: '株式会社DTS', domain: 'dts.co.jp', href: 'https://www.dts.co.jp/' },
+  {
+    name: '株式会社SHIFT',
+    domain: 'shiftinc.co.jp',
+    href: 'https://shiftinc.co.jp/',
+    localLogo: '/img/株式会社SHIFT.svg',
+  },
+  { name: '株式会社フォーカスシステムズ', domain: 'focus-s.com', href: 'https://www.focus-s.com/' },
+  {
+    name: '株式会社アイ・エス・ビー',
+    domain: 'isb.co.jp',
+    href: 'https://www.isb.co.jp/',
+    localLogo: '/img/isb.svg',
+  },
+  { name: '株式会社NTTデータビジネスブレインズ', domain: 'nttdata-bb.co.jp', href: 'https://www.nttdata-bb.co.jp/' },
+  { name: '株式会社アイフロント', domain: 'ifront.co.jp', href: 'https://www.ifront.co.jp/' },
+  { name: '株式会社YSLソリューション', domain: 'ysl.co.jp', href: 'https://www.ysl.co.jp/' },
+  { name: '株式会社エスディーシィー', domain: 'kk-sdc.co.jp', href: 'https://www.kk-sdc.co.jp/' },
+  { name: '株式会社BASE', domain: 'binc.jp', href: 'https://binc.jp/' },
+  { name: '株式会社東和コンピュータマネジメント', domain: 'towacm.co.jp', href: 'https://www.towacm.co.jp/' },
+  { name: '株式会社オリゾンシステムズ', domain: 'orizon.co.jp', href: 'https://www.orizon.co.jp/' },
+  { name: '株式会社CAICAテクノロジーズ', domain: 'caica.co.jp', href: 'https://www.caica.co.jp/' },
+  { name: '日本事務器シェアードサービス株式会社', domain: 'njssc.njc.co.jp', href: 'https://www.njssc.njc.co.jp/' },
 ];
 
-/** マルキーセクション（トップページの Trust と同じ構成） */
+/** Clearbit Logo API は多くの環境で利用不可のため、Google favicon → DuckDuckGo の順で取得 */
+type LogoStep = 'local' | 'google' | 'ddg' | 'fail';
+
+function partnerLogoSrc(step: LogoStep, partner: PartnerLogo): string {
+  if (step === 'local' && partner.localLogo) {
+    const p = partner.localLogo;
+    const slash = p.lastIndexOf('/');
+    if (slash === -1) return encodeURI(p);
+    return p.slice(0, slash + 1) + encodeURIComponent(p.slice(slash + 1));
+  }
+  if (step === 'google') {
+    return `https://www.google.com/s2/favicons?domain=${encodeURIComponent(partner.domain)}&sz=128`;
+  }
+  if (step === 'ddg') {
+    return `https://icons.duckduckgo.com/ip3/${partner.domain}.ico`;
+  }
+  return '';
+}
+
+function PartnerMarqueeItem({ partner }: { partner: PartnerLogo }) {
+  const hasLocal = Boolean(partner.localLogo);
+  const [step, setStep] = useState<LogoStep>(hasLocal ? 'local' : 'google');
+  const src = partnerLogoSrc(step, partner);
+  const textOnly = step === 'fail';
+
+  const handleError = () => {
+    if (step === 'local') {
+      setStep('google');
+      return;
+    }
+    if (step === 'google') {
+      setStep('ddg');
+      return;
+    }
+    if (step === 'ddg') {
+      setStep('fail');
+    }
+  };
+
+  return (
+    <a
+      href={partner.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="partners-logo-marquee-card flex-shrink-0 w-[200px] sm:w-[240px] h-[124px] sm:h-[132px] rounded-xl border border-slate-200 bg-white hover:border-slate-300 hover:shadow-md transition-all flex flex-col items-center justify-center gap-2 px-3 py-3"
+      aria-label={`${partner.name}（公式サイトを開く）`}
+    >
+      {!textOnly ? (
+        <img
+          key={step}
+          src={src}
+          alt={partner.name}
+          width={160}
+          height={56}
+          className="max-h-12 sm:max-h-14 w-auto max-w-[92%] object-contain object-center"
+          loading="lazy"
+          referrerPolicy="no-referrer"
+          onError={handleError}
+        />
+      ) : (
+        <span className="text-xs font-bold text-slate-700 text-center leading-snug line-clamp-3 px-1">{partner.name}</span>
+      )}
+      {!textOnly && (
+        <span className="text-[10px] sm:text-[11px] text-slate-500 text-center leading-tight line-clamp-2">{partner.name}</span>
+      )}
+    </a>
+  );
+}
+
 function PartnersMarquee() {
-  const list = [...marqueeItems, ...marqueeItems];
+  const list = [...partnerLogos, ...partnerLogos];
   return (
     <div className="relative w-full overflow-hidden">
-      <div className="flex animate-marquee gap-6 py-2">
-        {list.map((item, i) => (
-          <a
-            key={i}
-            href="#"
-            className="flex-shrink-0 w-[220px] h-[124px] sm:w-[280px] sm:h-[158px] rounded-xl overflow-hidden border border-slate-200 bg-slate-100 hover:border-slate-300 hover:shadow-lg transition-all"
-            aria-label={item.alt}
-          >
-            <img
-              src={item.src}
-              alt={item.alt}
-              width={280}
-              height={158}
-              className="w-full h-full object-cover"
-              loading="lazy"
-            />
-          </a>
+      <div className="flex animate-marquee gap-5 sm:gap-6 py-2">
+        {list.map((partner, i) => (
+          <PartnerMarqueeItem key={`${partner.domain}-${i}`} partner={partner} />
         ))}
       </div>
     </div>
@@ -61,53 +137,39 @@ const partnerCategories = [
 const benefits = [
   {
     label: '案件・人材の情報交換',
-    icon: '📋',
     desc: 'システム開発における人材・案件のマッチングと情報共有で、相互の強みを活かした協業を実現します。',
+    icon: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+      </svg>
+    ),
   },
   {
     label: '技術ノウハウの共有',
-    icon: '🔧',
     desc: '開発手法・ツール・知見を共有し、品質と効率を高め合うパートナーシップを築きます。',
+    icon: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+      </svg>
+    ),
   },
   {
     label: '長期・密な協業関係',
-    icon: '🤝',
     desc: '単発ではなく、相互に尊敬し共に発展し合える関係を大切にし、長期的な協業を目指します。',
-  },
-];
-
-/** パートナー協業例: 3枚のカード（我々にできることと同系統） */
-const partnerExampleCards = [
-  {
-    number: '01',
-    title: 'システム開発企業様',
-    description: '人材・案件の情報交換、共同受託、技術リソースの相互活用により、お客様に最適な体制をご提供します。',
-    gradient: 'from-blue-400 to-indigo-500',
-    stats: '企業連携',
-  },
-  {
-    number: '02',
-    title: '個人事業主・フリーランス様',
-    description: '案件への参画、技術支援、納品協力など、柔軟な形態でご協力いただける方を募集しています。',
-    gradient: 'from-indigo-400 to-violet-500',
-    stats: '個人参画',
-  },
-  {
-    number: '03',
-    title: 'Sier・ベンダー様',
-    description: '相互リソースの活用、長期協業、共同提案を通じて、より大きなビジネス機会を創出します。',
-    gradient: 'from-teal-400 to-cyan-500',
-    stats: '長期協業',
+    icon: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+      </svg>
+    ),
   },
 ];
 
 export default function PartnersPage() {
   const refHero = useRef(null);
   const refRecruit = useRef(null);
-  const refList = useRef(null);
   const isInViewHero = useInView(refHero, { once: true, margin: '-100px' });
   const isInViewRecruit = useInView(refRecruit, { once: true, margin: '-80px' });
-  const isInViewList = useInView(refList, { once: true, margin: '-80px' });
 
   return (
     <main className="relative min-h-screen bg-white">
@@ -144,9 +206,6 @@ export default function PartnersPage() {
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[2.75rem] font-bold text-gray-900 tracking-tight pb-4 border-b border-slate-200/80">
                   ビジネスパートナー
                 </h1>
-                <p className="text-slate-600 mt-4 text-base leading-relaxed">
-                  信頼できるパートナーとの協業で、共に成長
-                </p>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -163,147 +222,105 @@ export default function PartnersPage() {
           </div>
         </section>
 
-        {/* 現在のビジネスパートナー: マルキー表示（トップページの Trust と同系統） */}
+        {/* 現在のビジネスパートナー（取引先ロゴマルキー） */}
         <section className="bg-white py-12 md:py-16">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <p className="text-center text-lg sm:text-xl font-semibold text-slate-700 mb-8 sm:mb-10">現在のビジネスパートナー</p>
+            <p className="text-center text-lg sm:text-xl font-semibold text-slate-700 mb-2">現在のビジネスパートナー</p>
             <PartnersMarquee />
           </div>
         </section>
 
-        {/* ビジネスパートナー募集（メインメッセージ） */}
-        <section ref={refRecruit} className="bg-slate-100 py-16 md:py-20">
+        {/* ビジネスパートナー募集（首頁 FMS カードと同系：冷藍・ラジアル） */}
+        <section ref={refRecruit} className="relative py-16 md:py-24 overflow-x-hidden bg-white">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInViewRecruit ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.5, ease }}
-              className="company-panel overflow-hidden"
+            <motion.article
+              initial={{ opacity: 0, y: 22 }}
+              animate={isInViewRecruit ? { opacity: 1, y: 0 } : { opacity: 0, y: 22 }}
+              transition={{ duration: 0.55, ease }}
+              className="relative rounded-2xl overflow-hidden border border-sky-200/70 bg-gradient-to-br from-slate-50/95 via-white to-sky-50/70 shadow-[0_1px_0_0_rgba(14,165,233,0.06)]"
             >
-              <div className="px-5 py-6 sm:px-10 sm:py-10">
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 tracking-tight pb-3 border-b border-slate-200 mb-6">
-                  ビジネスパートナー募集
-                </h2>
-                <p className="text-slate-700 text-sm sm:text-base leading-relaxed mb-4">
-                  弊社では、ビジネスパートナーとして業務にご協力いただける法人、個人を募集しています。
-                </p>
-                <p className="text-slate-700 text-sm sm:text-base leading-relaxed mb-6">
-                  システム開発全般において、人材や案件の情報交換を行える企業様、案件にご参画いただける個人事業主様、相互に尊敬、共に発展し合える企業様と密な関係を築き、長期に渡り協業していきたいと思っております。
-                </p>
-                <p className="text-slate-600 text-sm mb-6">お気軽に、お問い合わせください。</p>
-                <a
-                  href="mailto:info@forestsoft.jp"
-                  className="partners-cta-email inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl bg-[#1e3a5f] text-white font-semibold text-xs sm:text-sm hover:opacity-90 transition-opacity"
-                >
-                  <span aria-hidden>✉</span>
-                  info@forestsoft.jp
-                </a>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* 協業のメリット（エフェクト追加 + 下部テキストの再配置） */}
-        <section className="py-14 md:py-18 bg-white">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-6 sm:mb-8">協業のメリット</h3>
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={isInViewRecruit ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-              transition={{ duration: 0.4, delay: 0.1, ease }}
-              className="grid sm:grid-cols-3 gap-6 mb-12"
-            >
-              {benefits.map((b, i) => (
-                <motion.div
-                  key={b.label}
-                  className="partners-benefit-card group rounded-2xl border border-slate-200/80 bg-white/90 backdrop-blur-sm px-4 sm:px-5 py-5 sm:py-6 text-left overflow-hidden"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInViewRecruit ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ duration: 0.45, delay: 0.1 + i * 0.08, ease }}
-                  whileHover={{ y: -4, transition: { duration: 0.25 } }}
-                >
-                  <div className="partners-benefit-icon-wrap mb-4 flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-slate-100 text-2xl sm:text-3xl transition-all duration-300 group-hover:scale-110 group-hover:bg-indigo-50">
-                    <span aria-hidden>{b.icon}</span>
-                  </div>
-                  <h4 className="text-sm sm:text-base font-bold text-slate-900 mb-2 group-hover:text-indigo-600 transition-colors">
-                    {b.label}
-                  </h4>
-                  <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                    {b.desc}
+              <div
+                className="pointer-events-none absolute inset-0 opacity-[0.4]"
+                aria-hidden
+                style={{
+                  backgroundImage:
+                    'radial-gradient(circle at 18% 0%, rgba(14,165,233,0.11) 0%, transparent 42%), radial-gradient(circle at 92% 78%, rgba(59,130,246,0.09) 0%, transparent 38%)',
+                }}
+              />
+              <div className="relative p-5 sm:p-6 md:p-8 lg:p-10">
+                <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mb-2.5">
+                  <p className="text-[10px] sm:text-xs font-semibold tracking-[0.18em] text-sky-700 uppercase">
+                    recruit
                   </p>
-                  <div className="mt-4 pt-4 border-t border-slate-100">
-                    <div className="h-1 rounded-full bg-slate-100 overflow-hidden">
-                      <div className="partners-benefit-line h-full w-0 bg-gradient-to-r from-indigo-400 to-violet-500 rounded-full transition-all duration-500 group-hover:w-full" />
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={isInViewRecruit ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-              transition={{ duration: 0.4, delay: 0.2, ease }}
-            >
-              <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-4">ご協力いただける形態</h3>
-              <div className="space-y-3">
-                {partnerCategories.map((c) => (
-                  <div key={c.title} className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3 py-2 border-b border-slate-100">
-                    <span className="font-semibold text-sm sm:text-base text-slate-800 shrink-0">{c.title}</span>
-                    <span className="text-slate-600 text-xs sm:text-sm">{c.desc}</span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-        </section>
+                  <span className="hidden sm:inline h-3 w-px shrink-0 bg-sky-200/90" aria-hidden />
+                  <span className="text-[10px] sm:text-xs font-medium text-sky-700/85">
+                    法人・個人のパートナーを募集しています
+                  </span>
+                </div>
+                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 tracking-tight leading-snug">
+                  ビジネスパートナー
+                  <span className="bg-gradient-to-r from-sky-600 via-cyan-600 to-blue-700 bg-clip-text text-transparent">
+                    募集
+                  </span>
+                </h2>
+                <p className="mt-3 text-sm sm:text-[15px] font-medium text-sky-950/85 leading-relaxed max-w-2xl">
+                  業務にご協力いただけるパートナーとして、法人・個人の皆様からのご連絡をお待ちしています。現場で互いの強みを活かし、長く続く協業関係を築きたいと考えています。
+                </p>
 
-        {/* パートナー協業例（我々にできることと同系統の3枚カード） */}
-        <section ref={refList} className="about-capability-section py-24 md:py-28 bg-slate-100 relative overflow-hidden">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <motion.div
-              className="mb-10"
-              initial={{ opacity: 0, y: 24 }}
-              animate={isInViewList ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
-              transition={{ duration: 0.5, ease }}
-            >
-              <h2 className="about-section-title text-xl sm:text-2xl font-bold tracking-tight pb-2 border-b mb-2">
-                パートナー協業例
-              </h2>
-              <p className="text-slate-600 text-sm">当社と協業いただいているパートナー形態の例です。</p>
-            </motion.div>
-            <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
-              {partnerExampleCards.map((point, index) => (
-                <motion.div
-                  key={point.title}
-                  className="group relative"
-                  initial={{ opacity: 0, y: 60 }}
-                  animate={isInViewList ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 }}
-                  transition={{ duration: 0.8, delay: index * 0.2, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <div className="reason-card reason-card--compact relative p-6 rounded-2xl bg-white/75 backdrop-blur-sm border border-slate-200/70 h-full flex flex-col mt-5">
-                    <div className="absolute -top-4 left-6 flex items-center gap-2">
-                      <div className={`reason-number-ring inline-flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br ${point.gradient} text-white text-[11px] sm:text-xs font-bold transition-shadow duration-300`}>
-                        {point.number}
-                      </div>
-                      <div className={`reason-badge inline-block px-3 py-1.5 bg-gradient-to-r ${point.gradient} text-white text-xs font-bold rounded-lg shadow-md`}>
-                        {point.stats}
-                      </div>
+                <div className="mt-6 grid sm:grid-cols-3 gap-2.5">
+                  {partnerCategories.map((c) => (
+                    <div
+                      key={c.title}
+                      className="rounded-xl border border-sky-200/55 bg-white/85 px-3.5 py-3 shadow-sm shadow-sky-500/[0.04]"
+                    >
+                      <p className="text-xs font-bold tracking-wide text-sky-800 leading-snug mb-1.5">{c.title}</p>
+                      <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed">{c.desc}</p>
                     </div>
-                    <h3 className="text-base sm:text-lg font-bold mb-3 text-slate-900 group-hover:text-indigo-500/80 transition-colors duration-300 mt-8">
-                      {point.title}
-                    </h3>
-                    <p className="text-slate-600 leading-relaxed text-xs sm:text-sm flex-grow">
-                      {point.description}
-                    </p>
-                    <div className="mt-4 pt-4 border-t border-slate-200">
-                      <div className="h-1 rounded-full bg-slate-100 overflow-hidden">
-                        <div className={`reason-card-bottom-line h-full bg-gradient-to-r ${point.gradient} rounded-full`} />
+                  ))}
+                </div>
+
+                <p className="mt-6 text-slate-600 text-sm sm:text-[15px] leading-relaxed">
+                  人材や案件の情報交換、案件への参画、相互リソースの活用など、形態はさまざまです。相互に尊敬し、共に発展し合えるパートナー様と、密な協業関係を築きたいと思っております。
+                </p>
+
+                <div className="mt-6 grid md:grid-cols-3 gap-3">
+                  {benefits.map((b) => (
+                    <div
+                      key={b.label}
+                      className="group rounded-xl border border-sky-200/50 bg-white/90 p-3.5 sm:p-4 shadow-sm shadow-sky-500/[0.03] transition-shadow hover:shadow-md hover:border-sky-300/60"
+                    >
+                      <div className="mb-2.5 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-sky-50 text-sky-800 border border-sky-100">
+                        {b.icon}
                       </div>
+                      <p className="text-sm font-bold text-slate-900 mb-1.5 leading-snug">{b.label}</p>
+                      <p className="text-xs text-slate-600 leading-relaxed">{b.desc}</p>
                     </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+                  ))}
+                </div>
+
+                <div className="mt-8 flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3 pt-6 border-t border-sky-100/90">
+                  <p className="text-sm font-medium text-slate-600 sm:mr-1">まずはお気軽にご連絡ください。</p>
+                  <a
+                    href="mailto:info@forestsoft.jp"
+                    className="partners-cta-email inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#1e3a5f] text-white font-semibold text-sm shadow-md shadow-[#1e3a5f]/15 hover:opacity-92 transition-opacity"
+                  >
+                    <svg className="w-4 h-4 shrink-0 opacity-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    info@forestsoft.jp
+                  </a>
+                  <Link
+                    href="/#contact"
+                    className="inline-flex items-center justify-center gap-1.5 px-5 py-3 rounded-xl border border-sky-200/90 bg-white text-[#1e3a5f] font-semibold text-sm hover:bg-sky-50/80 hover:border-sky-300 transition-colors"
+                  >
+                    お問い合わせフォーム
+                    <span className="text-base leading-none" aria-hidden>
+                      →
+                    </span>
+                  </Link>
+                </div>
+              </div>
+            </motion.article>
           </div>
         </section>
       </div>

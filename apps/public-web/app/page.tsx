@@ -2,11 +2,8 @@
 
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import Pillars from './components/Pillars';
 import News from './components/News';
-import PainPoints from './components/PainPoints';
-import SolutionSteps from './components/SolutionSteps';
-import Services from './components/Services';
-import Trust from './components/Trust';
 import FAQ from './components/FAQ';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -34,10 +31,7 @@ export default function Home() {
         <Navbar />
         <Hero />
         <News />
-        <PainPoints />
-        <SolutionSteps />
-        <Services />
-        <Trust />
+        <Pillars />
         <FAQ />
         <Contact />
         <Footer />

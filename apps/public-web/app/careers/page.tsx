@@ -151,9 +151,6 @@ export default function CareersPage() {
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[2.75rem] font-bold text-gray-900 tracking-tight pb-4 border-b border-slate-200/80">
                   採用情報
                 </h1>
-                <p className="text-slate-600 mt-4 text-base leading-relaxed">
-                  一緒に未来を創造しませんか？
-                </p>
               </motion.div>
 
               <motion.div
@@ -236,17 +233,25 @@ export default function CareersPage() {
                     transition={{ duration: 0.35, ease }}
                     className="overflow-hidden"
                   >
-                    <div className="mt-4 text-slate-600">
-                      <p className="mb-4">応募される場合、履歴書、職務経歴書をメールにて送付ください。</p>
-                      <ol className="list-decimal list-inside space-y-2 mb-6">
-                        <li>下記「個人情報の取扱いについて」に同意したことをメールに明記してください。</li>
-                        <li>添付ファイルにパスワードを付与し、別メールにてパスワードを知らせてください。</li>
-                        <li>職務経歴書を下記のメールアドレスにご送付ください。</li>
-                      </ol>
-                      <p className="text-sm text-slate-500 mb-1">送付先</p>
-                      <a href="mailto:jinji@forestsoft.jp" className="text-[#1e3a5f] font-semibold hover:underline">
-                        jinji@forestsoft.jp
-                      </a>
+                    <div className="mt-4">
+                      <div className="company-panel overflow-hidden rounded-xl">
+                        <div className="p-4 sm:p-6 text-slate-700 text-sm sm:text-base leading-relaxed">
+                          <p className="mb-4">
+                            応募される場合は、履歴書・職務経歴書をメールにてご送付ください。
+                          </p>
+                          <ol className="list-decimal list-inside space-y-2">
+                            <li>下記「個人情報の取扱いについて」に同意した旨をメール本文に明記してください。</li>
+                            <li>添付ファイルにパスワードを設定し、別メールにてパスワードをご連絡ください。</li>
+                            <li>送付先のメールアドレス宛に、書類を添付して送信してください。</li>
+                          </ol>
+                          <div className="mt-5 pt-5 border-t border-slate-200">
+                            <p className="text-xs font-semibold tracking-wide text-slate-500 mb-2">送付先</p>
+                            <a href="mailto:jinji@forestsoft.jp" className="text-[#1e3a5f] font-semibold hover:underline break-all">
+                              jinji@forestsoft.jp
+                            </a>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </motion.div>
                 )}
@@ -275,22 +280,28 @@ export default function CareersPage() {
                     className="overflow-hidden"
                   >
                     <div className="mt-4">
-                      <ul className="space-y-4 text-slate-600 text-sm leading-relaxed">
-                        {privacyItems.map((item) => (
-                          <li key={item.num} className="flex gap-3">
-                            <span className="flex-shrink-0 font-semibold text-slate-700">{item.num}.</span>
-                            <span>{item.text}</span>
-                          </li>
-                        ))}
-                      </ul>
-                      <div className="mt-8 pt-6 border-t border-slate-200">
-                        <p className="text-slate-700 font-semibold mb-2">フォレストソフト株式会社 個人情報保護事務局（個人情報保護責任者）</p>
-                        <p className="text-slate-600 text-sm">
-                          連絡先：TEL{' '}
-                          <a href="tel:03-3527-3652" className="text-[#1e3a5f] hover:underline">03-3527-3652</a>
-                          {' '}/ E-Mail{' '}
-                          <a href="mailto:info@forestsoft.jp" className="text-[#1e3a5f] hover:underline">info@forestsoft.jp</a>
-                        </p>
+                      <div className="company-panel overflow-hidden rounded-xl">
+                        <div className="p-4 sm:p-6">
+                          <ul className="space-y-3 text-slate-700 text-sm sm:text-base leading-relaxed">
+                            {privacyItems.map((item) => (
+                              <li key={item.num} className="flex gap-3">
+                                <span className="flex-shrink-0 font-semibold text-slate-700">{item.num}.</span>
+                                <span className="text-slate-700">{item.text}</span>
+                              </li>
+                            ))}
+                          </ul>
+                          <div className="mt-6 pt-5 border-t border-slate-200">
+                            <p className="text-slate-900 font-semibold mb-2">
+                              フォレストソフト株式会社 個人情報保護事務局（個人情報保護責任者）
+                            </p>
+                            <p className="text-slate-700 text-sm sm:text-base">
+                              連絡先：TEL{' '}
+                              <a href="tel:03-3527-3652" className="text-[#1e3a5f] hover:underline">03-3527-3652</a>
+                              {' '}/ E-Mail{' '}
+                              <a href="mailto:info@forestsoft.jp" className="text-[#1e3a5f] hover:underline">info@forestsoft.jp</a>
+                            </p>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </motion.div>

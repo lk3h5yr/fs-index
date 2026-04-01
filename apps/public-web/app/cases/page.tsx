@@ -316,9 +316,6 @@ export default function CasesPage() {
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[2.75rem] font-bold text-gray-900 tracking-tight pb-4 border-b border-slate-200/80">
                   開発事例
                 </h1>
-                <p className="text-slate-600 mt-4 text-base leading-relaxed">
-                  お客様の成功事例をご紹介します
-                </p>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -327,7 +324,6 @@ export default function CasesPage() {
                 className="careers-lead-core"
               >
                 <p className="careers-lead-core-text">
-                  お客様のビジネスを支えた実績例をご紹介します。
                   業務系Web・モバイルアプリ・クラウド移行・システム統合など、幅広い分野での開発事例を掲載しています。
                 </p>
               </motion.div>
@@ -335,20 +331,8 @@ export default function CasesPage() {
           </div>
         </section>
 
-        <section ref={refList} className="py-24 md:py-28 bg-slate-100 relative">
+        <section ref={refList} className="pt-10 pb-16 md:pt-12 md:pb-20 bg-slate-100 relative">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={isInViewList ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
-              transition={{ duration: 0.5, ease }}
-              className="mb-12"
-            >
-              <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight pb-2 border-b border-slate-200 mb-2">
-                実績・事例紹介
-              </h2>
-              <p className="text-slate-600 text-sm">お客様のビジネスを支えた実績例です。</p>
-            </motion.div>
-
             <ul className="relative cases-timeline cases-timeline-zigzag">
               <span className="cases-timeline-track" aria-hidden />
               {casesByDate.map((caseItem, index) => {

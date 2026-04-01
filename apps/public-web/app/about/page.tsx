@@ -8,83 +8,18 @@ import Image from 'next/image';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import CurveBg from '../components/CurveBg';
+import SolutionSteps from '../components/SolutionSteps';
+import Services from '../components/Services';
+import PainPoints from '../components/PainPoints';
+import Trust from '../components/Trust';
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-/** 我々にできること: 「選ばれる理由」と同系統のカード（number / badge / title / description / hover 下線） */
-const capabilityCards = [
-  {
-    number: '01',
-    title: '業務系Web開発',
-    description: '金融業・物流業をはじめとする業務系Webシステムの開発・保守運用を通じて、お客様の課題解決を支援しています。',
-    gradient: 'from-blue-400 to-indigo-500',
-    stats: '業務系',
-  },
-  {
-    number: '02',
-    title: '一貫支援体制',
-    description: '要件整理から設計・開発・運用保守までを一貫して担い、現場で本当に機能する仕組みづくりを大切にしています。',
-    gradient: 'from-indigo-400 to-violet-500',
-    stats: '一貫支援',
-  },
-  {
-    number: '03',
-    title: 'ERP・CRM・OSS 活用',
-    description: 'ERP・CRM・オープンソース技術も柔軟に活用し、コストだけでなく、使いやすさ・拡張性・継続運用まで見据えた提案を行います。',
-    gradient: 'from-teal-400 to-cyan-500',
-    stats: 'ERP・CRM',
-  },
-];
-
-const valueCards = [
-  {
-    title: '我々の使命',
-    line1: 'お客様の課題に向き合い、技術を価値に変えて届けること。',
-    line2: '一つひとつの開発を通じて、事業の前進に貢献します。',
-    iconWrapClass: 'bg-sky-50/90 text-sky-600',
-    icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    ),
-    isCenter: false,
-  },
-  {
-    title: '文化',
-    line1: '挑戦を歓迎し、学び合い、チームでより良い答えをつくる。',
-    line2: 'それが、私たちが大切にしている開発文化です。',
-    iconWrapClass: 'bg-rose-50/90 text-rose-600',
-    icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-      </svg>
-    ),
-    isCenter: true,
-  },
-  {
-    title: 'ビジョン',
-    line1: '変化を恐れず、新しい可能性に挑み続ける。',
-    line2: '技術の力で、未来につながる価値を生み出す企業を目指します。',
-    iconWrapClass: 'bg-emerald-50/90 text-emerald-600',
-    icon: (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-      </svg>
-    ),
-    isCenter: false,
-  },
-];
-
 export default function AboutPage() {
   const refHero = useRef(null);
-  const refCapability = useRef(null);
-  const refValues = useRef(null);
   const refGreeting = useRef(null);
   const refCta = useRef(null);
   const isInViewHero = useInView(refHero, { once: true, margin: '-100px' });
-  const isInViewCapability = useInView(refCapability, { once: true, margin: '-100px' });
-  const isInViewValues = useInView(refValues, { once: true, margin: '-100px' });
   const isInViewGreeting = useInView(refGreeting, { once: true, margin: '-100px' });
   const isInViewCta = useInView(refCta, { once: true, margin: '-100px' });
 
@@ -123,9 +58,6 @@ export default function AboutPage() {
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[2.75rem] font-bold text-gray-900 tracking-tight pb-4 border-b border-slate-200/80">
                   企業紹介
                 </h1>
-                <p className="text-slate-600 mt-4 text-base leading-relaxed">
-                  想い・強み・未来への取り組みをご紹介します。
-                </p>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -150,10 +82,10 @@ export default function AboutPage() {
         </section>
 
         {/* 代表メッセージ（我々にできることの上部に配置） */}
-        <section id="greeting" ref={refGreeting} className="py-24 md:py-28 bg-slate-100 about-section-03 relative">
+        <section id="greeting" ref={refGreeting} className="py-20 md:py-24 bg-slate-100 about-section-03 relative">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
-              className="mb-12"
+              className="mb-8 sm:mb-10"
               initial={{ opacity: 0, y: 24 }}
               animate={isInViewGreeting ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
               transition={{ duration: 0.5, ease }}
@@ -170,13 +102,9 @@ export default function AboutPage() {
               animate={isInViewGreeting ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
               transition={{ duration: 0.5, ease, delay: 0.1 }}
             >
-              <div className="p-5 sm:p-8 md:p-10 lg:p-12 max-w-4xl">
-                {/* 導入の一文 + 右側に写真用スペースを確保（レイアウトが崩れないようにする） */}
-                <div className="flex flex-wrap gap-4 sm:gap-6 items-start mb-6 sm:mb-8">
-                  <p className="text-slate-600 text-base sm:text-lg md:text-xl leading-relaxed flex-1 min-w-0">
-                    お客様とともに価値をつくる企業でありたいと考えています。
-                  </p>
-                  <div className="about-greeting-photo-placeholder shrink-0 w-[160px] h-[120px] sm:w-[200px] sm:h-[150px] md:w-[240px] md:h-[180px] rounded-xl bg-slate-100 border border-slate-200/80 flex items-center justify-center overflow-hidden relative">
+              <div className="p-5 sm:p-7 md:p-8 lg:p-10 max-w-4xl">
+                <div className="flex flex-col sm:flex-row gap-4 sm:gap-7 items-start sm:items-center mb-6 sm:mb-8">
+                  <div className="about-greeting-photo-placeholder shrink-0 w-[152px] h-[114px] sm:w-[190px] sm:h-[142px] md:w-[220px] md:h-[165px] rounded-xl bg-slate-100 border border-slate-200/80 flex items-center justify-center overflow-hidden relative">
                     <Image
                       src="/img/ceo_1.jpg"
                       alt="代表"
@@ -186,13 +114,14 @@ export default function AboutPage() {
                       unoptimized
                     />
                   </div>
+
+                  <blockquote className="border-l-4 border-[#1e3a5f] pl-4 sm:pl-6 py-1 sm:py-1.5 text-lg sm:text-xl md:text-2xl font-semibold text-slate-800 leading-snug italic flex-1 min-w-0 text-center">
+                    <span className="block">お客様とともに</span>
+                    <span className="block">価値を前へ進める存在でありたい。</span>
+                  </blockquote>
                 </div>
-                {/* メインの引用文: 視線を集めるポイント */}
-                <blockquote className="border-l-4 border-[#1e3a5f] pl-4 sm:pl-6 py-1.5 sm:py-2 mb-8 sm:mb-10 text-lg sm:text-xl md:text-2xl font-semibold text-slate-800 leading-relaxed italic">
-                  お客様とともに、価値を前へ進める存在でありたい。
-                </blockquote>
                 {/* 本文: 段落ごとの階層を明確化 */}
-                <div className="space-y-5 sm:space-y-6 text-slate-700 leading-[1.85] text-sm sm:text-base md:text-lg">
+                <div className="space-y-4 sm:space-y-5 text-slate-700 leading-[1.75] text-sm sm:text-base md:text-lg">
                   <p>
                     当社は、ソフトウェア開発を通じてお客様の課題解決と事業成長を支援してきました。
                   </p>
@@ -204,7 +133,7 @@ export default function AboutPage() {
                   </p>
                 </div>
                 {/* 役員情報 */}
-                <div className="mt-10 pt-8 border-t border-slate-200/80">
+                <div className="mt-8 pt-6 border-t border-slate-200/80">
                   <p className="text-sm font-bold text-slate-500 mb-3">役員</p>
                   <ul className="text-slate-700 text-sm sm:text-base space-y-1">
                     <li>代表取締役：朱　杰</li>
@@ -216,108 +145,13 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* 我々にできること（コンパクトなカード・半透明背景） */}
-        <section ref={refCapability} className="about-capability-section py-24 md:py-28 bg-slate-100 relative overflow-hidden">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <motion.div
-              className="mb-10"
-              initial={{ opacity: 0, y: 24 }}
-              animate={isInViewCapability ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
-              transition={{ duration: 0.5, ease }}
-            >
-              <h2 className="about-section-title text-xl sm:text-2xl font-bold tracking-tight pb-2 border-b mb-2">
-                我々にできること
-              </h2>
-              <p className="text-slate-600 text-sm">お客様の業務課題に応じて、最適な技術と体制をご提案します。</p>
-            </motion.div>
-
-            <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
-              {capabilityCards.map((point, index) => (
-                <motion.div
-                  key={point.title}
-                  className="group relative"
-                  initial={{ opacity: 0, y: 60 }}
-                  animate={isInViewCapability ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 }}
-                  transition={{ duration: 0.8, delay: index * 0.2, ease: [0.22, 1, 0.36, 1] }}
-                >
-                  <div className="reason-card reason-card--compact relative p-6 rounded-2xl bg-white/75 backdrop-blur-sm border border-slate-200/70 h-full flex flex-col mt-5">
-                    <div className="absolute -top-4 left-6 flex items-center gap-2">
-                      <div className={`reason-number-ring inline-flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br ${point.gradient} text-white text-xs font-bold transition-shadow duration-300`}>
-                        {point.number}
-                      </div>
-                      <div className={`reason-badge inline-block px-3 py-1.5 bg-gradient-to-r ${point.gradient} text-white text-xs font-bold rounded-lg shadow-md`}>
-                        {point.stats}
-                      </div>
-                    </div>
-                    <h3 className="text-base sm:text-lg font-bold mb-3 text-slate-900 group-hover:text-indigo-500/80 transition-colors duration-300 mt-8">
-                      {point.title}
-                    </h3>
-                    <p className="text-slate-600 leading-relaxed text-sm flex-grow">
-                      {point.description}
-                    </p>
-                    <div className="mt-4 pt-4 border-t border-slate-200">
-                      <div className="h-1 rounded-full bg-slate-100 overflow-hidden">
-                        <div className={`reason-card-bottom-line h-full bg-gradient-to-r ${point.gradient} rounded-full`} />
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* 使命・文化・ビジョン（コンパクトなカード・半透明背景） */}
-        <section ref={refValues} className="py-24 md:py-28 bg-slate-100 about-section-02 relative overflow-hidden">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <motion.div
-              className="mb-10"
-              initial={{ opacity: 0, y: 24 }}
-              animate={isInViewValues ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
-              transition={{ duration: 0.5, ease }}
-            >
-              <h2 className="about-section-title text-xl sm:text-2xl font-bold tracking-tight pb-2 border-b mb-2">
-                使命・文化・ビジョン
-              </h2>
-              <p className="text-slate-600 text-sm">私たちが大切にしている価値観をご紹介します。</p>
-            </motion.div>
-
-            <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
-              {valueCards.map((block, index) => (
-                <motion.div
-                  key={block.title}
-                  className={`group relative ${block.isCenter ? 'mt-2' : 'mt-4'}`}
-                  initial={{ opacity: 0, y: 60 }}
-                  animate={isInViewValues ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 }}
-                  transition={{ duration: 0.8, delay: index * 0.2, ease }}
-                >
-                  <div className={`reason-card relative rounded-2xl bg-white/75 backdrop-blur-sm border border-slate-200/70 h-full flex flex-col p-5 shadow-sm hover:shadow-md transition-shadow ${block.isCenter ? 'about-value-card--main' : ''}`}>
-                    <div className={`about-value-icon-wrap mb-3 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full ${block.iconWrapClass} transition-transform duration-300 group-hover:scale-105`}>
-                      {block.icon}
-                    </div>
-                    <h3 className="text-lg sm:text-xl font-bold mb-3 text-slate-900 group-hover:text-slate-600 transition-colors duration-300">
-                      {block.title}
-                    </h3>
-                    <p className="text-slate-600 text-[14px] leading-[1.65] mb-2 flex-grow">
-                      {block.line1}
-                    </p>
-                    <p className="text-slate-600 text-[14px] leading-[1.65]">
-                      {block.line2}
-                    </p>
-                    <div className="mt-4 pt-4 border-t border-slate-200">
-                      <div className="h-1 rounded-full bg-slate-100 overflow-hidden">
-                        <div className="reason-card-bottom-line about-value-card-bottom-line h-full rounded-full" />
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
+        <SolutionSteps containerClassName="max-w-4xl" />
+        <Services containerClassName="max-w-4xl" />
+        <PainPoints containerClassName="max-w-4xl" />
+        <Trust containerClassName="max-w-4xl" />
 
         {/* 04 CTA */}
-        <section ref={refCta} className="about-cta-band about-section-04 py-24 md:py-28 relative">
+        <section ref={refCta} className="about-cta-band about-section-04 py-20 md:py-24 relative">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 24 }}

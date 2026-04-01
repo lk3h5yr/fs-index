@@ -7,10 +7,10 @@ import { useInView } from 'framer-motion';
 const painPoints = [
   {
     number: 'REASON.01',
-    title: '開発コストの最適化',
+    title: '開発コスト最適化',
     description: 'クラウドネイティブアーキテクチャとDevOps手法により、開発コストを最大40%削減。スケーラブルなシステム構築で、長期的な運用コストも最適化します。',
     icon: (
-      <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     ),
@@ -22,7 +22,7 @@ const painPoints = [
     title: '最新技術への対応',
     description: 'AI・機械学習、マイクロサービス、コンテナ技術など、最先端技術を活用したシステム開発を実現。技術トレンドに遅れない、未来志向のソリューションを提供します。',
     icon: (
-      <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
       </svg>
     ),
@@ -34,7 +34,7 @@ const painPoints = [
     title: 'セキュリティ強化',
     description: 'ゼロトラストセキュリティモデルと多層防御により、サイバー攻撃から企業資産を保護。GDPR・個人情報保護法にも完全準拠した安全なシステムを構築します。',
     icon: (
-      <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
       </svg>
     ),
@@ -43,13 +43,17 @@ const painPoints = [
   },
 ];
 
-export default function PainPoints() {
+export default function PainPoints({
+  containerClassName = 'max-w-6xl',
+}: {
+  containerClassName?: string;
+}) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
     <section ref={ref} className="py-24 md:py-28 bg-gray-50 relative overflow-hidden">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className={`${containerClassName} mx-auto px-4 sm:px-6 lg:px-8 relative z-10`}>
         <motion.div
           className="mb-16"
           initial={{ opacity: 0, y: 24 }}
@@ -75,10 +79,10 @@ export default function PainPoints() {
               transition={{ duration: 0.8, delay: index * 0.2, ease: [0.22, 1, 0.36, 1] }}
             >
                   {/* カード本体: hover でわずかに浮き、下線が展開 */}
-                  <div className="reason-card relative p-10 rounded-3xl bg-white/90 backdrop-blur-sm border border-slate-200/80 h-full flex flex-col mt-8">
+                  <div className="reason-card relative p-8 sm:p-9 rounded-3xl bg-white/90 backdrop-blur-sm border border-slate-200/80 h-full flex flex-col mt-8">
                     {/* 番号（透過リング）+ 統計バッジ（ほのかな発光とグラデーション） */}
-                    <div className="absolute -top-6 left-8 flex items-center gap-3">
-                      <div className={`reason-number-ring inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br ${point.gradient} text-white text-sm font-bold transition-shadow duration-300`}>
+                    <div className="absolute -top-6 left-8 flex items-center gap-2.5">
+                      <div className={`reason-number-ring inline-flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br ${point.gradient} text-white text-xs font-bold transition-shadow duration-300`}>
                         {point.number.split('.')[1]}
                       </div>
                       <motion.div
@@ -86,17 +90,17 @@ export default function PainPoints() {
                         animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
                         transition={{ duration: 0.6, delay: index * 0.2 + 0.3 }}
                       >
-                        <div className={`reason-badge inline-block px-4 py-2 bg-gradient-to-r ${point.gradient} text-white text-sm font-bold rounded-lg shadow-md`}>
+                        <div className={`reason-badge inline-block px-3 py-1.5 bg-gradient-to-r ${point.gradient} text-white text-xs font-bold rounded-lg shadow-md`}>
                           {point.stats}
                         </div>
                       </motion.div>
                     </div>
 
-                <h3 className="text-2xl md:text-3xl font-bold mb-4 text-slate-900 group-hover:text-indigo-500/80 transition-colors duration-300 mt-12">
+                <h3 className="text-lg md:text-xl font-bold mb-3 text-slate-900 group-hover:text-indigo-500/80 transition-colors duration-300 mt-10">
                   {point.title}
                 </h3>
 
-                <p className="text-slate-600 leading-relaxed text-lg flex-grow">
+                <p className="text-slate-600 leading-relaxed text-sm sm:text-[15px] flex-grow">
                   {point.description}
                 </p>
 

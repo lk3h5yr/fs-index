@@ -255,9 +255,6 @@ function NewsPageContent() {
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[2.75rem] font-bold text-gray-900 tracking-tight pb-4 border-b border-slate-200/80">
                   ニュース
                 </h1>
-                <p className="text-slate-600 mt-4 text-base leading-relaxed">
-                  最新のニュース、イベント・セミナー開催情報を掲載しています
-                </p>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -282,7 +279,7 @@ function NewsPageContent() {
               transition={{ duration: 0.5, ease }}
               className="text-center mb-10"
             >
-              <h2 className="news-release-title">ニュースリリース</h2>
+              <h2 className="news-release-title">ニュース一覧</h2>
             </motion.div>
 
             <motion.div
