@@ -47,7 +47,7 @@ export default function Contact() {
       createTicketSchema.parse(formData);
 
       /* 送信 API 未実装のためモード：常に成功。実装後は fetch('/api/tickets', …) に差し替え */
-      const minLoadingMs = 3500;
+      const minLoadingMs = 2000;
       const elapsed = Date.now() - loadingStartedAt;
       if (elapsed < minLoadingMs) {
         await new Promise((r) => setTimeout(r, minLoadingMs - elapsed));
