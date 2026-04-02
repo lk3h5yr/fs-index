@@ -434,7 +434,7 @@ export default function Hero() {
           </motion.div>
 
           <motion.h1
-            className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-5 md:mb-8 text-slate-800 leading-tight tracking-tight"
+            className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-5 md:mb-8 text-slate-800 leading-tight tracking-tight"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.3 }}
@@ -465,7 +465,7 @@ export default function Hero() {
           >
             <a
               href="#fms"
-              className="about-cta-primary inline-flex"
+              className="about-cta-primary about-cta-primary--sm inline-flex"
               onClick={(e) => {
                 e.preventDefault();
                 const el = document.getElementById('fms');

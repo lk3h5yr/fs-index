@@ -22,7 +22,7 @@ export default function Pillars() {
           className="mb-10"
         >
           <p className="text-xs font-medium tracking-widest text-slate-400 mb-2">FLAGSHIP</p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 tracking-tight pb-4 border-b border-slate-200">
+          <h2 className="text-xl sm:text-3xl md:text-4xl font-bold text-slate-900 tracking-tight pb-4 border-b border-slate-200">
             独自サービス FMS で、既存システムを止めずに前へ
           </h2>
           <p
@@ -95,11 +95,11 @@ export default function Pillars() {
                 </ul>
               </div>
               <div className="shrink-0 flex flex-col gap-2.5 w-full sm:flex-row sm:flex-wrap lg:w-auto lg:flex-col lg:items-stretch">
-                <a href="#contact" className="about-cta-primary text-center justify-center">
+                <a href="#contact" className="about-cta-primary about-cta-primary--sm text-center justify-center">
                   FMSの相談をする
                   <span className="btn-flag-arrow" aria-hidden>→</span>
                 </a>
-                <a href="/cases" className="about-cta-secondary text-center justify-center border-sky-200/80 hover:border-sky-300 hover:bg-sky-50/70">
+                <a href="/cases" className="about-cta-secondary about-cta-secondary--sm text-center justify-center border-sky-200/80 hover:border-sky-300 hover:bg-sky-50/70">
                   事例を見る
                 </a>
               </div>
@@ -130,7 +130,7 @@ export default function Pillars() {
           initial={{ opacity: 0, y: 18 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
           transition={{ duration: 0.5, delay: 0.12, ease }}
-          className="relative rounded-2xl border border-sky-200/70 bg-gradient-to-br from-slate-50/95 via-white to-sky-50/70 shadow-[0_1px_0_0_rgba(14,165,233,0.06)] overflow-x-visible overflow-y-visible"
+          className="relative rounded-2xl border border-sky-200/70 bg-gradient-to-br from-slate-50/95 via-white to-sky-50/70 shadow-[0_1px_0_0_rgba(14,165,233,0.06)] overflow-hidden"
         >
           <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-2xl" aria-hidden>
             <div
@@ -141,9 +141,9 @@ export default function Pillars() {
               }}
             />
           </div>
-          <div className="relative p-5 sm:p-6 md:p-8">
+          <div className="relative p-5 sm:p-6 md:p-8 min-w-0">
             {/* 見出し・本文・CTA：幅 約 2/3（コンテナ基準） */}
-            <div className="w-full md:w-2/3 md:max-w-none max-w-full">
+            <div className="w-full md:w-2/3 md:max-w-none max-w-full min-w-0">
               <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mb-2.5">
                 <p className="text-[10px] sm:text-xs font-semibold tracking-[0.18em] text-sky-700 uppercase">
                   AI accelerator
@@ -153,10 +153,11 @@ export default function Pillars() {
                   推論・検索・生成を、業務と開発フローに組み込む
                 </span>
               </div>
-              <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-slate-900 leading-snug w-full">
-                <span className="inline-block whitespace-nowrap max-w-full overflow-x-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+              <h3 className="text-[0.9375rem] sm:text-lg md:text-xl lg:text-2xl font-bold text-slate-900 leading-snug w-full min-w-0 text-pretty [word-break:keep-all]">
+                <span className="block md:inline md:whitespace-nowrap min-w-0">
                   FMS・業務開発を、
-                  <span className="bg-gradient-to-r from-sky-500 via-cyan-500 to-blue-600 bg-clip-text text-transparent">                    AI活用
+                  <span className="bg-gradient-to-r from-emerald-500 via-green-600 to-teal-600 bg-clip-text text-transparent">
+                    AI活用
                   </span>
                   でさらに効かせる
                 </span>
@@ -175,7 +176,7 @@ export default function Pillars() {
               </p>
               <a
                 href="#contact"
-                className="about-cta-secondary mt-5 inline-flex text-center justify-center text-sm py-2.5 border-sky-200/80 hover:border-sky-300 hover:bg-sky-50/70 w-full sm:w-auto min-w-[200px]"
+                className="about-cta-secondary about-cta-secondary--sm mt-5 inline-flex text-center justify-center border-sky-200/80 hover:border-sky-300 hover:bg-sky-50/70 w-full sm:w-auto min-w-0 sm:min-w-[10rem]"
               >
                 AI活用を相談
               </a>
@@ -183,7 +184,7 @@ export default function Pillars() {
 
             {/* タグ：本文の下・カード幅いっぱいの 1 列（5 等分） */}
             <div
-              className="mt-6 sm:mt-7 flex w-full min-w-0 flex-nowrap gap-1.5 sm:gap-2"
+              className="mt-6 sm:mt-7 flex w-full min-w-0 flex-wrap sm:flex-nowrap gap-1.5 sm:gap-2"
               role="list"
               aria-label="AI 活用領域"
             >
@@ -197,7 +198,7 @@ export default function Pillars() {
                 <span
                   key={t}
                   role="listitem"
-                  className="flex min-w-0 flex-1 items-center justify-center rounded-lg border border-sky-200/60 bg-white/90 px-1 py-2 sm:px-2 sm:py-2.5 text-center text-[9px] font-semibold leading-tight text-sky-900 shadow-sm shadow-sky-500/[0.06] sm:text-[11px] md:text-xs"
+                  className="flex min-w-[calc(50%-0.25rem)] sm:min-w-0 sm:flex-1 grow basis-[45%] sm:basis-0 items-center justify-center rounded-lg border border-sky-200/60 bg-white/90 px-1 py-2 sm:px-2 sm:py-2.5 text-center text-[9px] font-semibold leading-tight text-sky-900 shadow-sm shadow-sky-500/[0.06] sm:text-[11px] md:text-xs"
                 >
                   <span className="line-clamp-2 sm:line-clamp-none">{t}</span>
                 </span>

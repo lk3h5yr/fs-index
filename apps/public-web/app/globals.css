@@ -358,6 +358,40 @@ a {
 }
 .about-cta-secondary:hover { background: rgba(30,58,95,0.06); transform: translateY(-2px); }
 
+/* 首頁・Pillars 等：コンパクト CTA */
+.about-cta-primary--sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.8125rem;
+  border-radius: 10px;
+  gap: 0.35rem;
+  box-shadow: 0 2px 10px -3px rgba(30, 58, 95, 0.28);
+}
+.about-cta-primary--sm:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px -4px rgba(30, 58, 95, 0.32);
+}
+@media (min-width: 768px) {
+  .about-cta-primary--sm {
+    padding: 0.5625rem 1.125rem;
+    font-size: 0.875rem;
+  }
+}
+.about-cta-secondary--sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.8125rem;
+  border-radius: 10px;
+  border-width: 1.5px;
+}
+.about-cta-secondary--sm:hover {
+  transform: translateY(-1px);
+}
+@media (min-width: 768px) {
+  .about-cta-secondary--sm {
+    padding: 0.5625rem 1.125rem;
+    font-size: 0.875rem;
+  }
+}
+
 /* ポップアップ用の閉じるボタン: やや小さめのサイズ */
 .popup-close-btn {
   padding: 0.5rem 1rem;
@@ -1225,8 +1259,8 @@ a {
   justify-content: center;
   gap: 0.5rem;
   width: 100%;
-  padding: 1rem 1.5rem;
-  font-size: 1.125rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.9375rem;
   font-weight: 600;
   color: white;
   background: #1e3a5f;
@@ -1234,6 +1268,12 @@ a {
   border-radius: 12px;
   cursor: pointer;
   transition: filter 0.2s, transform 0.2s;
+}
+@media (min-width: 768px) {
+  .contact-submit-btn {
+    padding: 1rem 1.5rem;
+    font-size: 1.125rem;
+  }
 }
 .contact-submit-btn:hover:not(:disabled) {
   filter: brightness(1.08);

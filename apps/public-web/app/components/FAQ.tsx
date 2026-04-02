@@ -31,69 +31,91 @@ const faqs = [
   },
 ];
 
+function Chevron({ open }: { open: boolean }) {
+  return (
+    <motion.span
+      className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-slate-100 text-slate-500"
+      animate={{ rotate: open ? 180 : 0 }}
+      transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+      aria-hidden
+    >
+      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+      </svg>
+    </motion.span>
+  );
+}
+
 export default function FAQ() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section ref={ref} className="py-24 md:py-28 bg-gray-50 relative">
+    <section ref={ref} className="py-16 md:py-28 bg-slate-50 relative">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          className="mb-16"
+          className="mb-10 md:mb-16"
           initial={{ opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="text-xs font-medium tracking-widest text-gray-400 mb-2">FAQ</p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 tracking-tight pb-4 border-b border-gray-200">
+          <p className="text-xs font-medium tracking-widest text-slate-400 mb-2">FAQ</p>
+          <h2 className="text-xl sm:text-3xl md:text-4xl font-bold text-slate-900 tracking-tight pb-3 md:pb-4 border-b border-slate-200">
             よくある質問
           </h2>
-          <p className="text-gray-600 mt-4 max-w-2xl">お客様からよくいただくご質問</p>
+          <p className="text-slate-600 mt-3 md:mt-4 max-w-2xl text-sm md:text-base">お客様からよくいただくご質問</p>
         </motion.div>
-        
-        <div className="space-y-4">
-          {faqs.map((faq, index) => (
-            <motion.div
-              key={index}
-              className="relative bg-white rounded-2xl border-2 border-slate-200 hover:border-blue-400 hover:shadow-xl overflow-hidden transition-all"
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ duration: 0.6, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-              style={{ transformStyle: 'preserve-3d' }}
-            >
-              <button
-                className="w-full p-6 text-left flex justify-between items-center hover:bg-slate-50 transition-colors relative z-10"
-                onClick={() => setOpenIndex(openIndex === index ? null : index)}
+
+        <div className="flex flex-col gap-2.5 md:gap-3">
+          {faqs.map((faq, index) => {
+            const open = openIndex === index;
+            return (
+              <motion.div
+                key={index}
+                className={`rounded-xl border bg-white shadow-sm transition-[border-color,box-shadow] duration-200 ${
+                  open
+                    ? 'border-[#1e3a5f]/20 shadow-md shadow-slate-200/50 ring-1 ring-[#1e3a5f]/10'
+                    : 'border-slate-200/90 hover:border-slate-300 hover:shadow'
+                }`}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ duration: 0.45, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
               >
-                <span className="font-semibold text-slate-900 text-lg">
-                  {faq.question}
-                </span>
-                <motion.span
-                  className="text-2xl text-blue-600 font-bold"
-                  animate={{ rotate: openIndex === index ? 45 : 0 }}
-                  transition={{ duration: 0.3 }}
+                <button
+                  type="button"
+                  className="flex w-full items-start gap-3 px-4 py-3.5 md:px-5 md:py-4 text-left"
+                  onClick={() => setOpenIndex(open ? null : index)}
+                  aria-expanded={open}
                 >
-                  +
-                </motion.span>
-              </button>
-              <AnimatePresence>
-                {openIndex === index && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                    className="overflow-hidden"
-                  >
-                    <div className="p-6 pt-0 text-slate-600 leading-relaxed border-t-2 border-slate-200">
-                      {faq.answer}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          ))}
+                  <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md bg-slate-100 text-[10px] font-bold text-[#1e3a5f]">
+                    Q
+                  </span>
+                  <span className="min-w-0 flex-1 text-xs font-semibold leading-snug text-slate-800 sm:text-[13px] md:text-sm">
+                    {faq.question}
+                  </span>
+                  <Chevron open={open} />
+                </button>
+                <AnimatePresence initial={false}>
+                  {open && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                      className="overflow-hidden"
+                    >
+                      <div className="mx-3 mb-3 rounded-lg border border-slate-100 bg-slate-50/90 px-3.5 py-3 md:mx-4 md:mb-4 md:px-4 md:py-3.5">
+                        <p className="text-[11px] leading-[1.7] text-slate-600 sm:text-xs md:text-[13px] md:leading-relaxed">
+                          {faq.answer}
+                        </p>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
