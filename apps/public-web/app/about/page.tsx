@@ -1,27 +1,38 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import { useInView } from 'framer-motion';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import CurveBg from '../components/CurveBg';
 import SolutionSteps from '../components/SolutionSteps';
-import Services from '../components/Services';
 import PainPoints from '../components/PainPoints';
 import Trust from '../components/Trust';
+import FmsAiFeatureBlocks from '../components/FmsAiFeatureBlocks';
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function AboutPage() {
+  const pathname = usePathname();
   const refHero = useRef(null);
   const refGreeting = useRef(null);
-  const refCta = useRef(null);
+  const refFmsIntro = useRef(null);
   const isInViewHero = useInView(refHero, { once: true, margin: '-100px' });
   const isInViewGreeting = useInView(refGreeting, { once: true, margin: '-100px' });
-  const isInViewCta = useInView(refCta, { once: true, margin: '-100px' });
+  const isInViewFmsIntro = useInView(refFmsIntro, { once: true, margin: '-100px' });
+
+  /* App Router では /about#fms 遷移時に自動スクロールしないことがあるため、FLAGSHIP 見出しへ合わせる */
+  useEffect(() => {
+    if (pathname !== '/about' || typeof window === 'undefined') return;
+    if (window.location.hash !== '#fms') return;
+    requestAnimationFrame(() => {
+      document.getElementById('fms')?.scrollIntoView({ behavior: 'auto', block: 'start' });
+    });
+  }, [pathname]);
 
   return (
     <main className="relative min-h-screen bg-white">
@@ -145,38 +156,38 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <SolutionSteps containerClassName="max-w-4xl" />
-        <Services containerClassName="max-w-4xl" />
-        <PainPoints containerClassName="max-w-4xl" />
-        <Trust containerClassName="max-w-4xl" />
-
-        {/* 04 CTA */}
-        <section ref={refCta} className="about-cta-band about-section-04 py-20 md:py-24 relative">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+        <section ref={refFmsIntro} className="py-24 md:py-28 bg-gray-50 relative">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={isInViewCta ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+              id="fms"
+              className="scroll-mt-24 md:scroll-mt-28"
+              initial={{ opacity: 0, y: 18 }}
+              animate={isInViewFmsIntro ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
               transition={{ duration: 0.5, ease }}
             >
-              <p className="about-section-label text-xs font-medium tracking-widest mb-6"/>
-              <p className="about-section-title text-lg sm:text-xl md:text-2xl font-semibold mb-4 leading-relaxed">
-                課題整理の段階からでも、お気軽にご相談ください。
+              <p className="text-xs font-medium tracking-widest text-slate-400 mb-2">FLAGSHIP</p>
+              <h2 className="text-xl sm:text-3xl md:text-4xl font-bold text-slate-900 tracking-tight pb-4 border-b border-slate-200">
+                独自サービス FMS で、既存システムを止めずに前へ
+              </h2>
+              <p
+                lang="ja"
+                className="text-slate-800 mt-4 w-full max-w-none leading-relaxed text-pretty [word-break:keep-all]"
+              >
+                <span className="whitespace-nowrap max-[420px]:whitespace-normal">
+                  Forest Soft Modernization Service（FMS）
+                </span>
+                を核に、調査から段階移行・運用まで一気通貫で支援します。<br />
+                AI活用は、その過程と成果をさらに押し上げる加速器として組み合わせます。
               </p>
-              <p className="text-gray-600 mb-8 sm:mb-10 text-sm sm:text-base md:text-lg">
-                フォレストソフトは、技術と実行力で次の一歩を支えます。
-              </p>
-              <div className="flex flex-wrap justify-center gap-4">
-                <Link href="/#contact" className="about-cta-primary">
-                  お問い合わせする
-                  <span className="btn-flag-arrow" aria-hidden>→</span>
-                </Link>
-                <Link href="/company" className="about-cta-secondary">
-                  会社情報を見る
-                </Link>
-              </div>
             </motion.div>
+            <FmsAiFeatureBlocks />
           </div>
         </section>
+
+        <SolutionSteps containerClassName="max-w-4xl" />
+
+        <PainPoints containerClassName="max-w-4xl" />
+        <Trust containerClassName="max-w-4xl" />
 
         <Footer />
       </div>

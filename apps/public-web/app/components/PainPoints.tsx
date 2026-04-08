@@ -6,40 +6,25 @@ import { useInView } from 'framer-motion';
 
 const painPoints = [
   {
-    number: 'REASON.01',
+    step: '01',
     title: '開発コスト最適化',
-    description: 'クラウドネイティブアーキテクチャとDevOps手法により、開発コストを最大40%削減。スケーラブルなシステム構築で、長期的な運用コストも最適化します。',
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>
-    ),
+    description: 'クラウド・DevOpsで開発・運用コストを抑え、スケーラブルな構成を提案します。',
+    stats: 'コスト削減',
     gradient: 'from-blue-400 to-indigo-500',
-    stats: '40%削減',
   },
   {
-    number: 'REASON.02',
+    step: '02',
     title: '最新技術への対応',
-    description: 'AI・機械学習、マイクロサービス、コンテナ技術など、最先端技術を活用したシステム開発を実現。技術トレンドに遅れない、未来志向のソリューションを提供します。',
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-      </svg>
-    ),
+    description: 'AI、マイクロサービス、コンテナなど、要件に合わせたモダンな技術選定を行います。',
+    stats: '先端技術',
     gradient: 'from-indigo-400 to-violet-500',
-    stats: '最先端',
   },
   {
-    number: 'REASON.03',
+    step: '03',
     title: 'セキュリティ強化',
-    description: 'ゼロトラストセキュリティモデルと多層防御により、サイバー攻撃から企業資産を保護。GDPR・個人情報保護法にも完全準拠した安全なシステムを構築します。',
-    icon: (
-      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-      </svg>
-    ),
+    description: '多層防御とゼロトラストの考え方で、法令・ガイドラインに沿った設計を徹底します。',
+    stats: '法令準拠',
     gradient: 'from-teal-400 to-cyan-500',
-    stats: '100%準拠',
   },
 ];
 
@@ -52,62 +37,56 @@ export default function PainPoints({
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
-    <section ref={ref} className="py-24 md:py-28 bg-gray-50 relative overflow-hidden">
+    <section ref={ref} className="py-14 md:py-16 bg-gray-50 relative overflow-hidden">
       <div className={`${containerClassName} mx-auto px-4 sm:px-6 lg:px-8 relative z-10`}>
         <motion.div
-          className="mb-16"
-          initial={{ opacity: 0, y: 24 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-6 md:mb-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="text-xs font-medium tracking-widest text-gray-400 mb-2">REASON</p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 tracking-tight pb-4 border-b border-gray-200">
+          <p className="text-xs font-medium tracking-widest text-gray-400 mb-1.5">REASON</p>
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 tracking-tight pb-3 border-b border-gray-200">
             選ばれる理由
           </h2>
-          <p className="text-gray-600 mt-4 max-w-2xl">
-            最新技術と豊富な実績で、お客様のビジネスを成功に導きます
+          <p className="text-sm text-gray-600 mt-3 max-w-2xl leading-snug">
+            コスト・技術・セキュリティの三軸で、継続的に価値を届けます。
           </p>
         </motion.div>
-        
-        <div className="grid md:grid-cols-3 gap-10 lg:gap-16">
+
+        <div className="grid md:grid-cols-3 gap-3 md:gap-4">
           {painPoints.map((point, index) => (
             <motion.div
               key={point.title}
               className="group relative"
-              initial={{ opacity: 0, y: 60 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 }}
-              transition={{ duration: 0.8, delay: index * 0.2, ease: [0.22, 1, 0.36, 1] }}
+              initial={{ opacity: 0, y: 24 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+              transition={{ duration: 0.45, delay: 0.06 + index * 0.06, ease: [0.22, 1, 0.36, 1] }}
             >
-                  {/* カード本体: hover でわずかに浮き、下線が展開 */}
-                  <div className="reason-card relative p-8 sm:p-9 rounded-3xl bg-white/90 backdrop-blur-sm border border-slate-200/80 h-full flex flex-col mt-8">
-                    {/* 番号（透過リング）+ 統計バッジ（ほのかな発光とグラデーション） */}
-                    <div className="absolute -top-6 left-8 flex items-center gap-2.5">
-                      <div className={`reason-number-ring inline-flex items-center justify-center w-10 h-10 rounded-full bg-gradient-to-br ${point.gradient} text-white text-xs font-bold transition-shadow duration-300`}>
-                        {point.number.split('.')[1]}
-                      </div>
-                      <motion.div
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -10 }}
-                        transition={{ duration: 0.6, delay: index * 0.2 + 0.3 }}
-                      >
-                        <div className={`reason-badge inline-block px-3 py-1.5 bg-gradient-to-r ${point.gradient} text-white text-xs font-bold rounded-lg shadow-md`}>
-                          {point.stats}
-                        </div>
-                      </motion.div>
-                    </div>
+              <div className="reason-card relative flex h-full flex-col rounded-xl border border-slate-200/80 bg-white/95 p-4 sm:p-5 shadow-sm">
+                <div className="mb-3 flex items-center justify-between gap-2">
+                  <div
+                    className={`reason-number-ring flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${point.gradient} text-[11px] font-bold text-white shadow-sm`}
+                  >
+                    {point.step}
+                  </div>
+                  <span
+                    className={`reason-badge rounded-md bg-gradient-to-r ${point.gradient} px-2.5 py-1 text-[10px] font-bold text-white shadow-sm sm:text-xs`}
+                  >
+                    {point.stats}
+                  </span>
+                </div>
 
-                <h3 className="text-lg md:text-xl font-bold mb-3 text-slate-900 group-hover:text-indigo-500/80 transition-colors duration-300 mt-10">
+                <h3 className="text-base sm:text-lg font-bold leading-snug text-slate-900 transition-colors duration-200 group-hover:text-indigo-600/90">
                   {point.title}
                 </h3>
+                <p className="mt-2 text-xs sm:text-sm leading-relaxed text-slate-600">{point.description}</p>
 
-                <p className="text-slate-600 leading-relaxed text-sm sm:text-[15px] flex-grow">
-                  {point.description}
-                </p>
-
-                {/* 下線: hover 時に展開 */}
-                <div className="mt-6 pt-6 border-t border-slate-200">
-                  <div className="h-1 rounded-full bg-slate-100 overflow-hidden">
-                    <div className={`reason-card-bottom-line h-full bg-gradient-to-r ${point.gradient} rounded-full`} />
+                <div className="mt-4 border-t border-slate-100 pt-3">
+                  <div className="h-0.5 overflow-hidden rounded-full bg-slate-100">
+                    <div
+                      className={`reason-card-bottom-line h-full rounded-full bg-gradient-to-r ${point.gradient}`}
+                    />
                   </div>
                 </div>
               </div>

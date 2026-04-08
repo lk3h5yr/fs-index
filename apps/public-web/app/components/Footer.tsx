@@ -28,6 +28,7 @@ export default function Footer() {
           <div className="md:col-span-2">
             <h4 className="font-semibold text-white mb-4 text-sm tracking-wide">リンク</h4>
             <ul className="space-y-3 text-sm text-slate-400">
+              <li><Link href="/contact" className="hover:text-white transition-colors">問い合わせ</Link></li>
               <li><Link href="/about" className="hover:text-white transition-colors">企業紹介</Link></li>
               <li><Link href="/news" className="hover:text-white transition-colors">ニュース</Link></li>
               <li><Link href="/careers" className="hover:text-white transition-colors">採用情報</Link></li>

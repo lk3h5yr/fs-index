@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import { useInView } from 'framer-motion';
+import Link from 'next/link';
 
 export default function Hero() {
   const ref = useRef(null);
@@ -434,7 +435,7 @@ export default function Hero() {
           </motion.div>
 
           <motion.h1
-            className="text-2xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-5 md:mb-8 text-slate-800 leading-tight tracking-tight"
+            className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 text-slate-800 leading-tight tracking-tight"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.3 }}
@@ -463,27 +464,10 @@ export default function Hero() {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
             transition={{ duration: 0.5, delay: 0.65, ease: [0.22, 1, 0.36, 1] }}
           >
-            <a
-              href="#fms"
-              className="about-cta-primary about-cta-primary--sm inline-flex"
-              onClick={(e) => {
-                e.preventDefault();
-                const el = document.getElementById('fms');
-                if (!el) return;
-                const rect = el.getBoundingClientRect();
-                const elementTop = rect.top + window.scrollY;
-                const navOffset = window.matchMedia('(min-width: 768px)').matches ? 80 : 64;
-                // ナビ直下に余白を残す（見出しが詰まりすぎない／お知らせはほぼ画面外のまま）
-                const breathingRoom = 48;
-                window.scrollTo({
-                  top: Math.max(0, elementTop - navOffset - breathingRoom),
-                  behavior: 'smooth',
-                });
-              }}
-            >
+            <Link href="/about#fms" className="about-cta-primary about-cta-primary--sm inline-flex">
               FMSを詳しく見る
               <span className="btn-flag-arrow" aria-hidden>→</span>
-            </a>
+            </Link>
           </motion.div>
         </div>
       </div>

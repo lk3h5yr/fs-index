@@ -46,25 +46,51 @@ function Chevron({ open }: { open: boolean }) {
   );
 }
 
-export default function FAQ() {
+export default function FAQ({ variant = 'default' }: { variant?: 'default' | 'page' }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
+  const isPage = variant === 'page';
+
   return (
-    <section ref={ref} className="py-16 md:py-28 bg-slate-50 relative">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section
+      id="faq"
+      ref={ref}
+      className={
+        isPage
+          ? 'relative scroll-mt-28'
+          : 'py-16 md:py-28 bg-slate-50 relative'
+      }
+    >
+      <div
+        className={
+          isPage
+            ? 'rounded-2xl border border-slate-200/80 bg-white p-5 sm:p-6 md:p-7 shadow-md shadow-slate-900/[0.05]'
+            : 'max-w-4xl mx-auto px-4 sm:px-6 lg:px-8'
+        }
+      >
         <motion.div
-          className="mb-10 md:mb-16"
+          className={isPage ? 'mb-6 md:mb-8' : 'mb-10 md:mb-16'}
           initial={{ opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         >
           <p className="text-xs font-medium tracking-widest text-slate-400 mb-2">FAQ</p>
-          <h2 className="text-xl sm:text-3xl md:text-4xl font-bold text-slate-900 tracking-tight pb-3 md:pb-4 border-b border-slate-200">
+          <h2
+            className={
+              isPage
+                ? 'text-lg sm:text-xl md:text-2xl font-bold text-slate-900 tracking-tight pb-3 border-b border-slate-200'
+                : 'text-xl sm:text-3xl md:text-4xl font-bold text-slate-900 tracking-tight pb-3 md:pb-4 border-b border-slate-200'
+            }
+          >
             よくある質問
           </h2>
-          <p className="text-slate-600 mt-3 md:mt-4 max-w-2xl text-sm md:text-base">お客様からよくいただくご質問</p>
+          <p className="text-slate-600 mt-3 md:mt-4 max-w-2xl text-sm md:text-base leading-relaxed">
+            {isPage
+              ? '送信前に、よくあるご質問もあわせてご確認ください。'
+              : 'お客様からよくいただくご質問'}
+          </p>
         </motion.div>
 
         <div className="flex flex-col gap-2.5 md:gap-3">
@@ -73,7 +99,9 @@ export default function FAQ() {
             return (
               <motion.div
                 key={index}
-                className={`rounded-xl border bg-white shadow-sm transition-[border-color,box-shadow] duration-200 ${
+                className={`rounded-xl border shadow-sm transition-[border-color,box-shadow] duration-200 ${
+                  isPage ? 'bg-slate-50/90' : 'bg-white'
+                } ${
                   open
                     ? 'border-[#1e3a5f]/20 shadow-md shadow-slate-200/50 ring-1 ring-[#1e3a5f]/10'
                     : 'border-slate-200/90 hover:border-slate-300 hover:shadow'

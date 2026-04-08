@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 
-const navItems = [
+const mainNavItems = [
   { label: 'ホーム', path: '/' },
   { label: '企業紹介', path: '/about' },
   { label: '会社情報', path: '/company' },
@@ -16,6 +16,16 @@ const navItems = [
   { label: '採用情報', path: '/careers' },
   { label: '資格情報', path: '/certifications' },
 ];
+
+function navLinkClass(isActive: boolean) {
+  return `relative px-4 py-2.5 text-sm font-medium transition-colors duration-200
+    after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-full after:h-0.5 after:bg-blue-400 after:origin-left after:transition-transform after:duration-200
+    ${
+      isActive
+        ? 'text-blue-400 after:scale-x-100'
+        : 'text-slate-300 hover:text-blue-400 after:scale-x-0 hover:after:scale-x-100'
+    }`;
+}
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -63,24 +73,17 @@ export default function Navbar() {
               unoptimized
             />
           </Link>
-          <div className="hidden md:flex space-x-2">
-            {navItems.map((item) => {
-              const isActive = pathname === item.path;
-              return (
-                <Link
-                  key={item.path}
-                  href={item.path}
-                  className={`relative px-5 py-2.5 text-sm font-medium transition-colors duration-200
-                    after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-full after:h-0.5 after:bg-blue-400 after:origin-left after:transition-transform after:duration-200
-                    ${isActive
-                      ? 'text-blue-400 after:scale-x-100'
-                      : 'text-slate-300 hover:text-blue-400 after:scale-x-0 hover:after:scale-x-100'
-                    }`}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
+          <div className="hidden md:flex flex-1 min-w-0 items-center justify-end gap-1 lg:gap-2 ml-4">
+            <div className="flex flex-wrap items-center justify-end gap-0.5 lg:gap-1">
+              {mainNavItems.map((item) => {
+                const isActive = pathname === item.path;
+                return (
+                  <Link key={item.path} href={item.path} className={navLinkClass(isActive)}>
+                    {item.label}
+                  </Link>
+                );
+              })}
+            </div>
           </div>
           <button
             type="button"
@@ -113,7 +116,7 @@ export default function Navbar() {
       {menuOpen && (
         <div className="md:hidden border-t border-slate-800 bg-slate-900/98 backdrop-blur-md">
           <div className="px-4 py-4 space-y-1">
-            {navItems.map((item) => {
+            {mainNavItems.map((item) => {
               const isActive = pathname === item.path;
               return (
                 <Link

@@ -129,36 +129,34 @@ function PartnersMarquee() {
 }
 
 const partnerCategories = [
-  { title: 'システム開発企業様', desc: '人材・案件の情報交換、共同受託' },
-  { title: '個人事業主・フリーランス様', desc: '案件への参画、技術支援' },
-  { title: 'Sier・ベンダー様', desc: '相互リソースの活用、長期協業' },
+  { title: 'システム開発企業様', desc: '人材・案件の共有、共同受託' },
+  { title: '個人事業主・フリーランス様', desc: '参画・技術支援' },
+  { title: 'Sier・ベンダー様', desc: 'リソース連携、長期協業' },
 ];
 
-const benefits = [
+/** 募集ブロック内の要点（短文のみ） */
+const recruitHighlights = [
   {
-    label: '案件・人材の情報交換',
-    desc: 'システム開発における人材・案件のマッチングと情報共有で、相互の強みを活かした協業を実現します。',
+    label: '案件・人材の連携',
     icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
       </svg>
     ),
   },
   {
-    label: '技術ノウハウの共有',
-    desc: '開発手法・ツール・知見を共有し、品質と効率を高め合うパートナーシップを築きます。',
+    label: 'ノウハウ共有',
     icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
       </svg>
     ),
   },
   {
-    label: '長期・密な協業関係',
-    desc: '単発ではなく、相互に尊敬し共に発展し合える関係を大切にし、長期的な協業を目指します。',
+    label: '長期協業を志向',
     icon: (
-      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
       </svg>
     ),
@@ -222,17 +220,9 @@ export default function PartnersPage() {
           </div>
         </section>
 
-        {/* 現在のビジネスパートナー（取引先ロゴマルキー） */}
-        <section className="bg-white py-12 md:py-16">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <p className="text-center text-lg sm:text-xl font-semibold text-slate-700 mb-2">現在のビジネスパートナー</p>
-            <PartnersMarquee />
-          </div>
-        </section>
-
         {/* ビジネスパートナー募集（首頁 FMS カードと同系：冷藍・ラジアル） */}
         <section ref={refRecruit} className="relative py-16 md:py-24 overflow-x-hidden bg-white">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.article
               initial={{ opacity: 0, y: 22 }}
               animate={isInViewRecruit ? { opacity: 1, y: 0 } : { opacity: 0, y: 22 }}
@@ -248,13 +238,13 @@ export default function PartnersPage() {
                 }}
               />
               <div className="relative p-5 sm:p-6 md:p-8 lg:p-10">
-                <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mb-2.5">
+                <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mb-2">
                   <p className="text-[10px] sm:text-xs font-semibold tracking-[0.18em] text-sky-700 uppercase">
                     recruit
                   </p>
                   <span className="hidden sm:inline h-3 w-px shrink-0 bg-sky-200/90" aria-hidden />
                   <span className="text-[10px] sm:text-xs font-medium text-sky-700/85">
-                    法人・個人のパートナーを募集しています
+                    法人・個人 歓迎
                   </span>
                 </div>
                 <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-slate-900 tracking-tight leading-snug">
@@ -263,64 +253,60 @@ export default function PartnersPage() {
                     募集
                   </span>
                 </h2>
-                <p className="mt-3 text-sm sm:text-[15px] font-medium text-sky-950/85 leading-relaxed max-w-2xl">
-                  業務にご協力いただけるパートナーとして、法人・個人の皆様からのご連絡をお待ちしています。現場で互いの強みを活かし、長く続く協業関係を築きたいと考えています。
+                <p className="mt-3 text-sm text-slate-600 leading-relaxed max-w-3xl">
+                  開発現場で協力いただける法人・個人のパートナーを募集しています。案件・人材の連携を通じて、互いの強みを活かした協業を目指します。
                 </p>
 
-                <div className="mt-6 grid sm:grid-cols-3 gap-2.5">
-                  {partnerCategories.map((c) => (
-                    <div
-                      key={c.title}
-                      className="rounded-xl border border-sky-200/55 bg-white/85 px-3.5 py-3 shadow-sm shadow-sky-500/[0.04]"
-                    >
-                      <p className="text-xs font-bold tracking-wide text-sky-800 leading-snug mb-1.5">{c.title}</p>
-                      <p className="text-[11px] sm:text-xs text-slate-600 leading-relaxed">{c.desc}</p>
-                    </div>
-                  ))}
-                </div>
-
-                <p className="mt-6 text-slate-600 text-sm sm:text-[15px] leading-relaxed">
-                  人材や案件の情報交換、案件への参画、相互リソースの活用など、形態はさまざまです。相互に尊敬し、共に発展し合えるパートナー様と、密な協業関係を築きたいと思っております。
-                </p>
-
-                <div className="mt-6 grid md:grid-cols-3 gap-3">
-                  {benefits.map((b) => (
-                    <div
-                      key={b.label}
-                      className="group rounded-xl border border-sky-200/50 bg-white/90 p-3.5 sm:p-4 shadow-sm shadow-sky-500/[0.03] transition-shadow hover:shadow-md hover:border-sky-300/60"
-                    >
-                      <div className="mb-2.5 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-sky-50 text-sky-800 border border-sky-100">
-                        {b.icon}
+                <div className="mt-8 border-t border-sky-100/90 pt-8">
+                  <p className="text-xs font-semibold tracking-widest text-sky-800/90 mb-4">募集対象</p>
+                  <div className="grid gap-3 sm:grid-cols-3 sm:gap-4">
+                    {partnerCategories.map((c, i) => (
+                      <div
+                        key={c.title}
+                        className="relative rounded-xl border border-slate-200/90 bg-white/90 pl-4 pr-3 py-3.5 shadow-sm sm:pl-4"
+                      >
+                        <span
+                          className="absolute left-0 top-3 bottom-3 w-1 rounded-full bg-gradient-to-b from-sky-500 to-blue-600"
+                          aria-hidden
+                        />
+                        <p className="text-[11px] font-bold text-slate-400 tabular-nums mb-1">
+                          {String(i + 1).padStart(2, '0')}
+                        </p>
+                        <p className="text-xs font-bold text-slate-900 leading-snug">{c.title}</p>
+                        <p className="mt-1.5 text-[11px] sm:text-xs text-slate-600 leading-snug">{c.desc}</p>
                       </div>
-                      <p className="text-sm font-bold text-slate-900 mb-1.5 leading-snug">{b.label}</p>
-                      <p className="text-xs text-slate-600 leading-relaxed">{b.desc}</p>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
 
-                <div className="mt-8 flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3 pt-6 border-t border-sky-100/90">
-                  <p className="text-sm font-medium text-slate-600 sm:mr-1">まずはお気軽にご連絡ください。</p>
-                  <a
-                    href="mailto:info@forestsoft.jp"
-                    className="partners-cta-email inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#1e3a5f] text-white font-semibold text-sm shadow-md shadow-[#1e3a5f]/15 hover:opacity-92 transition-opacity"
-                  >
-                    <svg className="w-4 h-4 shrink-0 opacity-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                    info@forestsoft.jp
-                  </a>
-                  <Link
-                    href="/#contact"
-                    className="inline-flex items-center justify-center gap-1.5 px-5 py-3 rounded-xl border border-sky-200/90 bg-white text-[#1e3a5f] font-semibold text-sm hover:bg-sky-50/80 hover:border-sky-300 transition-colors"
-                  >
-                    お問い合わせフォーム
-                    <span className="text-base leading-none" aria-hidden>
-                      →
-                    </span>
-                  </Link>
+                <div className="mt-8 overflow-hidden rounded-xl border border-slate-200/80 bg-white/80">
+                  <p className="border-b border-slate-100 bg-slate-50/90 px-4 py-2.5 text-center text-xs font-semibold tracking-wide text-slate-700">
+                    協業のポイント
+                  </p>
+                  <div className="grid divide-y divide-slate-100 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+                    {recruitHighlights.map((h) => (
+                      <div
+                        key={h.label}
+                        className="flex flex-col items-center gap-2 px-4 py-5 text-center sm:py-6"
+                      >
+                        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-sky-100 text-sky-700">
+                          {h.icon}
+                        </span>
+                        <p className="text-sm font-bold text-slate-900 leading-snug">{h.label}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </motion.article>
+          </div>
+        </section>
+
+        {/* 現在のビジネスパートナー（取引先ロゴマルキー） */}
+        <section className="bg-white py-12 md:py-16">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p className="text-center text-lg sm:text-xl font-semibold text-slate-700 mb-2">現在のビジネスパートナー</p>
+            <PartnersMarquee />
           </div>
         </section>
       </div>

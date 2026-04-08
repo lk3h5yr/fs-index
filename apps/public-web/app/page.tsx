@@ -2,10 +2,7 @@
 
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import Pillars from './components/Pillars';
 import News from './components/News';
-import FAQ from './components/FAQ';
-import Contact from './components/Contact';
 import Footer from './components/Footer';
 
 export default function Home() {
@@ -31,9 +28,6 @@ export default function Home() {
         <Navbar />
         <Hero />
         <News />
-        <Pillars />
-        <FAQ />
-        <Contact />
         <Footer />
       </div>
     </main>

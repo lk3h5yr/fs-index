@@ -3,26 +3,13 @@
 import { motion } from 'framer-motion';
 import { useRef } from 'react';
 import { useInView } from 'framer-motion';
+import Link from 'next/link';
 
 const stats = [
   { number: '150+', label: 'プロジェクト実績', description: '多様な業界での成功事例' },
   { number: '80+', label: 'お取引企業様', description: '上場企業からスタートアップまで' },
   { number: '15+', label: '年の実績', description: '長年の信頼とノウハウ' },
   { number: '99%', label: '顧客満足度', description: '継続的な改善とサポート' },
-];
-
-/* 無料の画像ソース: Unsplash（商用利用可）と Picsum をマルキー用に使用 */
-const marqueeItems = [
-  { src: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=320&h=180&fit=crop', alt: 'Office' },
-  { src: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=320&h=180&fit=crop', alt: 'Team' },
-  { src: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=320&h=180&fit=crop', alt: 'Business' },
-  { src: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=320&h=180&fit=crop', alt: 'Meeting' },
-  { src: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=320&h=180&fit=crop', alt: 'Workspace' },
-  { src: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=320&h=180&fit=crop', alt: 'Collaboration' },
-  { src: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=320&h=180&fit=crop', alt: 'Tech' },
-  { src: 'https://images.unsplash.com/photo-1497215842964-222b430dc094?w=320&h=180&fit=crop', alt: 'Corporate' },
-  { src: 'https://picsum.photos/seed/office1/320/180', alt: 'Office 1' },
-  { src: 'https://picsum.photos/seed/business2/320/180', alt: 'Business 2' },
 ];
 
 export default function Trust({
@@ -49,25 +36,25 @@ export default function Trust({
           <p className="text-gray-600 mt-4 max-w-2xl">多くの企業様に選ばれている実績</p>
         </motion.div>
         
-        <div className="grid md:grid-cols-4 gap-8">
+        <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
-              className="text-center p-10 rounded-2xl bg-white border-2 border-slate-200 hover:border-blue-500 hover:shadow-2xl transition-all relative overflow-hidden"
+              className="text-center px-4 py-5 sm:px-5 sm:py-6 rounded-xl bg-white border border-slate-200 hover:border-blue-400/90 shadow-sm hover:shadow-md transition-all relative overflow-hidden"
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
               transition={{ duration: 0.6, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-              whileHover={{ y: -8, scale: 1.05 }}
+              whileHover={{ y: -4, scale: 1.02 }}
               style={{ transformStyle: 'preserve-3d' }}
             >
               <div className="relative z-10">
-                <div className="text-5xl font-bold mb-3 text-blue-600">
+                <div className="text-3xl sm:text-4xl font-bold mb-2 text-blue-600 tabular-nums">
                   {stat.number}
                 </div>
-                <div className="text-xl font-bold text-slate-900 mb-2">
+                <div className="text-sm sm:text-base font-bold text-slate-900 mb-1.5 leading-snug">
                   {stat.label}
                 </div>
-                <div className="text-sm text-slate-600">
+                <div className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                   {stat.description}
                 </div>
               </div>
@@ -75,34 +62,44 @@ export default function Trust({
           ))}
         </div>
 
-        {/* お取引企業様 - 横方向のマルキー */}
+        {/* お取引企業様 → パートナー（帯ではなく区切り線＋コンパクトな1行導線） */}
         <motion.div
-          className="mt-20"
-          initial={{ opacity: 0, y: 24 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
-          transition={{ duration: 0.5, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-16 md:mt-20 pt-10 md:pt-12 border-t border-slate-200"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.45, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="text-center text-xl font-semibold text-slate-700 mb-10">お取引企業様</p>
-          <div className="relative w-full overflow-hidden">
-            <div className="flex animate-marquee gap-6 py-2">
-              {[...marqueeItems, ...marqueeItems].map((item, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  className="flex-shrink-0 w-[280px] h-[158px] rounded-xl overflow-hidden border border-slate-200 bg-slate-100 hover:border-slate-300 hover:shadow-lg transition-all"
-                  aria-label={item.alt}
-                >
-                  <img
-                    src={item.src}
-                    alt={item.alt}
-                    width={280}
-                    height={158}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                </a>
-              ))}
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 sm:gap-8">
+            <div className="min-w-0 flex gap-4">
+              <span
+                className="hidden sm:block w-1 shrink-0 rounded-full bg-slate-300/90 self-stretch min-h-[3rem]"
+                aria-hidden
+              />
+              <div>
+                <p className="text-xs font-medium tracking-widest text-slate-400 mb-1">PARTNER</p>
+                <p className="text-lg sm:text-xl font-bold text-slate-900 tracking-tight">
+                  お取引企業様
+                </p>
+                <p className="text-sm text-slate-600 mt-2 max-w-xl leading-relaxed">
+                  協業・取引に関する詳細は、ビジネスパートナーページをご覧ください。
+                </p>
+              </div>
             </div>
+            <Link
+              href="/partners"
+              className="group inline-flex shrink-0 items-center justify-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 shadow-sm transition-colors hover:border-[#1e3a5f]/40 hover:bg-slate-50 hover:text-[#1e3a5f] sm:min-w-[11rem]"
+            >
+              パートナーを見る
+              <svg
+                className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
           </div>
         </motion.div>
       </div>

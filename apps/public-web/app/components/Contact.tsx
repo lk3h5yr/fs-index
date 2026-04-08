@@ -16,9 +16,10 @@ const inquiryTypes = [
   { value: 'その他', label: 'その他' },
 ];
 
-export default function Contact() {
+export default function Contact({ variant = 'default' }: { variant?: 'default' | 'page' }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const isPage = variant === 'page';
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -29,7 +30,7 @@ export default function Contact() {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
   const [submitOverlay, setSubmitOverlay] = useState<SubmitOverlay>('idle');
-  const [formExpanded, setFormExpanded] = useState(false);
+  const [formExpanded, setFormExpanded] = useState(isPage);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -67,53 +68,88 @@ export default function Contact() {
     }
   };
 
+  const formShellClass = isPage
+    ? 'mt-6 p-5 sm:p-6 md:p-8 rounded-xl bg-slate-50/90 border border-slate-200/90 shadow-sm relative overflow-hidden'
+    : 'mt-6 md:mt-8 p-5 sm:p-7 md:p-10 rounded-2xl md:rounded-[24px] bg-slate-50/80 border border-slate-200/90 shadow-sm relative overflow-hidden';
+
   return (
-    <section id="contact" ref={ref} className="py-16 md:py-28 bg-white relative">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section
+      id="contact"
+      ref={ref}
+      className={
+        isPage
+          ? 'relative scroll-mt-28'
+          : 'py-16 md:py-28 bg-white relative'
+      }
+    >
+      <div
+        className={
+          isPage
+            ? 'rounded-2xl border border-slate-200/80 bg-white p-5 sm:p-6 md:p-8 shadow-md shadow-slate-900/[0.06]'
+            : 'max-w-4xl mx-auto px-4 sm:px-6 lg:px-8'
+        }
+      >
         <motion.div
           className="mb-0"
           initial={{ opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="text-[10px] md:text-xs font-medium tracking-widest text-gray-400 mb-1.5 md:mb-2">CONTACT</p>
-          <h2 className="text-xl sm:text-3xl md:text-4xl font-bold text-gray-900 tracking-tight pb-3 md:pb-4 border-b border-gray-200">
-            お問い合わせ
-          </h2>
-          <p className="text-gray-600 mt-3 md:mt-4 max-w-2xl text-sm md:text-base leading-relaxed">
-            要件が未整理の段階でもご相談いただけます。まずはお気軽にご連絡ください。
-          </p>
-          <p className="text-slate-500 text-xs md:text-sm mt-2 md:mt-3 leading-relaxed">
-            1〜2営業日以内を目安にご返信いたします。お預かりした情報は、お問い合わせ対応以外の目的では使用いたしません。
-          </p>
-          <button
-            type="button"
-            onClick={() => setFormExpanded((v) => !v)}
-            className="about-cta-primary about-cta-primary--sm mt-5 md:mt-6"
-            aria-expanded={formExpanded}
-            aria-controls="contact-form-panel"
-          >
-            {formExpanded ? 'フォームを閉じる' : 'お問い合わせフォームを開く'}
-          </button>
+          {isPage ? (
+            <>
+              <p className="text-xs font-medium tracking-widest text-slate-400 mb-2">FORM</p>
+              <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-slate-900 tracking-tight pb-3 border-b border-slate-200">
+                お問い合わせフォーム
+              </h2>
+              <p className="text-slate-600 mt-3 text-sm leading-relaxed">
+                必要事項をご入力のうえ送信ください。1〜2営業日以内を目安にご返信いたします。
+              </p>
+            </>
+          ) : (
+            <>
+              <p className="text-[10px] md:text-xs font-medium tracking-widest text-gray-400 mb-1.5 md:mb-2">CONTACT</p>
+              <h2 className="text-xl sm:text-3xl md:text-4xl font-bold text-gray-900 tracking-tight pb-3 md:pb-4 border-b border-gray-200">
+                お問い合わせ
+              </h2>
+              <p className="text-gray-600 mt-3 md:mt-4 max-w-2xl text-sm md:text-base leading-relaxed">
+                要件が未整理の段階でもご相談いただけます。まずはお気軽にご連絡ください。
+              </p>
+              <p className="text-slate-500 text-xs md:text-sm mt-2 md:mt-3 leading-relaxed">
+                1〜2営業日以内を目安にご返信いたします。お預かりした情報は、お問い合わせ対応以外の目的では使用いたしません。
+              </p>
+              <button
+                type="button"
+                onClick={() => setFormExpanded((v) => !v)}
+                className="about-cta-primary about-cta-primary--sm mt-5 md:mt-6"
+                aria-expanded={formExpanded}
+                aria-controls="contact-form-panel"
+              >
+                {formExpanded ? 'フォームを閉じる' : 'お問い合わせフォームを開く'}
+              </button>
+            </>
+          )}
         </motion.div>
 
         <div
           id="contact-form-panel"
-          className={`grid transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-            formExpanded ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
-          }`}
-          aria-hidden={!formExpanded}
+          className={
+            isPage
+              ? 'block'
+              : `grid transition-[grid-template-rows] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                  formExpanded ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
+                }`
+          }
+          aria-hidden={isPage ? false : !formExpanded}
         >
-          <div className="min-h-0 overflow-hidden">
-            <form
-              onSubmit={handleSubmit}
-              className="mt-6 md:mt-8 p-5 sm:p-7 md:p-10 rounded-2xl md:rounded-[24px] bg-slate-50/80 border border-slate-200/90 shadow-sm relative overflow-hidden"
-            >
+          <div className={isPage ? '' : 'min-h-0 overflow-hidden'}>
+            <form onSubmit={handleSubmit} className={formShellClass}>
               <AnimatePresence>
                 {submitOverlay !== 'idle' && (
                   <motion.div
                     key="contact-overlay"
-                    className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-4 rounded-2xl md:rounded-[24px] bg-white/92 backdrop-blur-md px-6"
+                    className={`absolute inset-0 z-20 flex flex-col items-center justify-center gap-4 bg-white/92 backdrop-blur-md px-6 ${
+                      isPage ? 'rounded-xl' : 'rounded-2xl md:rounded-[24px]'
+                    }`}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}

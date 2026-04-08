@@ -306,13 +306,30 @@ a {
 .about-section-04 .about-section-label { color: #64748b; font-size: 0.7rem; }
 .about-section-04 .about-section-title { font-size: 1.5rem; color: #1e3a5f; border-bottom: 1px solid #cbd5e1; }
 
-/* 04 CTA band: 少し深めの淡色背景で締めくくり感を出す */
+/* 04 CTA band: 上セクション（白背景の Trust 等）との境界をはっきりさせる */
 .about-cta-band {
-  background: #fff;
   position: relative;
   overflow: hidden;
+  border-top: 1px solid #cbd5e1;
+  background: linear-gradient(180deg, #e2e8f0 0%, #f1f5f9 28%, #f8fafc 55%, #ffffff 100%);
+  box-shadow:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.85),
+    0 -20px 48px -24px rgba(15, 23, 42, 0.12);
 }
-.about-cta-band::before,
+.about-cta-band::before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+  width: min(12rem, 40vw);
+  height: 3px;
+  border-radius: 0 0 999px 999px;
+  background: linear-gradient(90deg, transparent, #1e3a5f 35%, #3b82f6 50%, #1e3a5f 65%, transparent);
+  opacity: 0.55;
+  pointer-events: none;
+}
 .about-cta-band::after {
   display: none;
 }
