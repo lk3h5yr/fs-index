@@ -8,217 +8,63 @@ import Link from 'next/link';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import CurveBg from '../components/CurveBg';
+import { formatNewsDateForPopup, renderNewsPopupBody } from '@/app/lib/newsPopupBody';
+import {
+  getNewsCategoryTagClassName,
+  publishedAtToYYYYMM,
+  type CmsNewsPublicItem,
+} from '@/app/lib/cmsNewsShared';
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-type NewsCategory = '経営' | '製品・サービス' | 'お知らせ' | 'IR';
-
-type NewsItem = {
-  id: number;
-  title: string;
-  date: string;
-  dateDisplay: string;
-  category: NewsCategory;
-  description: string;
-  body: string;
-};
-
-const newsItems: NewsItem[] = [
-  {
-    id: 1,
-    title: 'ベース株式会社 ベストパートナー賞を受賞しました',
-    date: '2022.07.01',
-    dateDisplay: '2022.07',
-    category: '経営',
-    description: 'ベース株式会社様より2023年度のベストパートナー賞として表彰いただきました。フォレストソフト株式会社が提供してきたサービスを高く評価いただいておりますことを深く感謝申し上げます。',
-    body: `ベース株式会社様より2023年度のベストパートナー賞として表彰いただきました。
-フォレストソフト株式会社が提供してきたサービスを高く評価いただいておりますことを深く感謝申し上げます。
-これまでに築いてきた強い信頼関係のもと、より一層の連携を深め、今後も多くのお客様に感動いただけるサービスをご提供できるよう邁進いたします。`,
-  },
-  {
-    id: 2,
-    title: '２０２３.１２　年末年始休業のお知らせ',
-    date: '2023.11.30',
-    dateDisplay: 'Nov-30, 2023',
-    category: 'お知らせ',
-    description: '平素は格別のお引立てを賜り、厚く御礼申し上げます。誠に勝手ながら弊社では、下記の期間を年末年始休業とさせていただきます。',
-    body: `平素は格別のお引立てを賜り、厚く御礼申し上げます。
-
-誠に勝手ながら弊社では、下記の期間を年末年始休業とさせていただきます。
-
-    2023年12月29日（金）～2024年1月3日（水）
-
-お電話・メール等でのお問い合わせは、年始は1月4日（木）以降の対応になります。
-ご不便をおかけしますが、何卒ご理解くださいますようお願い致します。`,
-  },
-  {
-    id: 3,
-    title: '2022年06月 当社の「経営革新計画」が東京都に承認されました。',
-    date: '2022.07.06',
-    dateDisplay: 'Jul-06, 2022',
-    category: '経営',
-    description: 'テーマ：FMSサービス事業の開発と販売 計画期間：令和3年10月～令和8年9月（5年計画）。当社が申請した経営革新計画について、中小企業等経営強化法に基づき承認されました。',
-    body: `テーマ：FMSサービス事業の開発と販売
-計画期間：令和3年10月～令和8年9月（5年計画）。
-当社が申請した経営革新計画について、中小企業等経営強化法第８条第1項の規定に基づき承認されました。
-
-これを機に、自社ソリューションサービスを開拓し、社会課題解決への貢献により、新たな成長曲線を作り出し、利益の成長性と企業価値を高め、経済価値と社会価値を創貢を献出来る企業を目指して参ります。
-
-※「経営革新計画」とは、中小企業が新たな事業活動に取り組むことにより経営の向上を図る計画のことで、中小企業等経営強化法に基づき、国や都道府県知事の承認が行われます（計画書に記載されている商品・サービスや事業を認定するものではありません）。`,
-  },
-  {
-    id: 4,
-    title: 'JIS Q 27001:2014 (ISO/IEC 27001:2013)の認証取得（移転）',
-    date: '2021.02.27',
-    dateDisplay: 'Feb-27, 2021',
-    category: '製品・サービス',
-    description: '当社は2020年12月に情報セキュリティマネジメントシステム（ISMS）の国際規格の認証を取得（移転）しました。',
-    body: `当社は2020年12月に情報セキュリティマネジメントシステム（ISMS）の国際規格である「ISO/IEC 27001:2013（以降:ISO27001）」及び国内規格「JIS Q 27001:2014」を同時に認証取得（移転）しました。
-
-登録番号　：J0444
-認証登録日：2020年12月25日
-登録範囲　：
-  ・システム開発、運用及び保守
-  ・上記業務に関する技術者派遣
-審査登録機関：エイエスアール株式会社`,
-  },
-  {
-    id: 5,
-    title: '2022年09月 資本金5000万に増資しました。',
-    date: '2022.10.05',
-    dateDisplay: 'Oct-05, 2022',
-    category: 'IR',
-    description: '2022年09月 資本金5000万に増資しました。',
-    body: `2022年09月 資本金5000万に増資しました。`,
-  },
-  {
-    id: 6,
-    title: 'プライバシーマークを取得しました',
-    date: '2018.08.21',
-    dateDisplay: 'Aug-21, 2018',
-    category: '製品・サービス',
-    description: '当社は、平成30年8月21日、一般財団法人日本情報経済社会推進協会（JIPDEC）より、プライバシーマーク付与事業者に認定されました。',
-    body: `当社は、平成30年8月21日、一般財団法人日本情報経済社会推進協会（JIPDEC）より、プライバシーマーク付与事業者に認定されました。
-
-プライバシーマークは、一般財団法人日本情報経済社会推進協会が運用する「プライバシーマーク制度」に基づいて、当社の個人情報の取扱いが日本工業規格JIS Q15001「個人情報保護マネジメントシステム―要求事項」に準拠して、適正に行われていることを認定した証として、その使用を許可されたものです。
-当社はこれまでも個人情報（お客様、お取引様、求人応募者様、当社社員など）を安全に管理することの重要性を十分に認識し、個人情報の適切な取扱いと保護を行うため、個人情報保護体制の構築・運営・改善を行ってきました。
-今後もプライバシーマーク付与認定企業として、個人情報の取扱いにさらなる強化を図り、取り組んで参ります。
-
-【Ｐマーク認定概要】
-登録番号：第17003375(01)号
-有効期間：平成30年8月21日～平成32年8月20日
-指定審査機関：一般社団法人日本情報システム・ユーザー協会
-事業所：東京都中央区日本橋浜町二丁目16番5号
-フォレストソフト株式会社`,
-  },
-  {
-    id: 7,
-    title: '労働者派遣事業許可を取得しました',
-    date: '2018.08.01',
-    dateDisplay: 'Aug-01, 2018',
-    category: 'お知らせ',
-    description: 'この度、フォレストソフト株式会社は2018年8月1日付で労働者派遣事業許可を取得し、特定労働者派遣事業から労働派遣事業への切替えを実施しました。',
-    body: `この度、フォレストソフト株式会社は2018年8月1日付で労働者派遣事業許可を取得し、特定労働者派遣事業から労働派遣事業への切替えを実施しました。
-
-許可番号：派13-310968
-許可年月日：平成30年8月1日
-事業所の名称：フォレストソフト株式会社
-住所：東京都中央区日本橋浜町二丁目16番５号
-有効期間：平成30年8月1日から平成33年7月31日まで`,
-  },
-];
-
-function getCategoryStyle(category: NewsCategory): string {
-  switch (category) {
-    case '経営':
-      return 'news-tag news-tag-keiei';
-    case '製品・サービス':
-      return 'news-tag news-tag-service';
-    case 'IR':
-      return 'news-tag news-tag-ir';
-    default:
-      return 'news-tag news-tag-info';
-  }
-}
-
-/** リスト表示用: 日付は YYYY.MM まで表示 */
-function getDateMonthOnly(dateStr: string): string {
-  const parts = dateStr.split(/[.\-/]/).filter(Boolean);
-  if (parts.length >= 2) return `${parts[0]}.${parts[1]}`;
-  return dateStr;
-}
-
-/** 西暦 YYYY.MM.DD → 日本語の日付形式（詳細ポップアップ用） */
-function formatDateJa(dateStr: string): string {
-  const parts = dateStr.split(/[.\-/]/).map(Number);
-  const [y, m, d] = parts;
-  if (!y || !m) return dateStr;
-  if (d) return `${y}年${m}月${d}日`;
-  return `${y}年${m}月`;
-}
-
-/** ポップアップ本文: 段落 / Key-Value / 注記 を分けて描画 */
-function renderPopupBody(body: string) {
-  const blocks = body.split(/\n\n+/).filter(Boolean);
-  return blocks.map((block, i) => {
-    const lines = block.split('\n').filter(Boolean);
-    const isNote = block.startsWith('※');
-    if (isNote) {
-      return (
-        <p key={i} className="news-popup-note">
-          {lines.map((line, j) => (
-            <span key={j}>{line}{j < lines.length - 1 && <br />}</span>
-          ))}
-        </p>
-      );
-    }
-    const hasKeyValue = lines.some((l) => /[：:]/.test(l) && l.trim().length > 0);
-    if (hasKeyValue && lines.length >= 1) {
-      return (
-        <div key={i} className="news-popup-kv">
-          {lines.map((line, j) => {
-            const match = line.match(/^(.+?)[\s]*[：:][\s]*(.*)$/);
-            if (match) {
-              return (
-                <div key={j} className="news-popup-kv-row">
-                  <span className="news-popup-kv-key">{match[1].trim()}</span>
-                  <span className="news-popup-kv-val">{match[2].trim()}</span>
-                </div>
-              );
-            }
-            if (line.trim()) {
-              return <p key={j} className="news-popup-p news-popup-p-sm">{line}</p>;
-            }
-            return null;
-          })}
-        </div>
-      );
-    }
-    return (
-      <p key={i} className="news-popup-p">
-        {lines.map((line, j) => (
-          <span key={j}>{line}{j < lines.length - 1 && <br />}</span>
-        ))}
-      </p>
-    );
-  });
-}
+type NewsItem = CmsNewsPublicItem;
 
 function NewsPageContent() {
   const refHero = useRef(null);
   const refList = useRef(null);
   const searchParams = useSearchParams();
+  const [newsItems, setNewsItems] = useState<NewsItem[]>([]);
+  const [listLoading, setListLoading] = useState(true);
+  const [listError, setListError] = useState<string | null>(null);
   const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null);
   const isInViewHero = useInView(refHero, { once: true, margin: '-100px' });
   const isInViewList = useInView(refList, { once: true, margin: '-80px' });
 
   useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      setListLoading(true);
+      setListError(null);
+      try {
+        const r = await fetch('/api/news');
+        const data = await r.json();
+        if (cancelled) return;
+        if (!r.ok) {
+          setListError(typeof data.error === 'string' ? data.error : '読み込みに失敗しました。');
+          setNewsItems([]);
+          return;
+        }
+        setNewsItems(Array.isArray(data.items) ? data.items : []);
+      } catch {
+        if (!cancelled) {
+          setListError('通信エラーが発生しました。');
+          setNewsItems([]);
+        }
+      } finally {
+        if (!cancelled) setListLoading(false);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  useEffect(() => {
     const id = searchParams.get('id');
-    if (id) {
-      const item = newsItems.find((n) => n.id === Number(id));
-      if (item) setSelectedNews(item);
-    }
-  }, [searchParams]);
+    if (!id || newsItems.length === 0) return;
+    const item = newsItems.find((n) => n.id === id);
+    if (item) setSelectedNews(item);
+  }, [searchParams, newsItems]);
 
   return (
     <main className="relative min-h-screen bg-white">
@@ -288,42 +134,49 @@ function NewsPageContent() {
               transition={{ duration: 0.5, delay: 0.1, ease }}
               className="company-panel overflow-hidden"
             >
-              {[...newsItems]
-                .sort((a, b) => b.date.localeCompare(a.date))
-                .map((news) => (
-                <button
-                  key={news.id}
-                  type="button"
-                  onClick={() => setSelectedNews(news)}
-                  className="news-list-row group flex flex-col sm:flex-row items-start gap-3 sm:gap-4 py-4 sm:py-5 px-4 sm:px-8 hover:bg-slate-50/80 transition-colors w-full text-left cursor-pointer"
-                >
-                  <div className="flex items-center flex-wrap gap-2 sm:gap-3 shrink-0">
-                    <span className="text-slate-600 text-xs sm:text-sm font-medium tabular-nums">
-                      {getDateMonthOnly(news.date)}
-                    </span>
-                    <span className={`${getCategoryStyle(news.category)} news-tag-fixed`}>
-                      {news.category}
-                    </span>
-                  </div>
-                  <div className="flex items-start gap-3 w-full sm:flex-1 sm:min-w-0">
-                    <div className="flex-1 min-w-0">
-                      <h3 className="text-slate-900 font-bold text-sm sm:text-base mb-1 group-hover:text-[#0ea5e9] transition-colors leading-snug">
-                        {news.title}
-                      </h3>
-                      <p className="text-slate-600 text-xs sm:text-sm leading-relaxed line-clamp-2">
-                        {news.description}
-                      </p>
+              {listLoading ? (
+                <div className="px-8 py-16 text-center text-slate-500">読み込み中…</div>
+              ) : listError ? (
+                <div className="px-8 py-12 text-center text-sm text-red-700">{listError}</div>
+              ) : newsItems.length === 0 ? (
+                <div className="px-8 py-16 text-center text-slate-500">
+                  現在掲載のニュースはありません。
+                </div>
+              ) : (
+                newsItems.map((news) => (
+                  <button
+                    key={news.id}
+                    type="button"
+                    onClick={() => setSelectedNews(news)}
+                    className="news-list-row group flex w-full cursor-pointer flex-col items-start gap-3 px-4 py-4 text-left transition-colors hover:bg-slate-50/80 sm:flex-row sm:gap-4 sm:px-8 sm:py-5"
+                  >
+                    <div className="flex shrink-0 flex-wrap items-center gap-2 sm:gap-3">
+                      <span className="text-xs font-medium tabular-nums text-slate-600 sm:text-sm">
+                        {publishedAtToYYYYMM(news.publishedAt)}
+                      </span>
+                      <span className={`${getNewsCategoryTagClassName(news.category)} news-tag-fixed`}>
+                        {news.category}
+                      </span>
                     </div>
-                    <span className="news-arrow shrink-0 self-center sm:self-start" aria-hidden>›</span>
-                  </div>
-                </button>
-              ))}
+                    <div className="flex w-full flex-1 items-start gap-3 sm:min-w-0">
+                      <div className="min-w-0 flex-1">
+                        <h3 className="mb-1 text-sm font-bold leading-snug text-slate-900 transition-colors group-hover:text-[#0ea5e9] sm:text-base">
+                          {news.title}
+                        </h3>
+                        <p className="line-clamp-2 text-xs leading-relaxed text-slate-600 sm:text-sm">
+                          {news.description}
+                        </p>
+                      </div>
+                      <span className="news-arrow shrink-0 self-center sm:self-start" aria-hidden>›</span>
+                    </div>
+                  </button>
+                ))
+              )}
             </motion.div>
           </div>
         </section>
       </div>
 
-      {/* Popup: 画面中央に固定し、本文は左揃え、下部に「閉じる」ボタンを配置 */}
       <AnimatePresence>
         {selectedNews && (
           <>
@@ -336,7 +189,7 @@ function NewsPageContent() {
               onClick={() => setSelectedNews(null)}
               aria-hidden
             />
-            <div className="news-popup-wrap fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none">
+            <div className="news-popup-wrap pointer-events-none fixed inset-0 z-50 flex items-center justify-center p-4">
               <motion.div
                 role="dialog"
                 aria-modal="true"
@@ -345,28 +198,24 @@ function NewsPageContent() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.96 }}
                 transition={{ duration: 0.25, ease }}
-                className="news-popup w-[min(96vw,42rem)] max-h-[92vh] rounded-2xl border border-slate-200/90 bg-white shadow-2xl overflow-hidden flex flex-col pointer-events-auto"
+                className="news-popup pointer-events-auto flex max-h-[92vh] w-[min(96vw,42rem)] flex-col overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-2xl"
                 onClick={(e) => e.stopPropagation()}
               >
-                <div className="news-popup-glow absolute inset-0 pointer-events-none rounded-2xl" aria-hidden />
-                <div className="relative flex flex-col flex-1 min-h-0">
-                  <div className="news-popup-header shrink-0 px-4 sm:px-6 pt-6 sm:pt-8 pb-4 sm:pb-6">
-                    <span className="news-popup-tag inline-block mb-4">
-                      {selectedNews.category}
-                    </span>
-                    <h2 id="news-popup-title" className="news-popup-title text-slate-900 font-bold leading-snug">
+                <div className="news-popup-glow pointer-events-none absolute inset-0 rounded-2xl" aria-hidden />
+                <div className="relative flex min-h-0 flex-1 flex-col">
+                  <div className="news-popup-header shrink-0 px-4 pb-4 pt-6 sm:px-6 sm:pb-6 sm:pt-8">
+                    <span className="news-popup-tag mb-4 inline-block">{selectedNews.category}</span>
+                    <h2 id="news-popup-title" className="news-popup-title font-bold leading-snug text-slate-900">
                       {selectedNews.title}
                     </h2>
-                    <p className="news-popup-date text-slate-500 mt-3">
-                      {formatDateJa(selectedNews.date)}
+                    <p className="news-popup-date mt-3 text-slate-500">
+                      {formatNewsDateForPopup(selectedNews.publishedAt)}
                     </p>
                   </div>
-                  <div className="news-popup-body overflow-y-auto flex-1 min-h-0 px-4 sm:px-6 py-2">
-                    <div className="news-popup-content">
-                      {renderPopupBody(selectedNews.body)}
-                    </div>
+                  <div className="news-popup-body min-h-0 flex-1 overflow-y-auto px-4 py-2 sm:px-6">
+                    <div className="news-popup-content">{renderNewsPopupBody(selectedNews.body)}</div>
                   </div>
-                  <div className="news-popup-footer shrink-0 px-4 sm:px-6 pt-4 sm:pt-6 pb-5 sm:pb-8 flex justify-center">
+                  <div className="news-popup-footer flex shrink-0 justify-center px-4 pb-5 pt-4 sm:px-6 sm:pb-8 sm:pt-6">
                     <button
                       type="button"
                       onClick={() => setSelectedNews(null)}
@@ -389,11 +238,13 @@ function NewsPageContent() {
 
 export default function NewsPage() {
   return (
-    <Suspense fallback={
-      <main className="relative min-h-screen bg-white flex items-center justify-center">
-        <span className="text-gray-500">読み込み中...</span>
-      </main>
-    }>
+    <Suspense
+      fallback={
+        <main className="relative flex min-h-screen items-center justify-center bg-white">
+          <span className="text-gray-500">読み込み中...</span>
+        </main>
+      }
+    >
       <NewsPageContent />
     </Suspense>
   );

@@ -3,8 +3,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { useInView } from 'framer-motion';
-import { createTicketSchema } from '@/app/lib/schemas';
-
 type SubmitOverlay = 'idle' | 'loading' | 'success';
 
 const inquiryTypes = [
@@ -45,24 +43,43 @@ export default function Contact({ variant = 'default' }: { variant?: 'default' |
     const loadingStartedAt = Date.now();
 
     try {
-      createTicketSchema.parse(formData);
+      const minLoadingMs = 1200;
+      const r = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      let data: { error?: string } = {};
+      try {
+        data = await r.json();
+      } catch {
+        data = {};
+      }
 
-      /* 送信 API 未実装のためモード：常に成功。実装後は fetch('/api/tickets', …) に差し替え */
-      const minLoadingMs = 2000;
       const elapsed = Date.now() - loadingStartedAt;
       if (elapsed < minLoadingMs) {
-        await new Promise((r) => setTimeout(r, minLoadingMs - elapsed));
+        await new Promise((res) => setTimeout(res, minLoadingMs - elapsed));
+      }
+
+      if (!r.ok) {
+        setSubmitOverlay('idle');
+        setError(
+          typeof data.error === 'string' && data.error
+            ? data.error
+            : '送信に失敗しました。時間をおいて再度お試しください。',
+        );
+        return;
       }
 
       setFormData({ name: '', email: '', subject: '', message: '' });
       setSuccess(true);
       setFormExpanded(true);
       setSubmitOverlay('success');
-      await new Promise((r) => setTimeout(r, 2500));
+      await new Promise((res) => setTimeout(res, 2500));
       setSubmitOverlay('idle');
-    } catch (err: unknown) {
+    } catch {
       setSubmitOverlay('idle');
-      setError(err instanceof Error ? err.message : '送信に失敗しました');
+      setError('通信エラーが発生しました。ネットワークをご確認ください。');
     } finally {
       setSubmitting(false);
     }

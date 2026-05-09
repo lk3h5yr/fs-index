@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation';
 export default function ContactFab() {
   const pathname = usePathname();
   if (pathname === '/contact') return null;
+  if (pathname.startsWith('/admin')) return null;
 
   return (
     <Link

@@ -8,9 +8,8 @@
 
 ### 1. 手動刪除用不到的資料夾（可選）
 
-若你希望專案只保留前端，可關閉 Cursor/VS Code 後，手動刪除以下資料夾：
+若你希望專案只保留前端，可關閉 Cursor/VS Code 後，手動刪除以下資料夾（後台已內建在官網 `/admin`，不再使用獨立 `apps/admin`）：
 
-- `apps/admin`（後台）
 - `services`（API + Worker）
 - `packages`（shared 已內聯到 public-web，不再需要）
 - `infra`（Docker 設定）
@@ -90,7 +89,7 @@ npm run build
 | 項目 | 說明 |
 |------|------|
 | **Root Directory** | 一定要設成 **`apps/public-web`**，否則會當成 monorepo 根目錄建置而失敗。 |
-| **表單 /api** | 官網的 `/api/*` 會依 `API_URL` 轉發到後端；沒設則僅本地開發用。 |
+| **表單 /api** | 設定 `API_URL` 時，僅 `/api/tickets` 會轉發到後端；管理後台用的 `/api/admin/*` 一律由 Next 處理。 |
 | **Node 版本** | Vercel 預設 Node 18+，符合專案 `engines`。 |
 
 完成以上步驟後，前端官網就會在 Vercel 上線。

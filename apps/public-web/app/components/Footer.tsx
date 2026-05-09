@@ -32,6 +32,11 @@ export default function Footer() {
               <li><Link href="/about" className="hover:text-white transition-colors">企業紹介</Link></li>
               <li><Link href="/news" className="hover:text-white transition-colors">ニュース</Link></li>
               <li><Link href="/careers" className="hover:text-white transition-colors">採用情報</Link></li>
+              <li>
+                <Link href="/admin/dashboard" className="hover:text-white transition-colors">
+                  管理画面
+                </Link>
+              </li>
             </ul>
           </div>
           <div className="md:col-span-2">
